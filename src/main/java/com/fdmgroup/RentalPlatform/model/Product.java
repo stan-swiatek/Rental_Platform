@@ -1,5 +1,13 @@
 package com.fdmgroup.RentalPlatform.model;
 
-public class Product {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Product {
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
 }

@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 public class User {
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer userId;
 	private String username, password, email, firstName, surName;
 
 	@OneToOne
@@ -37,11 +37,11 @@ public class User {
 //	TODO - add constructors
 
 	public Integer getId() {
-		return id;
+		return userId;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.userId = id;
 	}
 
 	public String getUsername() {
