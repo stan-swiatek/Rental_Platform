@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -16,23 +18,24 @@ public class User {
 	@GeneratedValue
 	private Integer id;
 	private String username, password, email, firstName, surName;
-	
+
 	@OneToOne
 	private Address address;
-	
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	private  List<Role> roleList;
-	
+
+	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Role.class)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private List<Role> roleList;
+
 	@OneToMany(cascade = CascadeType.PERSIST)
-	private  List<Product> productList;
-	
+	private List<Product> productList;
+
 	@OneToMany(cascade = CascadeType.PERSIST)
-	private  List<Product> borrowedProductList;
-	
-	public User () {}
+	private List<Product> borrowedProductList;
+
+	public User() {
+	}
 //	TODO - add constructors
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -112,5 +115,5 @@ public class User {
 	public void setBorrowedProductList(List<Product> borrowedProductList) {
 		this.borrowedProductList = borrowedProductList;
 	}
-	
+
 }
