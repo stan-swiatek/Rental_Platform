@@ -1,6 +1,5 @@
 package com.fdmgroup.RentalPlatform.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,21 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Product {
+public class Offer {
 	@Id
 	@GeneratedValue
 	private Integer id;
 	
-	private String name, description, category;
-	
-	private BigDecimal price;
-	
 	@OneToOne
 	private User owner;
 	
-	private Date availavbleFrom, availableTo;
+	@OneToOne
+	private Product product;
 	
-	private boolean isAvailable;
+	private Date startDate, endDate;
+	//Check if available
+	private String offerStatus;
 	
-	private double rating;
 }
