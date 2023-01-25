@@ -124,7 +124,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, email, firstName, password, roleList, surName, username);
+		return Objects.hash(password, username);
 	}
 
 	@Override
@@ -136,10 +136,9 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(address, other.address) && Objects.equals(email, other.email)
-				&& Objects.equals(firstName, other.firstName) && Objects.equals(password, other.password)
-				&& Objects.equals(roleList, other.roleList) && Objects.equals(surName, other.surName)
-				&& Objects.equals(username, other.username);
+		return Objects.equals(password, other.password) && Objects.equals(username, other.username);
 	}
+
+	
 
 }

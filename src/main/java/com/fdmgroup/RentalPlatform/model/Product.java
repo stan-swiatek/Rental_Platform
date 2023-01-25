@@ -1,5 +1,7 @@
 package com.fdmgroup.RentalPlatform.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +11,10 @@ public class Product {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	private String name, description;
+	
+	private BigDecimal price;
 	
 	
 	
