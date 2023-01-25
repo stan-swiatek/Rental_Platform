@@ -1,5 +1,7 @@
 package com.fdmgroup.RentalPlatform.services;
 
-public interface IProductService {
+import com.fdmgroup.RentalPlatform.model.Product;
 
+public interface IProductService {
+	Product findByProductName(String productName);
 }

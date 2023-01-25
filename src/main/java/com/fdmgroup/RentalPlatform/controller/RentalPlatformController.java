@@ -11,7 +11,7 @@ public class RentalPlatformController {
 	
 	@GetMapping(value="/")
 	public String goToIndex() {
-		System.out.println("test test");
 		return "index";
 	}
+	
 }
