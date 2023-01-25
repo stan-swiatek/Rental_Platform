@@ -6,20 +6,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
-public class Role {
+public class Role implements GrantedAuthority{
 	@Id
 	@GeneratedValue
 	private Integer roleId;
 	
-    private String name;
+    private String roleName;
 
     @ManyToMany
     private List<User> userList;
 
     public Role() {}
 
-    public Integer getRoleId() {
+    public Role(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public Integer getRoleId() {
 		return roleId;
 	}
 
@@ -28,11 +34,11 @@ public class Role {
 	}
 
 	public String getName() {
-        return name;
+        return roleName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.roleName = name;
     }
 
     public List<User> getUserList() {
@@ -42,4 +48,10 @@ public class Role {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
+
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,6 +1,7 @@
 package com.fdmgroup.RentalPlatform.model;
 
 import java.util.List;
+
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+
 
 @Entity
 public class User {
@@ -105,6 +108,13 @@ public class User {
 	public void setRoleList(List<Role> roleList) {
 		this.roleList = roleList;
 	}
+	
+	
+	
+	public void setRole(Role role) {
+		roleList.add(role);
+	}
+	
 
 	public List<Product> getProductList() {
 		return productList;
