@@ -1,6 +1,7 @@
 package com.fdmgroup.RentalPlatform.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -38,6 +39,11 @@ public class User {
 
 	public Integer getId() {
 		return userId;
+	}
+
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
 	public void setId(Integer id) {
@@ -114,6 +120,26 @@ public class User {
 
 	public void setBorrowedProductList(List<Product> borrowedProductList) {
 		this.borrowedProductList = borrowedProductList;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, email, firstName, password, roleList, surName, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(address, other.address) && Objects.equals(email, other.email)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(password, other.password)
+				&& Objects.equals(roleList, other.roleList) && Objects.equals(surName, other.surName)
+				&& Objects.equals(username, other.username);
 	}
 
 }

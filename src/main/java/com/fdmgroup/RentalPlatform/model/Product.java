@@ -10,4 +10,6 @@ public class Product {
 	@GeneratedValue
 	private Integer id;
 	
+	
+	
 }
