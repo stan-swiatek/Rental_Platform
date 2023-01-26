@@ -27,9 +27,18 @@ public class User {
 	@Id
 	@GeneratedValue
 	private Integer userId;
+	public User(String username, String password, String email, String firstName, String surName) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.firstName = firstName;
+		this.surName = surName;
+	}
+
 	private String username, password, email, firstName, surName;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
 	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Role.class, fetch = FetchType.EAGER)

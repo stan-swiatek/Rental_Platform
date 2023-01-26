@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fdmgroup.RentalPlatform.model.Address;
 import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.security.DefaultUserDetailsService;
+import com.fdmgroup.RentalPlatform.services.AddressService;
 import com.fdmgroup.RentalPlatform.services.ProductService;
 import com.fdmgroup.RentalPlatform.services.RoleService;
 
@@ -24,6 +26,9 @@ public class LoginAndRegisterController {
 
 	@Autowired
 	private DefaultUserDetailsService userService;
+	
+	@Autowired
+	private AddressService addressService;
 	
 	@Autowired
 	private PasswordEncoder encoder;
@@ -43,9 +48,12 @@ public class LoginAndRegisterController {
 	public String register() {
 		return "register";
 	}
-	
+	@GetMapping("/loggedUser")
+	public String loggedUser() {
+		return "loggedUser";
+	}
 	@PostMapping("/register")
-	public String registerSubmit(@ModelAttribute("user")User user, ModelMap model) {
+	public String registerSubmit(@ModelAttribute("user")User user, @ModelAttribute("address") Address address, ModelMap model) {
 		Optional<User> userFromDatabase = userService.findByUsername(user.getUsername());
 		if (userFromDatabase.isPresent()) {
 			model.addAttribute("message", "This user name already exists");
@@ -54,8 +62,13 @@ public class LoginAndRegisterController {
 		
 		user.setRole(roleService.findByRoleName("Customer"));
 		user.setPassword(encoder.encode(user.getPassword()));
+		user.setAddress(address);
+		
+		addressService.saveAddress(address);
 		userService.saveUser(user);
 //		model.addAttribute("places", productService.findAllPlaces());
+		
+		
 		return "index";
 	}
 	

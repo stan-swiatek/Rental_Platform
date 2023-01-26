@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.and()
 			.formLogin().loginPage("/login").permitAll()  // Spring won't inject it's own login page
-				.defaultSuccessUrl("/", true)
+				.defaultSuccessUrl("/loggedUser", true)
 				.failureUrl("/login")
 				.and()
 			.logout()
