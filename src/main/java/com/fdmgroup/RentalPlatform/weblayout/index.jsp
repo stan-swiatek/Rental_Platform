@@ -12,7 +12,7 @@
     <header class="header">
       <div class="header-bar">
         <div class="header-a">
-          <img src="images/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+          <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
           <div class="header-bar-logo-name">Autolife</div>
         </div>
           <div class="header-bar-content">
@@ -132,7 +132,7 @@
       <div class="main-row">
           <div class="main-row-item-block">
               <div class="main-row-item-block-image">
-                  <img src="images/new_car_landing_S_2.jpg" alt="">
+                  <img src="new_car_landing_S_2.jpg" alt="">
               </div>
               <div class="main-row-item-block-title">Car Make and Model</div>
               <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
@@ -143,7 +143,7 @@
           </div>
           <div class="main-row-item-block">
             <div class="main-row-item-block-image">
-                <img src="images/new_car_landing_S_2.jpg" alt="">
+                <img src="new_car_landing_S_2.jpg" alt="">
             </div>
             <div class="main-row-item-block-title">Car Make & Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
@@ -154,7 +154,7 @@
           </div>
           <div class="main-row-item-block">
             <div class="main-row-item-block-image">
-                <img src="images/new_car_landing_S_2.jpg" alt="">
+                <img src="new_car_landing_S_2.jpg" alt="">
             </div>
             <div class="main-row-item-block-title">Car Make and Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
@@ -165,7 +165,7 @@
           </div>
           <div class="main-row-item-block">
             <div class="main-row-item-block-image">
-                <img src="images/new_car_landing_S_2.jpg" alt="">
+                <img src="new_car_landing_S_2.jpg" alt="">
             </div>
             <div class="main-row-item-block-title">Car Make and Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
