@@ -22,16 +22,16 @@ public class ProductController {
 	@Autowired
 	private IProductService service;
 	
-	@GetMapping(value="/ ")
-	public String goToProducts(ModelMap model) {
-		return "products";
+	@GetMapping(value="/addproduct")
+	public String goToAddProduct(ModelMap model) {
+		return "addproduct";
 	}
 	
-	@PostMapping(value="/addProduct")
+	@PostMapping(value="/addproduct")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
 		service.createNewProduct(product);
 		populateModel(model);
-		return "addProduct";
+		return "addproduct";
 	}
 	
 	@GetMapping(value="/products/{id}")
