@@ -47,6 +47,11 @@ public class User {
 		return userId;
 	}
 
+	public User(String username) {
+		super();
+		this.username = username;
+	}
+
 	public User(String username, String password, Role role) {
 		super();
 		this.username = username;
