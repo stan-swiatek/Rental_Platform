@@ -19,7 +19,7 @@
 					<div class="header-bar-logo-name">Autolife</div>
 				</div>
 				<div class="header-bar-content">
-					<a href="#">C</a> <a href="index.jsp">Back to main page</a>
+					<a href="#">C</a> <a href="/">Back to main page</a>
 				</div>
 			</div>
 		</header>
@@ -37,7 +37,7 @@
 								id="pwd" name="password" class="second"
 								placeholder="type here...">
 							<div class="log-in-button">
-								<a href="logged.jsp"><input type="submit" value="Log in"></a>
+								<a href="logged"><input type="submit" value="Log in"></a>
 							</div>
 						</form>
 						<a class="forgot-pass" href="#">Forgot password</a>

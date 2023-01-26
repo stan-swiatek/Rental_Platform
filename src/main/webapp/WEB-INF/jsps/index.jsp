@@ -19,8 +19,8 @@
         </div>
           <div class="header-bar-content">
               <a href="#">C</a>
-              <a href="login.jsp">Log in</a>
-              <a href="register.jsp">Sign up</a>
+              <a href="login">Log in</a>
+              <a href="register">Sign up</a>
           </div>
       </div>
       <div class="header-description">
