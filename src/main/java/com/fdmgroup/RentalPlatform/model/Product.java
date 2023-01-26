@@ -21,7 +21,6 @@ public class Product {
 	@OneToOne
 	private User owner;
 
-	private Date availavbleFrom, availableTo;
 
 	private boolean isAvailable;
 
@@ -83,21 +82,6 @@ public class Product {
 		this.owner = owner;
 	}
 
-	public Date getAvailavbleFrom() {
-		return availavbleFrom;
-	}
-
-	public void setAvailavbleFrom(Date availavbleFrom) {
-		this.availavbleFrom = availavbleFrom;
-	}
-
-	public Date getAvailableTo() {
-		return availableTo;
-	}
-
-	public void setAvailableTo(Date availableTo) {
-		this.availableTo = availableTo;
-	}
 
 	public boolean isAvailable() {
 		return isAvailable;
