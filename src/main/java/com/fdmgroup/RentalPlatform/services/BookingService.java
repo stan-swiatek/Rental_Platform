@@ -3,14 +3,14 @@ package com.fdmgroup.RentalPlatform.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fdmgroup.RentalPlatform.repository.OfferRepository;
+import com.fdmgroup.RentalPlatform.repository.BookingRepository;
+
 
 
 @Service
-public class OfferService implements IOfferService {
-	
+public class BookingService implements IBookingService {
 	
 	@Autowired
-	private OfferRepository repo;
+	private BookingRepository repo;
 
 }
