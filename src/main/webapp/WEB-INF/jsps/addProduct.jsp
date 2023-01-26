@@ -9,7 +9,7 @@
 <body>
 	<h3>Products to rent:</h3>
 
-	<form action="/products" method="POST">
+	<form action="addProduct" method="POST">
 		<div>
 			<label for="productName">Product name:</label>
 			<input type="text" name="productName" placeholder="Product name">

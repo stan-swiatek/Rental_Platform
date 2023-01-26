@@ -29,7 +29,6 @@ public class ProductService implements IProductService {
 
 	@Override
 	public void createNewProduct(Product product) {
-		System.out.println("dodano");
 		repo.save(product);
 		
 	}
