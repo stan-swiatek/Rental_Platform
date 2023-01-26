@@ -138,7 +138,7 @@
               <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
               <div class="main-row-item-block-description-price">Price</div>
               <div class="main-row-item-block-button">
-                  <a href="product-page.jsp"><span>Rent me!</span></a>
+                  <a href="ProductPage.jsp"><span>Rent me!</span></a>
               </div>
           </div>
           <div class="main-row-item-block">
@@ -149,7 +149,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.jsp"><span>Rent me!</span></a>
+                <a href="ProductPage.jsp"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
@@ -160,7 +160,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.jsp"><span>Rent me!</span></a>
+                <a href="ProductPage.jsp"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
@@ -171,7 +171,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.jsp"><span>Rent me!</span></a>
+                <a href="ProductPage.jsp"><span>Rent me!</span></a>
             </div>
           </div>
       </div>
