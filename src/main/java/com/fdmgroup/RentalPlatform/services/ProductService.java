@@ -1,5 +1,6 @@
 package com.fdmgroup.RentalPlatform.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,39 @@ public class ProductService implements IProductService {
 	
 	@Override
 	public Product findByProductName(String productName) {
-		Optional<Product> optRole = repo.findByProductName(productName);
+		Optional<Product> optProduct = repo.findByProductName(productName);
 		
-		return optRole.orElse(new Product("default role"));
+		return optProduct.orElse(new Product("default product"));
 	}
+
+	@Override
+	public List<Product> findAllProducts() {
+		return repo.findAll();
+	}
+
+	@Override
+	public void createNewProduct(Product product) {
+		repo.save(product);
+		
+	}
+
+	@Override
+	public Product findProductById(int id) {
+		Optional<Product> optProduct = repo.findById(id);
+		
+		return optProduct.orElse(new Product("default product"));
+	}
+
+	@Override
+	public void deleteProduct(int id) {
+		repo.delete(findProductById(id));
+		
+	}
+
+//	@Override
+//	public List<Product> filterProducts(String filter) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

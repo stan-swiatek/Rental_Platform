@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +17,7 @@
         </div>
           <div class="header-bar-content">
               <a href="#">C</a>
-              <a href="log_in.html">Log in</a>
-              <a href="sign-up.html">Sign up</a>
+              <span>Logged in</span>
           </div>
       </div>
       <div class="header-description">
@@ -43,19 +40,19 @@
                     <div class="a">Color</div>
                     <select name="year">
                       <option value="first" selected>
-                        White
+                        white
                       </option>
             
                       <option value="second">
-                        Black
+                        black
                       </option>
             
                       <option value="third">
-                        Blue
+                        blue
                       </option>
             
                       <option value="forth">
-                        Red
+                        red
                       </option>
                     </select>
                   </div>
@@ -111,8 +108,7 @@
                     <div class="a">Price</div>
                     <div class="price__number">
                       <input 
-                        type="number" 
-                        name="priceMin"
+                        type="number" name="priceMin"
                         placeholder="Min"
                       >
                       <input 
@@ -136,9 +132,9 @@
               <div class="main-row-item-block-image">
                   <img src="new_car_landing_S_2.jpg" alt="">
               </div>
-              <div class="main-row-item-block-title">Car Make and Model</div>
+              <div class="main-row-item-block-title">Car Make & Model</div>
               <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-              <div class="main-row-item-block-description-price">Price per hour</div>
+              <div class="main-row-item-block-description-price">Price</div>
               <div class="main-row-item-block-button">
                   <a href="product-page.html"><span>Rent me!</span></a>
               </div>
@@ -149,7 +145,7 @@
             </div>
             <div class="main-row-item-block-title">Car Make & Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
+            <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
                 <a href="product-page.html"><span>Rent me!</span></a>
             </div>
@@ -158,9 +154,9 @@
             <div class="main-row-item-block-image">
                 <img src="new_car_landing_S_2.jpg" alt="">
             </div>
-            <div class="main-row-item-block-title">Car Make and Model</div>
+            <div class="main-row-item-block-title">Car Make & Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
+            <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
                 <a href="product-page.html"><span>Rent me!</span></a>
             </div>
@@ -169,9 +165,9 @@
             <div class="main-row-item-block-image">
                 <img src="new_car_landing_S_2.jpg" alt="">
             </div>
-            <div class="main-row-item-block-title">Car Make and Model</div>
+            <div class="main-row-item-block-title">Car Make & Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
+            <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
                 <a href="product-page.html"><span>Rent me!</span></a>
             </div>
@@ -184,29 +180,33 @@
 
           <div class="main-row-a">
             <div class="main-row-b">
-              <div class="main-row-item-block-title-blog-b">FAQ</div>
+              <div 
+                class="main-row-item-block-title-blog-b"
+              >FAQ
+              </div>
             </div>
           </div>
 
-          <div class="main-row-item-block-description-blog">Find answers to all your questions</div>
+          <div class="main-row-item-block-description-blog">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
           <div class="main-row-item-block-button-blog">
-              <a href="#"><span>Read more</span></a>
+              <a href="#"><span>Read more...</span></a>
           </div>
 
       </div>
 
 
           <div class="main-row-item-block-blog">
+
             <div class="main-row-a">
               <div class="main-row-b">
                 <div 
                   class="main-row-item-block-title-blog-b"
-                >Legal regulations
+                >Legal regulation
                 </div>
               </div>
             </div>
 
-            <div class="main-row-item-block-description-blog">Find out about our terms and conditions</div>
+            <div class="main-row-item-block-description-blog">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-button-blog">
                 <a href="terms.html"><span>Read more...</span></a>
             </div>
