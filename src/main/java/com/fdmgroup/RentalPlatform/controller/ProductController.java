@@ -27,11 +27,16 @@ public class ProductController {
 		return "addproduct";
 	}
 	
+	@GetMapping(value="/product-added")
+	public String goToProductAdded(ModelMap model) {
+		return "product-added";
+	}
+	
 	@PostMapping(value="/addproduct")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
 		service.createNewProduct(product);
 		populateModel(model);
-		return "addproduct";
+		return "product-added";
 	}
 	
 	@GetMapping(value="/products/{id}")
