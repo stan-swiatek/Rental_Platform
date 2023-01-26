@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import com.fdmgroup.RentalPlatform.services.ProductService;
 import com.fdmgroup.RentalPlatform.services.RoleService;
 
 
-
+@Controller
 public class LoginAndRegisterController {
 
 	@Autowired

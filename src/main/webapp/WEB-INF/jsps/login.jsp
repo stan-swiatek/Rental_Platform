@@ -7,7 +7,7 @@
 <title>Login</title>
 </head>
 <body>
-	<h3>Log in to Shazar</h3>
+	<h3>Log in to Rental Platform</h3>
 
 	<form action="/login" method="post">
 		<div>
@@ -21,7 +21,7 @@
 		<input type="submit" value="Log in">
 	</form>
 	<div>
-		<a href="/register">Register</a>
+		Not with us yet? Register <a href="/register">here</a>
 	</div>
 </body>
 </html>

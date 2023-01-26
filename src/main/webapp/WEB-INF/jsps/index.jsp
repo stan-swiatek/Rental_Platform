@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h3>Hello</h3>
+	Login <a href="/login">here</a><br>
+	Register <a href="/register">here</a>
 </body>
 </html>
