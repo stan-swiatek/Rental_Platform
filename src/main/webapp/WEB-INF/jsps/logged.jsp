@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,7 +138,7 @@
               <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
               <div class="main-row-item-block-description-price">Price</div>
               <div class="main-row-item-block-button">
-                  <a href="product-page.html"><span>Rent me!</span></a>
+                  <a href="product-page.jsp"><span>Rent me!</span></a>
               </div>
           </div>
           <div class="main-row-item-block">
@@ -147,7 +149,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="product-page.jsp"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
@@ -158,7 +160,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="product-page.jsp"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
@@ -169,7 +171,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="product-page.jsp"><span>Rent me!</span></a>
             </div>
           </div>
       </div>
@@ -208,7 +210,7 @@
 
             <div class="main-row-item-block-description-blog">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-button-blog">
-                <a href="terms.html"><span>Read more...</span></a>
+                <a href="terms.jsp"><span>Read more...</span></a>
             </div>
 
         </div>

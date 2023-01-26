@@ -19,7 +19,7 @@
         </div>
           <div class="header-bar-content">
               <a href="#">C</a>
-              <a href="login.jsp">Log in</a>
+              <a href="log_in.jsp">Log in</a>
               <a href="sign-up.jsp">Sign up</a>
           </div>
       </div>

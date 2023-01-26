@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +19,7 @@
         </div>
           <div class="header-bar-content">
             <a href="#">C</a>
-            <a href="index.html">Back to main page</a>
+            <a href="index.jsp">Back to main page</a>
           </div>
       </div>
     </header>
@@ -61,7 +63,7 @@
             </form>
           </div>
           <div class="log-in-button">
-            <a href="logged.html"><span>Create account</span></a>
+            <a href="logged.jsp"><span>Create account</span></a>
           </div>
         </div>
       </div>
