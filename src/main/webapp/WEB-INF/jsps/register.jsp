@@ -19,14 +19,6 @@
 			<input type="password" name="password" placeholder="Password">	
 		</div>
 		<div>
-			<label for="firstName">First name:</label>
-			<input type="text" name="firstName" placeholder="First name">	
-		</div>
-		<div>
-			<label for="surName">Surname:</label>
-			<input type="text" name="surName" placeholder="Surname">	
-		</div>
-		<div>
 			<label for="email">Email:</label>
 			<input type="text" name="email" placeholder="Email">	
 		</div>

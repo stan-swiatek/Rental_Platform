@@ -1,5 +1,6 @@
 package com.fdmgroup.RentalPlatform.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Objects;
@@ -30,13 +31,13 @@ public class User {
 
 	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Role.class)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<Role> roleList;
+	private List<Role> roleList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	private List<Product> productList;
+	private List<Product> productList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	private List<Product> borrowedProductList;
+	private List<Product> borrowedProductList = new ArrayList<>();
 
 	public User() {
 	}
@@ -44,6 +45,13 @@ public class User {
 
 	public Integer getId() {
 		return userId;
+	}
+
+	public User(String username, String password, Role role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.setRole(role);
 	}
 
 	public User(String username, String password) {
