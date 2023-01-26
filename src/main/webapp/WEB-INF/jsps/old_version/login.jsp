@@ -18,7 +18,6 @@
 			<label for="password">Password:</label>
 			<input type="password" name="password" placeholder="Password">		
 		</div>
-		<input type="submit" value="Log in">
 	</form>
 	<div>
 		Not with us yet? Register <a href="/register">here</a>
