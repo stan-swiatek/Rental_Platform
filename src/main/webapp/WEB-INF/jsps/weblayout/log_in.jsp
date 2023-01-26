@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,42 +19,35 @@
         </div>
           <div class="header-bar-content">
             <a href="#">C</a>
-            <a href="index.html">Back to main page</a>
+            <a href="index.jsp">Back to main page</a>
           </div>
       </div>
     </header>
     <main class="main">
   
-      <div class="log-name">Sign up</div>
+      <div class="log-name">Log in</div>
         <div class="main-row">
         <div class="log-name-block">
           <div class="log-name-block-main">
             <form>
-              <label for="fname">Create username</label><br>
+              <label for="username">Username:</label><br>
               <input 
                 type="text" 
-                id="fname"
-                name="fname"
+                id="username" 
+                name="username"
                 class="first"
                 placeholder="type here..."
               ><br>
-              <label for="pwd">Create password:</label><br>
+              <label for="pwd">Password:</label><br>
               <input 
                 type="password" 
                 id="pwd" 
                 name="pwd"
                 class="second"
                 placeholder="type here..."
-              ><br>
-              <label for="email">Enter your email</label><br>
-              <input 
-                type="email" 
-                id="email" 
-                name="email"
-                class="second"
-                placeholder="type here..."
-              ><br>
+              >
             </form>
+            <a class="forgot-pass" href="#">Forgot password</a>
           </div>
           <div class="check"> 
             <form>
@@ -61,7 +56,7 @@
             </form>
           </div>
           <div class="log-in-button">
-            <a href="logged.html"><span>Create account</span></a>
+            <a href="logged.jsp"><span>Log in</span></a>
           </div>
         </div>
       </div>

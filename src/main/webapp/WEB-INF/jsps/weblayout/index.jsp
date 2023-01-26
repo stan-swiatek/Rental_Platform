@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +19,8 @@
         </div>
           <div class="header-bar-content">
               <a href="#">C</a>
-              <a href="log_in.html">Log in</a>
-              <a href="sign-up.html">Sign up</a>
+              <a href="log_in.jsp">Log in</a>
+              <a href="sign-up.jsp">Sign up</a>
           </div>
       </div>
       <div class="header-description">
@@ -138,7 +140,7 @@
               <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
               <div class="main-row-item-block-description-price">Price per hour</div>
               <div class="main-row-item-block-button">
-                  <a href="product-page.html"><span>Rent me!</span></a>
+                  <a href="product-page.jsp"><span>Rent me!</span></a>
               </div>
           </div>
           <div class="main-row-item-block">
@@ -149,7 +151,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="product-page.jsp"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
@@ -160,7 +162,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="product-page.jsp"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
@@ -171,7 +173,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="product-page.jsp"><span>Rent me!</span></a>
             </div>
           </div>
       </div>
@@ -206,7 +208,7 @@
 
             <div class="main-row-item-block-description-blog">Find out about our terms and conditions</div>
             <div class="main-row-item-block-button-blog">
-                <a href="terms.html"><span>Read more...</span></a>
+                <a href="terms.jsp"><span>Read more...</span></a>
             </div>
 
         </div>
