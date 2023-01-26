@@ -55,7 +55,6 @@ public class LoginAndRegisterController {
 		user.setRole(roleService.findByRoleName("Customer"));
 		user.setPassword(encoder.encode(user.getPassword()));
 		userService.saveUser(user);
-		System.out.println("Hey!");
 //		model.addAttribute("places", productService.findAllPlaces());
 		return "index";
 	}

@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
@@ -15,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.data.repository.cdi.Eager;
 
 
 
@@ -29,8 +32,9 @@ public class User {
 	@OneToOne
 	private Address address;
 
-	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Role.class)
+	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Role.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	
 	private List<Role> roleList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.PERSIST)
