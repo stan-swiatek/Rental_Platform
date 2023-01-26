@@ -28,8 +28,9 @@ public class ProductController {
 	}
 	
 	@PostMapping(value="/products")
-	public String createNewProduct(ModelMap model, @ModelAttribute("product") Product product) {
-
+	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
+		System.out.println("dodano produkt" +  model.getAttribute("productName"));
+		
 		service.createNewProduct(product);
 		populateModel(model);
 		return "products";
