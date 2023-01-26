@@ -39,6 +39,10 @@
 				placeholder="City">
 		</div>
 		<div>
+			<label for="country">Country:</label> <input type="text" name="country"
+				placeholder="Country">
+		</div>
+		<div>
 			<label for="postalCode">Postal Code:</label> <input type="text"
 				name="postalCode" placeholder="Postal Code">
 		</div>
