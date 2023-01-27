@@ -14,5 +14,15 @@ public class RentalPlatformController {
 	public String goToIndex() {
 		return "index";
 	}
-
+	
+	@GetMapping(value="/terms")
+	public String goToTerms() {
+		return "terms";
+	}
+	
+	@GetMapping(value="/ProductPage")
+	public String goProductPage() {
+		return "ProductPage";
+	}
+	
 }
