@@ -134,7 +134,7 @@
       <div class="main-row">
           <div class="main-row-item-block">
               <div class="main-row-item-block-image">
-                  <img src="img/new_car_landing_S_2.jpg" alt="">
+                  <img src="new_car_landing_S_2.jpg" alt="">
               </div>
               <div class="main-row-item-block-title">Car Make and Model</div>
               <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>

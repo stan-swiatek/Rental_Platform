@@ -680,3 +680,76 @@ footer {
   transition-duration: 1s;
   transition-delay: 3ms;
 }
+
+.user-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.user-button a {
+  display: flex;
+  justify-content: center;
+  background-color: #2F86DE;
+  border-radius: 5px;
+  color: white;
+  text-transform: uppercase;
+  padding: 8px;
+  font-style: 18px;
+  line-height: 24px;
+  transition-duration: 0.9s;
+}
+.user-button-button-one {
+  margin-right: 10px;
+}
+.user-button a:hover {
+  transition-duration: 0.9s;
+  padding: 10px;
+}
+.user-button a:active {
+  position: relative;
+  top: 3px;
+  transition-duration: 0ms;
+}
+
+.user-block-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 0.5px solid;
+  border-color: #000;
+  border-radius: 5px;
+  transition-duration: 1s;
+  transition-delay: 3ms;
+}
+
+.product-button-block {
+  display: flex;
+  flex-direction: column;
+}
+.product-button-row-one {
+  margin-bottom: 10px;
+}
+.product-button-row-two {
+  display: flex;
+  flex-direction: row;
+}
+
+#rate {
+  display: inline;
+  width: 50%;
+}
+
+#rate:first-child {
+  margin-right: 5px;
+}

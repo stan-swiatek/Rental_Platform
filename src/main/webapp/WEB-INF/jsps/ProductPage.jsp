@@ -46,9 +46,21 @@
             <div class="product-main-price-description">One hour (more than 12 hours): x</div>
             <div class="product-main-price-description">One hour (more than 24 hours): x</div>
 
-            <div class="main-row-item-block-button">
-              <a href="#"><span>Book</span></a>
-          </div>
+            <div class="product-button-block">
+              <div class="product-button-row-one">
+                <div class="main-row-item-block-button">
+                  <a href="#"><span>Book</span></a>
+                </div>
+              </div>
+              <div class="product-button-row-two">
+                <div class="main-row-item-block-button" id="rate">
+                  <a href="#"><span>Rate the product</span></a>
+                </div>
+                <div class="main-row-item-block-button" id="rate">
+                  <a href="#"><span>Rate the owner</span></a>
+                </div> 
+              </div>
+            </div>
           </div>
         </div>
       </div>
