@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;0,800;1,100;1,400;1,700;1,800&display=swap");
-@import url(css/nullstyle.css);
+@import url(nullstyle.css);
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -55,6 +55,7 @@ body {
   column-gap: 40px;
 }
 .header-bar-content a, span {
+  text-decoration: none;
   color: #FFFFFF;
 }
 .header-bar-content a:first-child {
@@ -187,6 +188,7 @@ body {
   border-radius: 5px;
   color: white;
   text-transform: uppercase;
+  text-decortion: none;
   padding: 8px;
   font-style: 18px;
   line-height: 24px;
