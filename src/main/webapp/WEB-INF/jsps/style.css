@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/css; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;0,800;1,100;1,400;1,700;1,800&display=swap");
 @import url(nullstyle.css);
 *, *::before, *::after {
@@ -659,4 +661,22 @@ footer {
   display: flex;
   flex-shrink: 1;
   flex-grow: 1;
+}
+.textarea {
+  border: #000 1px solid;
+  margin: 10px;
+}
+
+.offer-block-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding: 10px;
+  background-color: white;
+  border: 0.5px solid;
+  border-color: #000;
+  border-radius: 5px;
+  transition-duration: 1s;
+  transition-delay: 3ms;
 }
