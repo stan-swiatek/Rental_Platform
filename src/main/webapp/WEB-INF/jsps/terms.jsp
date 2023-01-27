@@ -125,7 +125,7 @@
           <div class="footer-contact-information-links-social-media">
               <a href="#">Home</a>
               <a href="#">Cart</a>
-              <a href="#">Personal</a>
+              <a href="/UserProfile">Personal</a>
               <a href="#">Information</a>
           </div>
         </div>

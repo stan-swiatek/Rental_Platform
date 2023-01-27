@@ -19,7 +19,7 @@
         </div>
           <div class="header-bar-content">
             <a href="#">C</a>
-            <a href="/">Back to main page</a>
+            <a href="/UserProfile">Back to your profile</a>
           </div>
       </div>
     </header>
@@ -72,7 +72,7 @@
           <div class="footer-contact-information-links-social-media">
               <a href="#">Home</a>
               <a href="#">Cart</a>
-              <a href="#">Personal</a>
+              <a href="/UserProfile">Personal</a>
               <a href="#">Information</a>
           </div>
         </div>
