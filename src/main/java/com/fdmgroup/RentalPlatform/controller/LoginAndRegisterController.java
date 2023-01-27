@@ -54,7 +54,6 @@ public class LoginAndRegisterController {
 	}
 	@PostMapping("/register")
 	public String registerSubmit(@ModelAttribute("user")User user, @ModelAttribute("address") Address address, ModelMap model) {
-		System.out.println("Hello");
 		Optional<User> userFromDatabase = userService.findByUsername(user.getUsername());
 		if (userFromDatabase.isPresent()) {
 			model.addAttribute("message", "This user name already exists");

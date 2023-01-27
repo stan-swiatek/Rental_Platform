@@ -18,13 +18,12 @@
           <div class="header-bar-logo-name">Autolife</div>
         </div>
           <div class="header-bar-content">
-            <a href="#">C</a>
-            <a href="index">Back to main page</a>
+            <a href="/">C</a>
+            <a href="/">Back to main page</a>
           </div>
       </div>
     </header>
     <main class="main">
-  
       <div class="log-name">Sign up</div>
         <div class="main-row">
         <div class="log-name-block">
