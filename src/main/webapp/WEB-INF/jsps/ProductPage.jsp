@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
       <div class="header-bar">
         <div class="header-a">
           <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
-          <div class="header-bar-logo-name">Autolife</div>
+          <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
             <a href="#">C</a>
