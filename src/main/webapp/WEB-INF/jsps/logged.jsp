@@ -19,6 +19,7 @@
         </div>
           <div class="header-bar-content">
               <a href="#">C</a>
+              <a href="logout">Log out</a>
               <span>Logged in</span>
           </div>
       </div>

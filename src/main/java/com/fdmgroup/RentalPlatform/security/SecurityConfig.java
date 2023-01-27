@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -20,16 +22,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	//Check out @Lazy tag if something is not working, we added it to debug.
 	@Autowired
-    public SecurityConfig(@Lazy UserDetailsService userDetailsService) {
+	@Lazy
+    public SecurityConfig( UserDetailsService userDetailsService) {
 		super();
 		this.userDetailsService = userDetailsService;
 	}
-
+	
 	@Bean
     PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
     
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth

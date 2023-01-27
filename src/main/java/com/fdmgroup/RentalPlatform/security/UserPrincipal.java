@@ -43,6 +43,12 @@ public class UserPrincipal implements UserDetails {
 		// TODO Auto-generated method stub
 		return user.getUsername();
 	}
+	
+	
+	public String getFirstName() {
+		// TODO Auto-generated method stub
+		return user.getFirstName();
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
