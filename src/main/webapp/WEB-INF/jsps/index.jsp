@@ -6,21 +6,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Shazar</title>
 </head>
 <body>
   <div class="wrapper">
     <header class="header">
       <div class="header-bar">
         <div class="header-a">
-          <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
-          <div class="header-bar-logo-name">Autolife</div>
+          <img src="img/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+          <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
               <a href="#">C</a>
-              <a href="login.jsp">Log in</a>
-              <a href="register.jsp">Sign up</a>
+              <a href="/login">Log in</a>
+              <a href="/register">Sign up</a>
           </div>
       </div>
       <div class="header-description">
@@ -134,46 +134,46 @@
       <div class="main-row">
           <div class="main-row-item-block">
               <div class="main-row-item-block-image">
-                  <img src="new_car_landing_S_2.jpg" alt="">
+                  <img src="img/new_car_landing_S_2.jpg" alt="">
               </div>
               <div class="main-row-item-block-title">Car Make and Model</div>
               <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
               <div class="main-row-item-block-description-price">Price per hour</div>
               <div class="main-row-item-block-button">
-                  <a href="ProductPage.jsp"><span>Rent me!</span></a>
+                  <a href="/ProductPage"><span>Rent me!</span></a>
               </div>
           </div>
           <div class="main-row-item-block">
             <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
+                <img src="img/new_car_landing_S_2.jpg" alt="">
             </div>
             <div class="main-row-item-block-title">Car Make & Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="ProductPage.jsp"><span>Rent me!</span></a>
+                <a href="/ProductPage"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
             <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
+                <img src="img/new_car_landing_S_2.jpg" alt="">
             </div>
             <div class="main-row-item-block-title">Car Make and Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="ProductPage.jsp"><span>Rent me!</span></a>
+                <a href="/ProductPage"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
             <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
+                <img src="img/new_car_landing_S_2.jpg" alt="">
             </div>
             <div class="main-row-item-block-title">Car Make and Model</div>
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="ProductPage.jsp"><span>Rent me!</span></a>
+                <a href="/ProductPage"><span>Rent me!</span></a>
             </div>
           </div>
       </div>
@@ -208,7 +208,7 @@
 
             <div class="main-row-item-block-description-blog">Find out about our terms and conditions</div>
             <div class="main-row-item-block-button-blog">
-                <a href="terms.jsp"><span>Read more...</span></a>
+                <a href="/terms"><span>Read more...</span></a>
             </div>
 
         </div>

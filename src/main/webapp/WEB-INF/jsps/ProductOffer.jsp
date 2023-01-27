@@ -3,27 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+<title>Shazar</title>
 </head>
 <body>
   <div class="wrapper">
     <header class="header" id="header">
       <div class="header-bar">
         <div class="header-a">
-          <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
-          <div class="header-bar-logo-name">Autolife</div>
+          <img src="img/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+          <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
             <a href="#">C</a>
-            <a href="index.html">Back to main page</a>
+            <a href="/">Back to main page</a>
           </div>
       </div>
     </header>
     <main class="main">
       <div class="log-name-block">
         <div class="offer-block-main">
-          <div class="log-name">Place your offer here:</div>
+          <div class="log-name">Create your offer here:</div>
           <form>
             <label for="productName">productName:</label><br>
             <input 

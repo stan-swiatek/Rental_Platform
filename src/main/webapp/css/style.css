@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/css; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;0,800;1,100;1,400;1,700;1,800&display=swap");
-@import url(nullstyle.css);
+@import url(css/nullstyle.css);
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -406,7 +404,7 @@ footer {
   /* flex-direction: column; */
   justify-content: space-between;
 }
-
+ 
 @media (max-width: 1080px) {
   .header-bar {
     display: flex;
@@ -422,7 +420,7 @@ footer {
     justify-content: center;
     row-gap: 10px;
   }
-}
+} 
 @media (max-width: 991px) {
   .header-bar {
   display: flex;
@@ -432,7 +430,7 @@ footer {
     box-shadow: 0 0 10px #2F86DE;
     transition-duration: 0.6s;
   }
-}
+} 
 @media (max-width: 768px) {
   .header-bar {
     padding: 10px 0;
@@ -476,7 +474,7 @@ footer {
   .footer-contact-information-container .footer-contact-information-title {
     font-size: 15px;
   }
-}
+} 
 
 /* styles for log-in.html */
 
