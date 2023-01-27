@@ -54,14 +54,19 @@ public class ProductController {
 		return "index";
 	}
 	
-//	@PostMapping("/filtered")
-//	public String filterProducts(ModelMap model, @RequestParam String filter) {
-//		List<Product> filteredProducts = service.filterProducts(filter);
-//		
-//		model.addAttribute("filterProducts", filterProducts);
-//		populateModel(model);
-//		return "index";
-//	}
+	@GetMapping(value="/filtered")
+	public String goToFiltered(ModelMap model) {
+		return "filtered";
+	}
+	
+	@PostMapping("/filtered")
+	public String filterProducts(ModelMap model, @RequestParam String filter) {
+		List<Product> filteredProducts = service.filterProducts(filter);
+		
+		model.addAttribute("filterProducts", filteredProducts);
+		populateModel(model);
+		return "filtered";
+	}
 	
 	
 	private void populateModel(ModelMap model) {

@@ -23,6 +23,14 @@
 			<input type="text" name="category" placeholder="Category">
 		</div>
 		<div>
+			<label for="type">Type:</label>
+			<input type="text" name="type" placeholder="Type">
+		</div>
+		<div>
+			<label for="color">Color:</label>
+			<input type="text" name="color" placeholder="Color">
+		</div>		
+		<div>
 			<label for="price">Price:</label>
 			<input type="number" name="price" placeholder="Price">
 		</div>		

@@ -10,5 +10,5 @@ public interface IProductService {
 	void createNewProduct(Product product);
 	Product findProductById(int id); //throws ProductNotFoundException;
 	void deleteProduct(int id); //throws ProductNotFoundException;
-	//List<Product> filterProducts(String filter);
+	List<Product> filterProducts(String filter);
 }

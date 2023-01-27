@@ -14,7 +14,7 @@ public class Product {
 	@GeneratedValue
 	private Integer id;
 
-	private String productName, description, category;
+	private String productName, description, category, type, color;
 
 	private BigDecimal price;
 
@@ -96,6 +96,22 @@ public class Product {
 
 	public void setRating(double rating) {
 		this.rating = rating;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }

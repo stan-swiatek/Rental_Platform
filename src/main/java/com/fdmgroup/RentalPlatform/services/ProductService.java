@@ -1,11 +1,13 @@
 package com.fdmgroup.RentalPlatform.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.repository.ProductRepository;
 
@@ -46,10 +48,16 @@ public class ProductService implements IProductService {
 		
 	}
 
-//	@Override
-//	public List<Product> filterProducts(String filter) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public List<Product> filterProducts(String filter) {
+		List<Product> filteredByType = repo.findByTypeIgnoreCaseContaining(filter);
+		List<Product> filteredByCatogory = repo.findByCategoryIgnoreCaseContaining(filter);
+		List<Product> filteredByColor = repo.findByColorIgnoreCaseContaining(filter);
+		//List<Product> filteredByPrice = repo.findByPriceIgnoreCaseContaining(filter);
+		
+		List<Product> filteredProducts = new ArrayList<>();
+		Stream.of(filteredByType, filteredByCatogory, filteredByColor).forEach(filteredProducts::addAll);
+		return filteredProducts;
+	}
 
 }
