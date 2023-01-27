@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Get Help Foundation</title>
 </head>
 <body>
@@ -24,7 +24,8 @@
           </div>
       </div>
       <div class="header-description">
-          <div class="header-description-container">
+          <div 
+          class="header-description-container">
             <p class="det__title">Detailed searchbar</p>
           <div class="header-description-what-is-get-help">
             <input 
