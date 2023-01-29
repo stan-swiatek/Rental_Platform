@@ -19,7 +19,7 @@
       <div class="log-name-block">
         <div class="product-main">
           <div class="product-main-one">
-            <img src="img/new_car_landing_S_2.jpg" alt="">
+            <img src="new_car_landing_S_2.jpg" alt="">
           </div>
           <div class="product-main-two">
             <div class="product-main-title">Car name</div>

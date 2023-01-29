@@ -46,7 +46,7 @@
                 class="second"
                 placeholder="type here..."
               >
-              <div class="log-in-button">
+              <div class="register-button">
                 <a href=""><input type="submit" value="Log in"></a>
               </div>
             </form>
@@ -59,7 +59,7 @@
             </form>
           </div>
           <div class="log-in-button">
-			Not with us yet? Register <a href="/register">here</a>
+			<span class="button-reg">Not with us yet?</span> <a href="/register">Register here</a>
 		  </div>
         </div>
       </div>

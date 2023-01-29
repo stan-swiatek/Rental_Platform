@@ -26,7 +26,7 @@
     <main class="main">
       <div class="log-name-block">
         <div class="offer-block-main">
-          <div class="log-name">Create your offer here:</div>
+          <div class="offer-name">Create your offer here:</div>
           <form>
             <label for="productName">productName:</label><br>
             <input 
@@ -64,6 +64,9 @@
               placeholder="type here..."
             ><br>
           </form>
+        </div>
+        <div class="log-in-button">
+          <a href="#"><span>Create</span></a>
         </div>
       </div>
     </main>

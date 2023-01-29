@@ -30,7 +30,7 @@
         <div class="log-name-block">
           <div class="log-name-block-main">
             <form action="/register" method="POST">
-              <label for="username">Create username</label><br>
+              <label for="username">Create username:</label><br>
               <input 
                 type="text" 
                 id="username"
@@ -46,7 +46,7 @@
                 class="second"
                 placeholder="type here..."
               ><br>
-              <label for="email">Enter your email</label><br>
+              <label for="email">Enter your email:</label><br>
               <input 
                 type="email" 
                 id="email" 
@@ -54,7 +54,7 @@
                 class="second"
                 placeholder="type here..."
               ><br>
-                            <label for="firstName">Name:</label> 
+              <label for="firstName">Name:</label><br>
               <input 
               	type="text"
               	id="firstName" 
@@ -62,7 +62,7 @@
 				class="second"
 				placeholder="Name"
 			  ><br>
-			  <label for="surName">Surname:</label> 
+			  <label for="surName">Surname:</label><br>
 			  <input
 			  	id="surName" 
 			  	class="second"
@@ -70,15 +70,15 @@
 				name="surName" 
 				placeholder="Surname"
 			  ><br>
-              <label for="street">Street:</label> 
+              <label for="street">Street:</label><br>
               <input 
               	id="surName" 
 			  	class="second"
               	type="text" 
               	name="street"
 				placeholder="Street"
-				><br>
-			  <label for="city">City:</label> 
+			  ><br>
+			  <label for="city">City:</label><br> 
 			  <input 
 			  	id="city" 
 			  	class="second"
@@ -86,7 +86,7 @@
 			  	name="city"
 				placeholder="City"
 			  ><br>
-			  <label for="country">Country:</label> 
+			  <label for="country">Country:</label><br> 
 			  <input 
 			  	id="country" 
 			  	class="second"
@@ -94,7 +94,7 @@
 			  	name="country"
 				placeholder="Country"
 			  ><br>
-			  <label for="postalCode">Postal Code:</label> 
+			  <label for="postalCode">Postal Code:</label><br> 
 			  <input 
 			  	id="postalCode" 
 			  	class="second"
@@ -102,16 +102,15 @@
 				name="postalCode" 
 				placeholder="Postal Code"
 			  ><br>
-			  <label for="buildingNumber">Building Number:</label> 
+			  <label for="buildingNumber">Building Number:</label><br> 
 			  <input
 			  	id="buildingNumber" 
 			  	class="second"
 				type="text" 
 				name="buildingNumber" 
 				placeholder="Building Number"
-				><br>
-		
-			  <label for="flatNumber">Flat Number:</label> 
+			  ><br>
+			  <label for="flatNumber">Flat Number:</label><br> 
 			  <input 
 			  	id="flatNumber" 
 			  	class="second"
@@ -119,7 +118,7 @@
 				name="flatNumber" 
 				placeholder="Flat Number"
 			  ><br>
-			  <div class="log-in-button">
+			  <div class="register-button">
            		<input type="submit" value="Register">
           	  </div>
             </form>
