@@ -76,7 +76,7 @@
               <a href="#">Home</a>
               <a href="#">Cart</a>
               <a href="/UserProfile">Personal</a>
-              <a href="#">Information</a>
+              <a href="/information">Information</a>
           </div>
         </div>
     </footer>

@@ -793,3 +793,18 @@ footer {
   color: #000;
 }
 
+.info-blog {
+  display: flex; 
+  flex-direction: column; 
+  column-gap: 20px;
+  row-gap: 10px;
+  margin: 0 0 10px 0;
+}
+
+.main-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto
+}
+
