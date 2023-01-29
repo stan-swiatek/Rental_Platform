@@ -29,20 +29,20 @@
         <div class="main-row">
         <div class="log-name-block">
           <div class="log-name-block-main">
-            <form>
-              <label for="fname">Create username</label><br>
+            <form action="/register" method="POST">
+              <label for="username">Create username</label><br>
               <input 
                 type="text" 
-                id="fname"
-                name="fname"
+                id="username"
+                name="username"
                 class="first"
                 placeholder="type here..."
               ><br>
-              <label for="pwd">Create password:</label><br>
+              <label for="password">Create password:</label><br>
               <input 
                 type="password" 
-                id="pwd" 
-                name="pwd"
+                id="password" 
+                name="password"
                 class="second"
                 placeholder="type here..."
               ><br>
@@ -54,6 +54,74 @@
                 class="second"
                 placeholder="type here..."
               ><br>
+                            <label for="firstName">Name:</label> 
+              <input 
+              	type="text"
+              	id="firstName" 
+				name="firstName" 
+				class="second"
+				placeholder="Name"
+			  ><br>
+			  <label for="surName">Surname:</label> 
+			  <input
+			  	id="surName" 
+			  	class="second"
+			  	type="text"
+				name="surName" 
+				placeholder="Surname"
+			  ><br>
+              <label for="street">Street:</label> 
+              <input 
+              	id="surName" 
+			  	class="second"
+              	type="text" 
+              	name="street"
+				placeholder="Street"
+				><br>
+			  <label for="city">City:</label> 
+			  <input 
+			  	id="city" 
+			  	class="second"
+			  	type="text" 
+			  	name="city"
+				placeholder="City"
+			  ><br>
+			  <label for="country">Country:</label> 
+			  <input 
+			  	id="country" 
+			  	class="second"
+			  	type="text" 
+			  	name="country"
+				placeholder="Country"
+			  ><br>
+			  <label for="postalCode">Postal Code:</label> 
+			  <input 
+			  	id="postalCode" 
+			  	class="second"
+			  	type="text"
+				name="postalCode" 
+				placeholder="Postal Code"
+			  ><br>
+			  <label for="buildingNumber">Building Number:</label> 
+			  <input
+			  	id="buildingNumber" 
+			  	class="second"
+				type="text" 
+				name="buildingNumber" 
+				placeholder="Building Number"
+				><br>
+		
+			  <label for="flatNumber">Flat Number:</label> 
+			  <input 
+			  	id="flatNumber" 
+			  	class="second"
+			  	type="text"
+				name="flatNumber" 
+				placeholder="Flat Number"
+			  ><br>
+			  <div class="log-in-button">
+           		<input type="submit" value="Register">
+          	  </div>
             </form>
           </div>
           <div class="check"> 
@@ -61,9 +129,6 @@
               <input type="checkbox" id="remain" name="remain" value="remain">
               <label for="remain">Remain logged in</label><br>
             </form>
-          </div>
-          <div class="log-in-button">
-            <a href="/logged"><span>Create account</span></a>
           </div>
         </div>
       </div>

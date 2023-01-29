@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,17 +13,7 @@
 <body>
   <div class="wrapper">
     <header class="header">
-      <div class="header-bar">
-        <div class="header-a">
-          <img src="img/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
-          <div class="header-bar-logo-name">Shazar</div>
-        </div>
-          <div class="header-bar-content">
-              <a href="#">C</a>
-              <a href="/login">Log in</a>
-              <a href="/register">Sign up</a>
-          </div>
-      </div>
+      <%@ include file="headerBar.jsp" %>
       <div class="header-description">
           <div class="header-description-container">
             <p class="det__title">Detailed searchbar</p>

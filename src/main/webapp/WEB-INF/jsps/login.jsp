@@ -29,7 +29,7 @@
         <div class="main-row">
         <div class="log-name-block">
           <div class="log-name-block-main">
-            <form>
+            <form action="/login" method="post">
               <label for="username">Username:</label><br>
               <input 
                 type="text" 
@@ -38,14 +38,17 @@
                 class="first"
                 placeholder="type here..."
               ><br>
-              <label for="pwd">Password:</label><br>
+              <label for="password">Password:</label><br>
               <input 
                 type="password" 
-                id="pwd" 
-                name="pwd"
+                id="password" 
+                name="password"
                 class="second"
                 placeholder="type here..."
               >
+              <div class="log-in-button">
+                <a href="logged"><input type="submit" value="Log in"></a>
+              </div>
             </form>
             <a class="forgot-pass" href="#">Forgot password</a>
           </div>
@@ -56,8 +59,8 @@
             </form>
           </div>
           <div class="log-in-button">
-            <a href="/logged"><span>Log in</span></a>
-          </div>
+			Not with us yet? Register <a href="/register">here</a>
+		  </div>
         </div>
       </div>
   
