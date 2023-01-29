@@ -35,7 +35,7 @@ public class ProductController {
 	@PostMapping(value="/addproduct")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
 		service.createNewProduct(product);
-		populateModel(model);
+		populateModel(model);		
 		return "product-added";
 	}
 	
@@ -66,6 +66,7 @@ public class ProductController {
 		model.addAttribute("filterProducts", filteredProducts);
 		populateModel(model);
 		return "filtered";
+		
 	}
 	
 	
