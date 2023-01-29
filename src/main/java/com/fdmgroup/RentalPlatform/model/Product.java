@@ -21,7 +21,6 @@ public class Product {
 	@OneToOne
 	private User owner;
 
-
 	private boolean isAvailable;
 
 	private double rating;

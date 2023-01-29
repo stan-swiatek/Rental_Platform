@@ -1,11 +1,13 @@
 package com.fdmgroup.RentalPlatform.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
@@ -15,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.repository.cdi.Eager;
+
 
 
 @Entity
@@ -23,20 +27,30 @@ public class User {
 	@Id
 	@GeneratedValue
 	private Integer userId;
+	public User(String username, String password, String email, String firstName, String surName) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.firstName = firstName;
+		this.surName = surName;
+	}
+
 	private String username, password, email, firstName, surName;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
-	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Role.class)
+	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Role.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<Role> roleList;
+	
+	private List<Role> roleList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	private List<Product> productList;
+	private List<Product> productList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.PERSIST)
-	private List<Product> borrowedProductList;
+	private List<Product> borrowedProductList = new ArrayList<>();
 
 	public User() {
 	}
@@ -44,6 +58,18 @@ public class User {
 
 	public Integer getId() {
 		return userId;
+	}
+
+	public User(String username) {
+		super();
+		this.username = username;
+	}
+
+	public User(String username, String password, Role role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.setRole(role);
 	}
 
 	public User(String username, String password) {
@@ -136,7 +162,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(password, username);
+		return Objects.hash(address, email, firstName, password, roleList, surName, username);
 	}
 
 	@Override
@@ -148,8 +174,13 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(password, other.password) && Objects.equals(username, other.username);
+		return Objects.equals(address, other.address) && Objects.equals(email, other.email)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(password, other.password)
+				&& Objects.equals(roleList, other.roleList) && Objects.equals(surName, other.surName)
+				&& Objects.equals(username, other.username);
 	}
+
+	
 
 	
 

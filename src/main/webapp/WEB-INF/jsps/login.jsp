@@ -47,7 +47,7 @@
                 placeholder="type here..."
               >
               <div class="log-in-button">
-                <a href="logged"><input type="submit" value="Log in"></a>
+                <a href=""><input type="submit" value="Log in"></a>
               </div>
             </form>
             <a class="forgot-pass" href="#">Forgot password</a>
