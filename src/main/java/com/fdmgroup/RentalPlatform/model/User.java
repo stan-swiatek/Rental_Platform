@@ -180,8 +180,4 @@ public class User {
 				&& Objects.equals(username, other.username);
 	}
 
-	
-
-	
-
 }

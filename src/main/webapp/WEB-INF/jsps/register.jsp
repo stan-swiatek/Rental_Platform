@@ -14,17 +14,16 @@
     <header class="header">
       <div class="header-bar">
         <div class="header-a">
-          <img src="img/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+          <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
           <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
-            <a href="#">C</a>
+            <a href="/">C</a>
             <a href="/">Back to main page</a>
           </div>
       </div>
     </header>
     <main class="main">
-  
       <div class="log-name">Sign up</div>
         <div class="main-row">
         <div class="log-name-block">
@@ -40,8 +39,8 @@
               ><br>
               <label for="password">Create password:</label><br>
               <input 
-                type="password" 
-                id="password" 
+                type="password"
+                id="password"
                 name="password"
                 class="second"
                 placeholder="type here..."
@@ -78,7 +77,7 @@
               	name="street"
 				placeholder="Street"
 			  ><br>
-			  <label for="city">City:</label><br> 
+			  <label for="city">City:</label><br>
 			  <input 
 			  	id="city" 
 			  	class="second"
@@ -86,7 +85,7 @@
 			  	name="city"
 				placeholder="City"
 			  ><br>
-			  <label for="country">Country:</label><br> 
+			  <label for="country">Country:</label><br>
 			  <input 
 			  	id="country" 
 			  	class="second"
@@ -94,7 +93,7 @@
 			  	name="country"
 				placeholder="Country"
 			  ><br>
-			  <label for="postalCode">Postal Code:</label><br> 
+			  <label for="postalCode">Postal Code:</label><br>
 			  <input 
 			  	id="postalCode" 
 			  	class="second"
@@ -102,7 +101,7 @@
 				name="postalCode" 
 				placeholder="Postal Code"
 			  ><br>
-			  <label for="buildingNumber">Building Number:</label><br> 
+			  <label for="buildingNumber">Building Number:</label><br>
 			  <input
 			  	id="buildingNumber" 
 			  	class="second"

@@ -6,7 +6,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import com.fdmgroup.RentalPlatform.model.Role;
 import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.repository.UserRepository;
