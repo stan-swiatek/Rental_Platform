@@ -180,4 +180,11 @@ public class User {
 				&& Objects.equals(username, other.username);
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", firstName=" + firstName + ", surName=" + surName + ", address=" + address + ", roleList="
+				+ roleList + ", productList=" + productList + ", borrowedProductList=" + borrowedProductList + "]";
+	}
+
 }

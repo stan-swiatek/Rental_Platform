@@ -32,7 +32,7 @@ public class LoginAndRegisterController {
 
 	@Autowired
 	private AddressService addressService;
-	
+
 	@Autowired
 	private PasswordEncoder encoder;
 
@@ -60,7 +60,7 @@ public class LoginAndRegisterController {
 		return "index";
 	}
 
-	//Perform the login check and inject user info to the header if logged in.
+	// Perform the login check and inject user info to the header if logged in.
 	public void isLoggedIn(ModelMap model) {
 		boolean isLoggedIn = SecurityContextHolder.getContext().getAuthentication() != null
 				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
@@ -72,6 +72,21 @@ public class LoginAndRegisterController {
 			model.addAttribute("firstname", firstName);
 		}
 	}
+
+	public boolean isLoggedIn() {
+		return SecurityContextHolder.getContext().getAuthentication() != null
+				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
+				&& !(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken);
+		}
+
+	public User getLoggedUser() {
+		if (isLoggedIn()) {
+		 UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userService.findByUsername(userPrincipal.getUsername()).get();
+		return user;
+		}
+		return null;
+		}
 
 	@PostMapping("/register")
 	public String registerSubmit(@ModelAttribute("user") User user, @ModelAttribute("address") Address address,
@@ -101,5 +116,5 @@ public class LoginAndRegisterController {
 //		mav.addObject("message", ex.getMessage());
 //		return mav;
 //	}
-	
+
 }
