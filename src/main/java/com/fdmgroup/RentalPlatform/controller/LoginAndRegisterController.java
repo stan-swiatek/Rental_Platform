@@ -61,7 +61,7 @@ public class LoginAndRegisterController {
 	}
 
 	//Perform the login check and inject user info to the header if logged in.
-	public void isLoggedIn(ModelMap model) {
+	public boolean isLoggedIn(ModelMap model) {
 		boolean isLoggedIn = SecurityContextHolder.getContext().getAuthentication() != null
 				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
 				&& !(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken);
@@ -71,6 +71,22 @@ public class LoginAndRegisterController {
 			model.addAttribute("loggedIn", isLoggedIn);
 			model.addAttribute("firstname", firstName);
 		}
+		return isLoggedIn;
+	}
+	
+	public boolean isLoggedIn() {
+		return  SecurityContextHolder.getContext().getAuthentication() != null
+				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
+				&& !(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken);
+	}
+	
+	public User getLoggedUser() {
+		if (isLoggedIn()) {
+			UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			User user = userService.findByUsername(userPrincipal.getUsername()).get();
+			return user;
+		}
+		return null;
 	}
 
 	@PostMapping("/register")
