@@ -32,6 +32,22 @@ public class Message {
 
 	private boolean isRead;
 
+	public Message() {
+
+	}
+
+	public Message(User owner, User buyer, String message, Product product) {
+		super();
+		this.owner = owner;
+		this.buyer = buyer;
+		this.message = message;
+		this.product = product;
+	}
+
+	public Message(String message) {
+		this.message = message;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -65,7 +81,10 @@ public class Message {
 	}
 
 	public String getSubject() {
-		return product.getProductName();
+		if(this.product != null) {
+			return product.getProductName();
+		}
+		return subject;
 	}
 
 	public void setSubject(String subject) {
@@ -94,10 +113,6 @@ public class Message {
 
 	public void setRead(boolean isRead) {
 		this.isRead = isRead;
-	}
-
-	public Message() {
-
 	}
 
 }

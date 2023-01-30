@@ -1,6 +1,7 @@
 package com.fdmgroup.RentalPlatform.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -8,6 +9,8 @@ import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IUserService;
 
+
+@Controller
 public class MessageController {
 	
 	@Autowired
@@ -19,7 +22,6 @@ public class MessageController {
 	@Autowired
 	private IMessageService messageService;
 	
-	@Autowired
 	private User user;
 	
 	
