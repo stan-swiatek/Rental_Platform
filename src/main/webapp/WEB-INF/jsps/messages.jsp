@@ -24,11 +24,15 @@
 
     </tr>
     <c:forEach items="${messages}" var="message">
+      
       <tr>
+      
         <td>${message.subject}</td>
         <td>${message.buyer.username}</td>
         <td>${message.message}</td>
+      <td><a href="/messages/${message.owner_id}_${message.buyer_id}">Go to conversation</a></td>
       </tr>
+      
     </c:forEach>
   </table>
 </body>

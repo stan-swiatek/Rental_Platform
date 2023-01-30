@@ -49,7 +49,10 @@ public class UserPrincipal implements UserDetails {
 		// TODO Auto-generated method stub
 		return user.getFirstName();
 	}
-
+	
+	public int getId() {
+		return user.getId();
+	}
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub

@@ -67,9 +67,9 @@ public class LoginAndRegisterController {
 				&& !(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken);
 		if (isLoggedIn) {
 			UserPrincipal user = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			String firstName = user.getFirstName();
 			model.addAttribute("loggedIn", isLoggedIn);
-			model.addAttribute("firstname", firstName);
+			model.addAttribute("firstname", user.getFirstName());
+			model.addAttribute("user_id", user.getId());
 		}
 		return isLoggedIn;
 	}
