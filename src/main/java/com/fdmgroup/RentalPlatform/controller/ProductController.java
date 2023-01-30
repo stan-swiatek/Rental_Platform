@@ -21,22 +21,21 @@ public class ProductController {
 	
 	@Autowired
 	private IProductService service;
+	@Autowired
+	private LoginAndRegisterController login;
 	
-	@GetMapping(value="/addproduct")
-	public String goToAddProduct(ModelMap model) {
-		return "addproduct";
+
+	@GetMapping(value = "/ProductOffer")
+	public String goProductOffer(ModelMap model) {
+		login.isLoggedIn(model);
+		return "ProductOffer";
 	}
 	
-	@GetMapping(value="/product-added")
-	public String goToProductAdded(ModelMap model) {
-		return "product-added";
-	}
-	
-	@PostMapping(value="/addproduct")
+	@PostMapping(value="/ProductOffer")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
 		service.createNewProduct(product);
 		populateModel(model);		
-		return "product-added";
+		return "UserProfile";
 	}
 	
 	@GetMapping(value="/products/{id}")
