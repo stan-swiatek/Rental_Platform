@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+<!--     <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/assets/bootstrapless-star-rating/star-rating.css} "/> -->
   <link rel="stylesheet" href="css/style.css">
   <title>Shazar</title>
 </head>
@@ -45,7 +49,13 @@
               </div>
               <div class="product-button-row-two">
                 <div class="main-row-item-block-button" id="rate">
-                  <a href="#"><span>Rate the product</span></a>
+<%--                   <form method="post" th:object="${rating}" class="mt-5">
+
+                    <input value="0" type="hidden" class="rating" data-glyphicon="0" th:field="*{stars}" name="content">
+
+                    <button class="main-row-item-block-button" type="submit">Submit</button>
+                  </form> --%>
+                  <a href="#"><span>Rate the product</span></a> 
                 </div>
                 <div class="main-row-item-block-button" id="rate">
                   <a href="#"><span>Rate the owner</span></a>
@@ -68,5 +78,10 @@
         </div>
     </footer>
   </div>
+  
+<!--   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  <script th:src="@{/assets/bootstrapless-star-rating/star-rating.min.js}"></script> -->
 </body>
 </html>

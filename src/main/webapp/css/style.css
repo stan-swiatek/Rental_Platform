@@ -776,6 +776,7 @@ footer {
   font-style: 18px;
   line-height: 24px;
   transition-duration: 0.9s;
+  cursor: pointer;
 }
 .register-button input:hover {
   transition-duration: 0.9s;

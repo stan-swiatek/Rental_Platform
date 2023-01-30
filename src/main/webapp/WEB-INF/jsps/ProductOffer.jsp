@@ -14,7 +14,7 @@
     <header class="header" id="header">
       <div class="header-bar">
         <div class="header-a">
-          <img src="img/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+          <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
           <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
@@ -63,10 +63,10 @@
               class="first"
               placeholder="type here..."
             ><br>
+            <div class="register-button">
+           	  <input type="submit" value="Create">
+          	</div>
           </form>
-        </div>
-        <div class="log-in-button">
-          <a href="#"><span>Create</span></a>
         </div>
       </div>
     </main>
