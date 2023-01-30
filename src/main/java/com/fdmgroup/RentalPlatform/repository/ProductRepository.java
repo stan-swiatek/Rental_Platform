@@ -12,6 +12,7 @@ import com.fdmgroup.RentalPlatform.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	Optional<Product> findByProductName(String productName);
+	List<Product> findByProductNameIgnoreCaseContaining(String filter);
 	List<Product> findByTypeIgnoreCaseContaining(String filter);
 	List<Product> findByCategoryIgnoreCaseContaining(String filter);
 	List<Product> findByColorIgnoreCaseContaining(String filter);

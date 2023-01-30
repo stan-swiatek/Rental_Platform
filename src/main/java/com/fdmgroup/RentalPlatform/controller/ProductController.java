@@ -60,9 +60,9 @@ public class ProductController {
 	
 	@PostMapping("/filtered")
 	public String filterProducts(ModelMap model, @RequestParam String filter) {
-		List<Product> filteredProducts = service.filterProducts(filter);
+		List<Product> finalFilteredProducts = service.filterProducts(filter);
 		
-		model.addAttribute("filterProducts", filteredProducts);
+		model.addAttribute("filterProducts", finalFilteredProducts);
 		populateModel(model);
 		return "filtered";
 	}
