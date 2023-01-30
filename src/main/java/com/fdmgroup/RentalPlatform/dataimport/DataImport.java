@@ -3,9 +3,9 @@ package com.fdmgroup.RentalPlatform.dataimport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import com.fdmgroup.RentalPlatform.model.Role;
 import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.repository.UserRepository;
@@ -17,6 +17,7 @@ public class DataImport implements ApplicationRunner{
 	private UserRepository userRepository;
 
 	@Autowired
+	@Lazy
 	private PasswordEncoder encoder;
 
 	@Override
@@ -34,4 +35,3 @@ public class DataImport implements ApplicationRunner{
 	}
 
 }
-

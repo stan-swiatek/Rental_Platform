@@ -1,28 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Get Help Foundation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Shazar</title>
 </head>
 <body>
   <div class="wrapper">
     <header class="header">
-      <div class="header-bar">
-        <div class="header-a">
-          <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
-          <div class="header-bar-logo-name">Autolife</div>
-        </div>
-          <div class="header-bar-content">
-              <a href="#">C</a>
-              <a href="log_in.html">Log in</a>
-              <a href="sign-up.html">Sign up</a>
-          </div>
-      </div>
+      <%@ include file="headerBar.jsp" %>
       <div class="header-description">
           <div class="header-description-container">
             <p class="det__title">Detailed searchbar</p>
@@ -140,7 +131,7 @@
               <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
               <div class="main-row-item-block-description-price">Price per hour</div>
               <div class="main-row-item-block-button">
-                  <a href="product-page.html"><span>Rent me!</span></a>
+                  <a href="/ProductPage"><span>Rent me!</span></a>
               </div>
           </div>
           <div class="main-row-item-block">
@@ -151,7 +142,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="/ProductPage"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
@@ -162,7 +153,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="/ProductPage"><span>Rent me!</span></a>
             </div>
           </div>
           <div class="main-row-item-block">
@@ -173,7 +164,7 @@
             <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
             <div class="main-row-item-block-description-price">Price per hour</div>
             <div class="main-row-item-block-button">
-                <a href="product-page.html"><span>Rent me!</span></a>
+                <a href="/ProductPage"><span>Rent me!</span></a>
             </div>
           </div>
       </div>
@@ -198,7 +189,7 @@
 
           <div class="main-row-item-block-blog">
             <div class="main-row-a">
-              <div class="main-row-b">
+               <div class="main-row-b"> 
                 <div 
                   class="main-row-item-block-title-blog-b"
                 >Legal regulations
@@ -208,7 +199,7 @@
 
             <div class="main-row-item-block-description-blog">Find out about our terms and conditions</div>
             <div class="main-row-item-block-button-blog">
-                <a href="terms.html"><span>Read more...</span></a>
+                <a href="/terms"><span>Read more...</span></a>
             </div>
 
         </div>
@@ -220,8 +211,8 @@
           <div class="footer-contact-information-links-social-media">
               <a href="#">Home</a>
               <a href="#">Cart</a>
-              <a href="#">Personal</a>
-              <a href="#">Information</a>
+              <a href="/UserProfile">Personal</a>
+              <a href="/Information">Information</a>
           </div>
         </div>
     </footer>
