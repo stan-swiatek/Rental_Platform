@@ -60,12 +60,8 @@ public class LoginAndRegisterController {
 		return "index";
 	}
 
-//	@GetMapping("/headerBar")
-//	public String getHeaderBar(ModelMap model) {
-//		isLoggedIn(model);
-//		return "headerBar";
-//	}
 
+	//Perform the login check and inject user info to the header if logged in. 
 	public void isLoggedIn(ModelMap model) {
 		boolean isLoggedIn = SecurityContextHolder.getContext().getAuthentication() != null
 				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
@@ -106,4 +102,5 @@ public class LoginAndRegisterController {
 //		mav.addObject("message", ex.getMessage());
 //		return mav;
 //	}
+	
 }
