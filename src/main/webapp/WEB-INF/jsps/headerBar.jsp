@@ -18,8 +18,8 @@
 			<a href="#">C</a>
 
 			<c:if test="${not loggedIn}">
-				<a href="/login">Log in</a>
-				<a href="/register">Sign up</a>
+				<a href="login">Log in</a>
+				<a href="register">Sign up</a>
 			</c:if>
 			<c:if test="${loggedIn}">
 				<p>
