@@ -48,7 +48,7 @@
 				<td>${product.type}</td>
 				<td>${product.color}</td>
 				<td>${product.price}</td>
-				<td><a href="/product/${product.id}">Details</a></td>
+				<td><a href="/ProductPage/${product.id}">Details</a></td>
 			</tr>
 		</c:forEach>
 	</table>

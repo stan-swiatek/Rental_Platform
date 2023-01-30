@@ -1,5 +1,6 @@
 package com.fdmgroup.RentalPlatform.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +31,66 @@ public class ProductController {
 		login.isLoggedIn(model);
 		return "ProductOffer";
 	}
+
+	// original method before making changes to display data in productpage		
+	
+//	@PostMapping(value="/ProductOffer")
+//	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
+//		service.createNewProduct(product);
+//		populateModel(model);		
+//		return "UserProfile";
+//	}
+	
 	
 	@PostMapping(value="/ProductOffer")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
 		service.createNewProduct(product);
-		populateModel(model);		
-		return "UserProfile";
+		populateModel(model);
+		
+		model.addAttribute("productName", product.getProductName());
+		model.addAttribute("productDescription", product.getDescription());
+		model.addAttribute("productCategory", product.getCategory());
+		model.addAttribute("productType", product.getType());
+		model.addAttribute("productColor", product.getColor());
+		model.addAttribute("productPrice", product.getPrice());
+//		String productName = product.getProductName();
+//		String description = product.getDescription();
+//		String category = product.getCategory();
+//		String type = product.getType();
+//		String color = product.getColor();
+//		BigDecimal price = product.getPrice();
+		return "redirect:/ProductPage/" + product.getId();
 	}
 	
-	@GetMapping(value="/products/{id}")
+	
+// original method before making changes to display data in productpage	
+	
+//	@GetMapping(value="/products/{id}")
+//	public String seeDetails(ModelMap model, @PathVariable int id) //throws PlaceNotFoundException 
+//	{
+//		model.addAttribute("product", service.findProductById(id));
+//		return "details";
+//	}
+	
+	
+	@GetMapping(value="/ProductPage/{id}")
 	public String seeDetails(ModelMap model, @PathVariable int id) //throws PlaceNotFoundException 
 	{
-		model.addAttribute("product", service.findProductById(id));
-		return "details";
+//		model.addAttribute("product", service.findProductById(id));
+		Product product = service.findProductById(id);
+		populateModel(model);
+		
+		model.addAttribute("productName", product.getProductName());
+		model.addAttribute("productDescription", product.getDescription());
+		model.addAttribute("productCategory", product.getCategory());
+		model.addAttribute("productType", product.getType());
+		model.addAttribute("productColor", product.getColor());
+		model.addAttribute("productPrice", product.getPrice());
+		return "ProductPage";
 	}
+	
+	
+	
 	
 	@PostMapping("/delete")
 	public String deleteProduct(ModelMap model, @RequestParam int id) //throws PlaceNotFoundException 
