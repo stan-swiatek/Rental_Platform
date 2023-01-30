@@ -9,5 +9,4 @@ public class Message {
 	@Id
 	@GeneratedValue
 	private Integer id;
-
 }

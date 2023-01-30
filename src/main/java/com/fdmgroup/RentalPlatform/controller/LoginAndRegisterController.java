@@ -24,41 +24,43 @@ import com.fdmgroup.RentalPlatform.services.AddressService;
 import com.fdmgroup.RentalPlatform.services.ProductService;
 import com.fdmgroup.RentalPlatform.services.RoleService;
 
-
 @Controller
 public class LoginAndRegisterController {
 
 	@Autowired
 	private DefaultUserDetailsService userService;
-	
+
 	@Autowired
 	private AddressService addressService;
 	
 	@Autowired
 	private PasswordEncoder encoder;
-	
+
 	@Autowired
 	private ProductService productService;
-	
+
 	@Autowired
 	private RoleService roleService;
-	
+
 	@GetMapping("/login")
-	public String login() {
+	public String login(ModelMap model) {
+		isLoggedIn(model);
 		return "login";
 	}
-	
+
 	@GetMapping("/register")
-	public String register() {
+	public String register(ModelMap model) {
+		isLoggedIn(model);
 		return "register";
 	}
-	
+
 	@GetMapping("/logged")
 	public String loggedUser(ModelMap model) {
 		isLoggedIn(model);
 		return "index";
 	}
-	
+
+	//Perform the login check and inject user info to the header if logged in.
 	public void isLoggedIn(ModelMap model) {
 		boolean isLoggedIn = SecurityContextHolder.getContext().getAuthentication() != null
 				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
@@ -70,22 +72,27 @@ public class LoginAndRegisterController {
 			model.addAttribute("firstname", firstName);
 		}
 	}
-	
+
 	@PostMapping("/register")
-	public String registerSubmit(@ModelAttribute("user")User user, ModelMap model) {
+	public String registerSubmit(@ModelAttribute("user") User user, @ModelAttribute("address") Address address,
+			ModelMap model) {
 		Optional<User> userFromDatabase = userService.findByUsername(user.getUsername());
 		if (userFromDatabase.isPresent()) {
 			model.addAttribute("message", "This user name already exists");
 			return "register";
 		}
-		
+
 		user.setRole(roleService.findByRoleName("Customer"));
 		user.setPassword(encoder.encode(user.getPassword()));
+		user.setAddress(address);
+
+		addressService.saveAddress(address);
 		userService.saveUser(user);
 //		model.addAttribute("places", productService.findAllPlaces());
+
 		return "index";
 	}
-	
+
 //	@ExceptionHandler(UsernameNotFoundException.class)
 //	public ModelAndView handleUsernameNotFoundException(UsernameNotFoundException ex) {
 //		ModelAndView mav = new ModelAndView();
@@ -94,6 +101,5 @@ public class LoginAndRegisterController {
 //		mav.addObject("message", ex.getMessage());
 //		return mav;
 //	}
+	
 }
-
-
