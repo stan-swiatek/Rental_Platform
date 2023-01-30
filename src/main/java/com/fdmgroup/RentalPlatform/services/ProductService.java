@@ -49,11 +49,15 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public List<Product> filterProducts(String filter) {
-		List<Product> filteredByType = repo.findByTypeIgnoreCaseContaining(filter);
-		List<Product> filteredByCatogory = repo.findByCategoryIgnoreCaseContaining(filter);
-		List<Product> filteredByColor = repo.findByColorIgnoreCaseContaining(filter);
-				
+	public List<Product> filterProducts(String combinedFilter) {
+		List<Product> filteredByType = new ArrayList<>();
+		List<Product> filteredByCatogory = new ArrayList<>();
+		List<Product> filteredByColor = new ArrayList<>();
+		for (String filter : combinedFilter.split(" ")) {
+		filteredByType = repo.findByTypeIgnoreCaseContaining(filter);
+		filteredByCatogory = repo.findByCategoryIgnoreCaseContaining(filter);
+		filteredByColor = repo.findByColorIgnoreCaseContaining(filter);
+		}		
 		List<Product> filteredProducts = new ArrayList<>();
 		Stream.of(filteredByType, filteredByCatogory, filteredByColor).forEach(filteredProducts::addAll);
 		return filteredProducts;
