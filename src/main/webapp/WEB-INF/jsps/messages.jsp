@@ -11,7 +11,7 @@
     <title>Messages</title>
 </head>
 <body>
-	<header class="header">
+	<header>
       <%@ include file="headerBar.jsp" %>
     </header>
   <h1>Message Box</h1>
@@ -30,7 +30,7 @@
         <td>${message.subject}</td>
         <td>${message.buyer.username}</td>
         <td>${message.message}</td>
-      <td><a href="/messages/${message.owner_id}_${message.buyer_id}">Go to conversation</a></td>
+      <td><a href="/messages/${message.product.id}/${message.buyer.id}">Go to conversation</a></td>
       </tr>
       
     </c:forEach>
