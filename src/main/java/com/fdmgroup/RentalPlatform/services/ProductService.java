@@ -53,7 +53,6 @@ public class ProductService implements IProductService {
 		List<Product> filteredByType = repo.findByTypeIgnoreCaseContaining(filter);
 		List<Product> filteredByCatogory = repo.findByCategoryIgnoreCaseContaining(filter);
 		List<Product> filteredByColor = repo.findByColorIgnoreCaseContaining(filter);
-		//List<Product> filteredByPrice = repo.findByPriceIgnoreCaseContaining(filter);
 				
 		List<Product> filteredProducts = new ArrayList<>();
 		Stream.of(filteredByType, filteredByCatogory, filteredByColor).forEach(filteredProducts::addAll);
