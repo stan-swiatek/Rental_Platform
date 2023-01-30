@@ -15,4 +15,6 @@ public interface IMessageService {
 	List<Message> findByProduct(Product product);
 
 	List<Message> findByBuyer(User buyer);
+
+	void saveMessage(Message message);
 }

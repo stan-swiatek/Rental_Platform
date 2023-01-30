@@ -40,6 +40,11 @@ public class MessageService implements IMessageService {
 	public List<Message> findByBuyer(User user) {
 		return repo.findByBuyer(user);
 	}
+
+	@Override
+	public void saveMessage(Message message) {
+		repo.save(message);
+	}
 	
 	
 

@@ -26,9 +26,11 @@ public class Message {
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	private String message, subject;
+	private String messageText, subject;
 
-	private Date startDate;
+	private Date timeSent;
+
+	private boolean sentByBuyer = false;
 
 	private boolean isRead;
 
@@ -40,12 +42,12 @@ public class Message {
 		super();
 		this.owner = owner;
 		this.buyer = buyer;
-		this.message = message;
+		this.messageText = message;
 		this.product = product;
 	}
 
 	public Message(String message) {
-		this.message = message;
+		this.messageText = message;
 	}
 
 	public Integer getId() {
@@ -81,7 +83,7 @@ public class Message {
 	}
 
 	public String getSubject() {
-		if(this.product != null) {
+		if (this.product != null) {
 			return product.getProductName();
 		}
 		return subject;
@@ -91,20 +93,32 @@ public class Message {
 		this.subject = subject;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getMessageText() {
+		return messageText;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setMessageText(String message) {
+		this.messageText = message;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getTimeSent() {
+		return timeSent;
+	}
+
+	public void setTimeSent(Date timeSent) {
+		this.timeSent = timeSent;
 	}
 
 	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+		this.timeSent = startDate;
+	}
+
+	public boolean isSentByBuyer() {
+		return sentByBuyer;
+	}
+
+	public void setSentByBuyer(boolean sentByBuyer) {
+		this.sentByBuyer = sentByBuyer;
 	}
 
 	public boolean isRead() {

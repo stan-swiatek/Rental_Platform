@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Product {
+
+
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -112,6 +114,11 @@ public class Product {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+	
+	@Override
+	public String toString() {
+		return "Product [productName=" + productName + ", owner=" + owner + "]";
 	}
 
 }

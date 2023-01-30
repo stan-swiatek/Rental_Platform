@@ -1,5 +1,7 @@
 package com.fdmgroup.RentalPlatform.dataimport;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -49,8 +51,10 @@ public class DataImport implements ApplicationRunner {
 		
 		if(messageRepository.findByOwner(userRepository.findByUsername("admin").get()).isEmpty()) {
 		Product product = new Product("Very fine product");
+		product.setOwner(userRepository.findByUsername("admin").get());
 		productRepository.save(product);
 		Message message = new Message(userRepository.findByUsername("admin").get(),userRepository.findByUsername("customer").get(),"Hello World",product);
+		message.setTimeSent(new Date());
 		messageRepository.save(message);
 	}
 	}

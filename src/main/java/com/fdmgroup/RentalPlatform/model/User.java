@@ -19,14 +19,14 @@ import javax.persistence.Table;
 
 import org.springframework.data.repository.cdi.Eager;
 
-
-
 @Entity
 @Table(name = "uzer")
 public class User {
+
 	@Id
 	@GeneratedValue
 	private Integer userId;
+
 	public User(String username, String password, String email, String firstName, String surName) {
 		super();
 		this.username = username;
@@ -43,7 +43,7 @@ public class User {
 
 	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Role.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	
+
 	private List<Role> roleList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.PERSIST)
@@ -136,13 +136,10 @@ public class User {
 	public void setRoleList(List<Role> roleList) {
 		this.roleList = roleList;
 	}
-	
-	
-	
+
 	public void setRole(Role role) {
 		roleList.add(role);
 	}
-	
 
 	public List<Product> getProductList() {
 		return productList;
@@ -158,6 +155,11 @@ public class User {
 
 	public void setBorrowedProductList(List<Product> borrowedProductList) {
 		this.borrowedProductList = borrowedProductList;
+	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", firstName=" + firstName + ", productList=" + productList + "]";
 	}
 
 	@Override
