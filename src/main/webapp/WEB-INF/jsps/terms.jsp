@@ -117,7 +117,7 @@
               <a href="#">Home</a>
               <a href="#">Cart</a>
               <a href="/UserProfile">Personal</a>
-              <a href="/information">Information</a>
+              <a href="/Information">Information</a>
           </div>
         </div>
     </footer>
