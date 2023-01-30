@@ -65,7 +65,6 @@ public class ProductController {
 		model.addAttribute("filterProducts", filteredProducts);
 		populateModel(model);
 		return "filtered";
-		
 	}
 	
 	
