@@ -35,7 +35,7 @@
         </div>
         <div class="user-block">
           <div class="user-button">
-            <a class="user-button-button-one" href="#"><span>editUserDetails</span></a>
+            <a class="user-button-button-one" href="/editUserDetails"><span>editUserDetails</span></a>
           </div>
           <div class="user-button">
             <a class="user-button-button-two" href="/ProductOffer"><span>createProduct</span></a>

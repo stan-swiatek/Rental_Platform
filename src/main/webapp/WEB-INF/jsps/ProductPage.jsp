@@ -6,17 +6,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-<!--     <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} "/>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" th:href="@{/assets/bootstrapless-star-rating/star-rating.css} "/> -->
-  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="/css/style.css">
+
   <title>Shazar</title>
 </head>
 <body>
   <div class="wrapper">
     <header class="header" id="header">
       <%@ include file="headerBar.jsp" %>
+      
     </header>
     <main class="main">
 
@@ -26,15 +25,15 @@
             <img src="new_car_landing_S_2.jpg" alt="">
           </div>
           <div class="product-main-two">
-            <div class="product-main-title">Car name</div>
+            <div class="product-main-title">${productName}</div>
 
-            <div class="product-main-text">Model: x</div>
-            <div class="product-main-text">Manufacture year: x</div>
-            <div class="product-main-text">Condition: x</div>
-            <div class="product-main-text">Owner: x</div>
+            <div class="product-main-text">Bike category: ${productCategory}</div>
+            <div class="product-main-text">Bike type: ${productType}</div>
+            <div class="product-main-text">Bike Color: ${productColor}</div>
+            <div class="product-main-text">Price: ${productPrice} $ per 24 hours</div>
 
-            <div class="product-main-description">Description:</div>
-            <div class="product-main-description-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat, quasi assumenda. Id quisquam assumenda earum labore quos veritatis nobis accusamus minima exercitationem nam non mollitia a temporibus eaque animi molestias, nulla nemo ipsa libero. Dolores consequatur ad quam totam at minus, eaque numquam velit neque alias sint a obcaecati tempore.</div>
+            <div class="product-main-description">Description: </div>
+            <div class="product-main-description-text">${productDescription}</div>
 
             <div class="product-main-price">Pricing policy:</div>
             <div class="product-main-price-description">One hour (up to 12 hours): x</div>

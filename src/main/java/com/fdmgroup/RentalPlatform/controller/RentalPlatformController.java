@@ -38,12 +38,6 @@ public class RentalPlatformController {
 		return "UserProfile";
 	}
 	
-	@GetMapping(value = "/ProductOffer")
-	public String goProductOffer(ModelMap model) {
-		login.isLoggedIn(model);
-		return "ProductOffer";
-	}
-	
 	@GetMapping(value = "/Information")
 	public String goInformation(ModelMap model) {
 		login.isLoggedIn(model);

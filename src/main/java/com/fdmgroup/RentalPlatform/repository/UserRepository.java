@@ -12,4 +12,6 @@ import com.fdmgroup.RentalPlatform.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 	Optional<User> findByUsername(String username);
+
+	Optional<User> findByUserId(int id);
 }

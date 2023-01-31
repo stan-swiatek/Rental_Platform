@@ -10,11 +10,13 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Product {
+
+
 	@Id
 	@GeneratedValue
 	private Integer id;
 
-	private String productName, description, category;
+	private String productName, description, category, type, color;
 
 	private BigDecimal price;
 
@@ -28,9 +30,9 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String name) {
+	public Product(String productName) {
 		super();
-		this.productName = name;
+		this.productName = productName;
 	}
 
 	public Integer getId() {
@@ -41,12 +43,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getProductName() {
 		return productName;
 	}
 
-	public void setName(String name) {
-		this.productName = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getDescription() {
@@ -96,6 +98,27 @@ public class Product {
 
 	public void setRating(double rating) {
 		this.rating = rating;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	@Override
+	public String toString() {
+		return "Product [productName=" + productName + ", owner=" + owner + "]";
 	}
 
 }

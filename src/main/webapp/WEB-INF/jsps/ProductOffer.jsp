@@ -27,8 +27,8 @@
       <div class="log-name-block">
         <div class="offer-block-main">
           <div class="offer-name">Create your offer here:</div>
-          <form>
-            <label for="productName">productName:</label><br>
+          <form action="ProductOffer" method="POST">
+            <label for="productName">Product Name:</label><br>
             <input 
               type="text" 
               id="productName" 
@@ -36,7 +36,7 @@
               class="first"
               placeholder="type here..."
             ><br>
-            <label for="description">description:</label><br>
+            <label for="description">Description:</label><br>
             <textarea 
               id="description" 
               name="description" 
@@ -47,7 +47,7 @@
               placeholder="type here..."
             >
             </textarea><br>
-            <label for="category">category:</label><br>
+            <label for="category">Category:</label><br>
             <input 
               type="text" 
               id="category" 
@@ -55,7 +55,23 @@
               class="first"
               placeholder="type here..."
             ><br>
-            <label for="price">price:</label><br>
+            <label for="type">Type:</label><br>
+            <input 
+              type="text" 
+              id="type" 
+              name="type"
+              class="first"
+              placeholder="type here..."
+            ><br>
+            <label for="color">Color:</label><br>
+            <input 
+              type="text" 
+              id="color" 
+              name="color"
+              class="first"
+              placeholder="type here..."
+            ><br> 
+            <label for="price">Price:</label><br>
             <input 
               type="text" 
               id="price" 
@@ -64,10 +80,13 @@
               placeholder="type here..."
             ><br>
             <div class="register-button">
-           	  <input type="submit" value="Create">
+
+           		<input type="submit" value="Create">
+
           	</div>
           </form>
         </div>
+
       </div>
     </main>
     <footer class="footer-contact-information">

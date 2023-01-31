@@ -21,4 +21,10 @@ public class UserService implements IUserService{
 		return optUser.orElse(new User("default user"));
 	}
 
+	@Override
+	public User findByUserId(int id) {
+		Optional<User> optUser = repo.findByUserId(id);
+		return optUser.orElse(new User("default user"));
+	}
+
 }
