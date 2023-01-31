@@ -17,7 +17,7 @@
       <%@ include file="headerBar.jsp" %>
     </header>
   <h1>Message Box</h1>
-
+	
   <table>
     <tr>
       <th>Subject</th>
@@ -26,7 +26,6 @@
 
     </tr>
     <c:forEach items="${messages}" var="message">
-      
       <tr>
       
         <td>${message.subject}</td>

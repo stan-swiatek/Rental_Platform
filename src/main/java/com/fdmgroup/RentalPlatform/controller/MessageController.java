@@ -71,6 +71,7 @@ public class MessageController {
 			message.setSentByBuyer(false);
 		}
 		messageService.saveMessage(message);
+		login.isLoggedIn(model);
 		populateConversation(model, product_id, buyer_id);
 		return "conversation";
 	}
@@ -89,6 +90,9 @@ public class MessageController {
 		// Filter for only messages with this buyer
 		messagesByOwnerAndProduct.retainAll(messageService.findByBuyer(buyer));
 		System.out.println(messagesByOwnerAndProduct);
+		model.addAttribute("product", product);
+		model.addAttribute("owner",user);
+		model.addAttribute("buyer",buyer);
 		model.addAttribute("messages", messagesByOwnerAndProduct);
 	}
 

@@ -4,8 +4,7 @@
 <html>
 <body>
 <div class="send-container">
-  <form action="/sendMessage/${messages[0].product.id}/${messages[0].buyer.id}" method="post">
-    <input type="hidden" name="receiverId" value="${receiverId}"/>
+  <form action="/sendMessage/${product.id}/${buyer.id}" method="post">
     <textarea class="send-message-input" name="messageText" required></textarea>
     <button class="send-message-btn">Send</button>
   </form>

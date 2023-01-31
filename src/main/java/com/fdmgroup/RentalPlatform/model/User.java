@@ -56,9 +56,7 @@ public class User {
 	}
 //	TODO - add constructors
 
-	public Integer getId() {
-		return userId;
-	}
+	
 
 	public User(String username) {
 		super();
@@ -75,6 +73,10 @@ public class User {
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
+	}
+	
+	public Integer getId() {
+		return userId;
 	}
 
 	public void setId(Integer id) {
