@@ -18,14 +18,16 @@
           <div class="header-description-container">
             <p class="det__title">Detailed searchbar</p>
           <div class="header-description-what-is-get-help">
-           <form action="/filtered" method="post">
+           <form action="/filtered" method="post" class="search-form">
             <input 
-            class="searchbar"
-            type="search" 
-            name="filter"
-            placeholder="Type here..."
-          />
-			<input type="submit" value="Search"/>
+              class="searchbar"
+              type="search" 
+              name="filter"
+              placeholder="Type here..."
+            >
+<!--             <div class="search-button"> -->
+           	  <input type="submit" value="Search" class="search-input">
+<!--           	</div> -->
 			</form>
           </div>
 
@@ -54,94 +56,7 @@
 	</table>
 	
 	          <div class="main-banner">
-          <div class="detailed__searchbar">
-          
-  <div class="block__main">
-                  <div class="year">
-                    <div class="a">Color</div>
-                    <select name="year">
-                      <option value="first" selected>
-                        White
-                      </option>
-            
-                      <option value="second">
-                        Black
-                      </option>
-            
-                      <option value="third">
-                        Blue
-                      </option>
-            
-                      <option value="forth">
-                        Red
-                      </option>
-                    </select>
-                  </div>
-      
-                  <div class="brand">
-                    <div class="a">Type</div>
-                    <select name="brand">
-                      <option value="brandFirst" selected>
-                        Crossover
-                      </option>
-            
-                      <option value="brandSecond">
-                        Sedan
-                      </option>
-            
-                      <option value="brandThird">
-                        Minivan
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="engine">
-                    <div class="a">Category</div>
-                    <select name="engine">
-                      <option value="engineFirst" selected>
-                        New
-                      </option>
-            
-                      <option value="emgineSecond">
-                        Used
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="time-frame">
-                    <div class="a">Time frame</div>
-                    <select name="engine">
-                      <option value="engineFirst" selected>
-                        1h - 12h
-                      </option>
-            
-                      <option value="emgineSecond">
-                        12h - 24h
-                      </option>
-
-                      <option value="emgineSecond">
-                        24h - more
-                      </option>
-                    </select>
-                  </div>
-          
-                  <div class="price">
-                    <div class="a">Price</div>
-                    <div class="price__number">
-                      <input 
-                        type="number" 
-                        name="priceMin"
-                        placeholder="Min"
-                      >
-                      <input 
-                        type="number" 
-                        name="priceMax"
-                        placeholder="Max"
-                      >
-                    </div>
-                  </div>
-              </div>
-            </div>
+ 
           </div>
           </div>
       </div>

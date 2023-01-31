@@ -18,14 +18,16 @@
           <div class="header-description-container">
             <p class="det__title">Detailed searchbar</p>
           <div class="header-description-what-is-get-help">
-          <form action="/filtered" method="post">
+          <form action="/filtered" method="post" class="search-form">
             <input 
-            class="searchbar"
-            type="search" 
-            name="filter"
-            placeholder="Type here..."
-          >
-          <input type="submit" value="Search"/>
+              class="searchbar"
+              type="search" 
+              name="filter"
+              placeholder="Type here..."
+            >
+<!--             <div class="search-button"> -->
+           	  <input type="submit" value="Search" class="search-input">
+<!--           	</div> -->
           </form>
           </div>
           <div class="main-banner">

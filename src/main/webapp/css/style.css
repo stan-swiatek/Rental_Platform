@@ -75,10 +75,10 @@ body {
   background-position: left top;
 }
 .header-description-what-is-get-help {
-  display: flex;
+/*   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  flex-shrink: 1;
+  flex-shrink: 1; */
   padding: 15px 10px;
   border: 1px solid #000;
   transition-duration: 1s;
@@ -188,7 +188,7 @@ body {
   border-radius: 5px;
   color: white;
   text-transform: uppercase;
-  text-decortion: none;
+  text-decoration: none;
   padding: 8px;
   font-style: 18px;
   line-height: 24px;
@@ -807,5 +807,36 @@ footer {
   justify-content: center;
   align-items: center;
   margin: auto
+}
+
+.search-button {
+  display: inline;
+/*   display: flex;
+  justify-content: center;
+  width: 100%; */
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  padding: 3px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.search-input{
+  display: inline;
+/*   display: flex;
+  justify-content: center;
+  width: 100%; */
+  background-color: #fff;
+  color: #000;
+  padding: 3px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
