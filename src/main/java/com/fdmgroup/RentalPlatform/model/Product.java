@@ -18,7 +18,7 @@ public class Product {
 
 	private String productName, description, category, type, color;
 
-	private BigDecimal price;
+	private Double price;
 
 	@OneToOne
 	private User owner;
@@ -67,11 +67,11 @@ public class Product {
 		this.category = category;
 	}
 
-	public BigDecimal getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

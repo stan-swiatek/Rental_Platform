@@ -86,7 +86,7 @@
       
                   <div class="brand">
                     <div class="a">Type</div>
-                    <select name="brand">
+                    <select name="type">
                     <option value="${filtering.type }" selected="selected">${filtering.type }</option>
                       <option value="woman">
                         Woman's bikes
@@ -104,7 +104,7 @@
 
                   <div class="engine">
                     <div class="a">Category</div>
-                    <select name="engine">
+                    <select name="category">
                     <option value="${filtering.category }" selected="selected">${filtering.category }</option>
                       <option value="bike">
                         Bike

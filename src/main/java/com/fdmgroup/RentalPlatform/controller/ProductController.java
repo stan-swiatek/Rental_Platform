@@ -1,7 +1,9 @@
 package com.fdmgroup.RentalPlatform.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.fdmgroup.RentalPlatform.model.Product;
-import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.services.IProductService;
+import com.fdmgroup.RentalPlatform.util.Filtering;
 
 
 @Controller
@@ -26,7 +28,6 @@ public class ProductController {
 	@Autowired
 	private LoginAndRegisterController login;
 	
-	User user;
 
 	@GetMapping(value = "/ProductOffer")
 	public String goProductOffer(ModelMap model) {
@@ -46,10 +47,9 @@ public class ProductController {
 	
 	@PostMapping(value="/ProductOffer")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
-		user = login.getLoggedUser();
-		product.setOwner(user);
 		service.createNewProduct(product);
-		model.addAttribute("product",product);
+		populateModel(model);
+		
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
 		model.addAttribute("productCategory", product.getCategory());
@@ -81,9 +81,8 @@ public class ProductController {
 	{
 //		model.addAttribute("product", service.findProductById(id));
 		Product product = service.findProductById(id);
-		//populateModel(model);
-		login.isLoggedIn(model);
-		model.addAttribute("product",product);
+		populateModel(model);
+		
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
 		model.addAttribute("productCategory", product.getCategory());
@@ -92,9 +91,6 @@ public class ProductController {
 		model.addAttribute("productPrice", product.getPrice());
 		return "ProductPage";
 	}
-	
-	
-	
 	
 	@PostMapping("/delete")
 	public String deleteProduct(ModelMap model, @RequestParam int id) //throws PlaceNotFoundException 
@@ -106,7 +102,6 @@ public class ProductController {
 	
 	@GetMapping(value="/filtered")
 	public String goToFiltered(ModelMap model) {
-		login.isLoggedIn(model);
 		return "filtered";
 	}
 	
@@ -119,9 +114,56 @@ public class ProductController {
 		return "filtered";
 	}
 	
+	@GetMapping(value="/dropDownFilters")
+	public String goToDropDownFilters(ModelMap model) {
+		return "dropDownFilters";
+	}
+	
+	@PostMapping("/dropDownFilters")
+	public String filteringFunction(ModelMap model, @RequestParam String filter, @RequestParam String color, @RequestParam String category,
+			@RequestParam String type, @RequestParam String minPrice, @RequestParam String maxPrice) {
+		
+		Filtering filtering = new Filtering(color, type, category, minPrice, maxPrice);
+		
+		List<Product> searchedByColor = new ArrayList<>(0);
+		List<Product> searchedByType = new ArrayList<>(0);
+		List<Product> searchedByCategory = new ArrayList<>(0);
+		List<Product> searchedByPrice = new ArrayList<>(0);
+		
+		if (color != "") {
+			searchedByColor = service.findProductByColor(filter);
+		}
+		
+		if (type != "") {
+			searchedByType = service.findProductByType(filter);
+		}
+		
+		if (category != "") {
+			searchedByCategory = service.findProductByCategory(filter);
+		}
+		
+		if (minPrice != "") {
+			System.out.println("Minumum price " + minPrice);
+			searchedByPrice = service.findProductByPrice(minPrice, maxPrice);
+		}
+		
+		if (maxPrice != "") {
+			searchedByPrice = service.findProductByPrice(minPrice, maxPrice);
+		}
+		
+		List<Product> searchedProducts = new ArrayList<>();
+		Stream.of(searchedByColor, searchedByType, searchedByCategory, searchedByPrice).forEach(searchedProducts::addAll);
+		
+		model.addAttribute("resultsOfSearch", searchedProducts);
+		model.addAttribute("filter", filter);
+		model.addAttribute("filtering", filtering);
+		
+		return "dropDownFilters";
+	}
+	
+	
 	
 	private void populateModel(ModelMap model) {
-		login.isLoggedIn(model);
 		model.addAttribute("products", service.findAllProducts());
 	}
 
