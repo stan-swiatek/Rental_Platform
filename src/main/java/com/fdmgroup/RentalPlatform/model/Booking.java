@@ -19,6 +19,18 @@ public class Booking {
 	
 	private String status;
 	
+	private Boolean accepted;
+	
+	private Integer rating;
+	
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Product product;
 	
@@ -179,6 +191,14 @@ public class Booking {
 
 	public void setBookingDate(Date bookingDate) {
 		this.bookingDate = bookingDate;
+	}
+
+	public Boolean getAccepted() {
+		return accepted;
+	}
+
+	public void setAccepted(Boolean accepted) {
+		this.accepted = accepted;
 	}
 }
 
