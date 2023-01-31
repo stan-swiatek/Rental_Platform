@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.fdmgroup.RentalPlatform.model.Product;
+import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 
 
@@ -25,6 +26,7 @@ public class ProductController {
 	@Autowired
 	private LoginAndRegisterController login;
 	
+	User user;
 
 	@GetMapping(value = "/ProductOffer")
 	public String goProductOffer(ModelMap model) {
@@ -44,9 +46,10 @@ public class ProductController {
 	
 	@PostMapping(value="/ProductOffer")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
+		user = login.getLoggedUser();
+		product.setOwner(user);
 		service.createNewProduct(product);
-		populateModel(model);
-		
+		model.addAttribute("product",product);
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
 		model.addAttribute("productCategory", product.getCategory());
@@ -80,6 +83,7 @@ public class ProductController {
 		Product product = service.findProductById(id);
 		//populateModel(model);
 		login.isLoggedIn(model);
+		model.addAttribute("product",product);
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
 		model.addAttribute("productCategory", product.getCategory());

@@ -20,7 +20,7 @@
       <div class="log-name-block">
         <div class="product-main">
           <div class="product-main-one">
-            <img src="new_car_landing_S_2.jpg" alt="">
+            <img src="/new_car_landing_S_2.jpg" alt="">
           </div>
           <div class="product-main-two">
             <div class="product-main-title">${productName}</div>
@@ -51,6 +51,9 @@
                 <div class="main-row-item-block-button" id="rate">
                   <a href="#"><span>Rate the owner</span></a>
                 </div> 
+                <div class="main-row-item-block-button" id="rate">
+                  <a href="/messages/${product.id}/${user_id}"><span>Send a message</span></a>
+                </div>
               </div>
             </div>
           </div>
