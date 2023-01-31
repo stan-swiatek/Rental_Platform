@@ -58,15 +58,17 @@
             <br><br>
             <label for="type">Type:</label><br><br>
             <select name="type" id="type">
-            <option value="Woman's bikes">Woman's bikes</option>
-			<option value="Man's bikes">Man's bikes</option>
-			<option value="Child's bikes">Child's bikes</option>
+            <option value="Ladies' bikes">Ladies' bikes</option>
+			<option value="Men's bikes">Men's bikes</option>
+			<option value="Children's bikes">Children's bikes</option>
+			<option value="Unisex bikes">Unisex bikes</option>
 			</select>
             <br><br>
             <label for="color">Color:</label><br><br>
             <select name="color" id="color">
             <option value="White">White</option>
 			<option value="Black">Black</option>
+			<option value="Blue">Blue</option>
 			<option value="Red">Red</option>
 			<option value="Pink">Pink</option>
 			<option value="Green">Green</option>

@@ -103,16 +103,20 @@
                     <div class="a">Type</div>
                     <select name="type">
                     <option value="${filtering.type }" selected="selected">${filtering.type }</option>                      
-                      <option value="Woman's bikes">
-                        Woman's bikes
+                      <option value="Ladies' bikes">
+                        Ladies' bikes
                       </option>
             
-                      <option value="Man's bikes">
-                        Man's bikes
+                      <option value="Men's bikes">
+                        Men's bikes
                       </option>
             
-                      <option value="Child's bikes">
-                        Child's bikes
+                      <option value="Children's bikes">
+                        Children's bikes
+                      </option>
+                    
+                    <option value="Unisex bikes">
+                        Unisex bikes
                       </option>
                     </select>
                   </div>

@@ -21,12 +21,12 @@ public class Filtering {
 	
 	public Filtering() {
 		super();
-		this.color = "None";
-		this.type = "None";
-		this.category = "None";
-		//this.timeFrame = "None";
-		this.minPrice = "None";
-		this.maxPrice = "None";
+		this.color = "";
+		this.type = "";
+		this.category = "";
+		//this.timeFrame = "";
+		this.minPrice = "";
+		this.maxPrice = "";
 	}
 
 	public String getColor() {
