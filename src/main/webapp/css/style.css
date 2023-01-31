@@ -58,10 +58,10 @@ body {
   text-decoration: none;
   color: #FFFFFF;
 }
-.header-bar-content a:first-child {
+/* .header-bar-content a:first-child {
   font-size: 25px;
   color: #FFFFFF;
-}
+} */
 .header-bar-content a:hover {
   color: lightgray;
   text-decoration: underline;

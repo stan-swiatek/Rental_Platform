@@ -11,7 +11,6 @@
 			<div class="header-bar-logo-name">Shazar</div>
 		</div>
 		<div class="header-bar-content">
-			<a href="#">C</a>
 
 			<c:if test="${not loggedIn}">
 				<a href="login">Log in</a>

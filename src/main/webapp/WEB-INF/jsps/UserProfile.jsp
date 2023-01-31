@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,16 +12,7 @@
 <body>
   <div class="wrapper">
     <header class="header">
-      <div class="header-bar">
-        <div class="header-a">
-          <img src="images/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
-          <div class="header-bar-logo-name">Shazar</div>
-        </div>
-          <div class="header-bar-content">
-            <a href="#">C</a>
-            <a href="/">Back to main page</a>
-          </div>
-      </div>
+      <%@ include file="headerBar.jsp" %>
     </header>
     <main class="main">
   

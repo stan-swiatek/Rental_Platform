@@ -18,7 +18,6 @@
           <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
-            <a href="#">C</a>
             <a href="/UserProfile">Back to your profile</a>
           </div>
       </div>
