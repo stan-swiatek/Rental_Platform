@@ -44,33 +44,36 @@
               cols="35"
               class="textarea"
               class="first"
-              placeholder="type here..."
-            >
+              placeholder="type here...">
             </textarea><br>
-            <label for="category">Category:</label><br>
-            <input 
-              type="text" 
-              id="category" 
-              name="category"
-              class="first"
-              placeholder="type here..."
-            ><br>
-            <label for="type">Type:</label><br>
-            <input 
-              type="text" 
-              id="type" 
-              name="type"
-              class="first"
-              placeholder="type here..."
-            ><br>
-            <label for="color">Color:</label><br>
-            <input 
-              type="text" 
-              id="color" 
-              name="color"
-              class="first"
-              placeholder="type here..."
-            ><br> 
+            <label for="category">Category:</label><br><br>
+            <select name="category" id="category">
+            <option value="BMX">BMX</option>
+			<option value="City Bike">City Bike</option>
+			<option value="Electric Bike">Electric Bike</option>
+			<option value="Gravel">Gravel</option>
+			<option value="MTB">MTB</option>
+			<option value="Road Bike">Road Bike</option>
+			</select>
+            <br><br>
+            <label for="type">Type:</label><br><br>
+            <select name="type" id="type">
+            <option value="Woman's bikes">Woman's bikes</option>
+			<option value="Man's bikes">Man's bikes</option>
+			<option value="Child's bikes">Child's bikes</option>
+			</select>
+            <br><br>
+            <label for="color">Color:</label><br><br>
+            <select name="color" id="color">
+            <option value="White">White</option>
+			<option value="Black">Black</option>
+			<option value="Red">Red</option>
+			<option value="Pink">Pink</option>
+			<option value="Green">Green</option>
+			<option value="Yellow">Yellow</option>
+			<option value="Other">Other</option>
+			</select>
+            <br><br> 
             <label for="price">Price:</label><br>
             <input 
               type="text" 

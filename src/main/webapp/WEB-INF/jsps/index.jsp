@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,60 +31,98 @@
           <div class="main-banner">
           <div class="detailed__searchbar">
 
-      
+      	
+              <form action="/dropDownFilters" method="post">
+              
               <div class="block__main">
                   <div class="year">
+                    <input type="hidden" name="filter" value="${filter }">
                     <div class="a">Color</div>
-                    <select name="year">
-                      <option value="first" selected>
+                    <select name="color">
+                    <option value="${filtering.color }" selected="selected">${filtering.color }</option>
+                      <option value="White">
                         White
                       </option>
             
-                      <option value="second">
+                      <option value="Black">
                         Black
                       </option>
             
-                      <option value="third">
+                      <option value="Blue">
                         Blue
                       </option>
             
-                      <option value="forth">
+                      <option value="Red">
                         Red
+                      </option>
+                      
+                      <option value="Pink">
+                        Pink
+                      </option>
+                      
+                      <option value="Green">
+                        Green
+                      </option>
+                      
+                      <option value="Yellow">
+                        Yellow
+                      </option>
+                      
+                      <option value="Other">
+                        Other
                       </option>
                     </select>
                   </div>
       
                   <div class="brand">
                     <div class="a">Type</div>
-                    <select name="brand">
-                      <option value="brandFirst" selected>
-                        Crossover
+                    <select name="type">
+                    <option value="${filtering.type }" selected="selected">${filtering.type }</option>                      
+                      <option value="Woman's bikes">
+                        Woman's bikes
                       </option>
             
-                      <option value="brandSecond">
-                        Sedan
+                      <option value="Man's bikes">
+                        Man's bikes
                       </option>
             
-                      <option value="brandThird">
-                        Minivan
+                      <option value="Child's bikes">
+                        Child's bikes
                       </option>
                     </select>
                   </div>
 
                   <div class="engine">
                     <div class="a">Category</div>
-                    <select name="engine">
-                      <option value="engineFirst" selected>
-                        New
+                    <select name="category">
+                    <option value="${filtering.category }" selected="selected">${filtering.category }</option>                      
+                      <option value="BMX">
+                        BMX
                       </option>
             
-                      <option value="emgineSecond">
-                        Used
+                      <option value="City Bike">
+                        City Bike
+                      </option>
+                      
+                      <option value="Electric Bike">
+                        Electric Bike
+                      </option>
+                      
+                      <option value="Gravel">
+                        Gravel
+                      </option>
+                      
+                      <option value="MTB">
+                        MTB
+                      </option>
+                      
+                      <option value="Road Bike">
+                        Road Bike
                       </option>
                     </select>
                   </div>
-
-                  <div class="time-frame">
+<%-- Commented out for now since we don't have time frame filters yet and that couses an error--%>
+                  <%--<div class="time-frame">
                     <div class="a">Time frame</div>
                     <select name="engine">
                       <option value="engineFirst" selected>
@@ -99,24 +137,28 @@
                         24h - more
                       </option>
                     </select>
-                  </div>
+                  </div>--%>
           
                   <div class="price">
                     <div class="a">Price</div>
                     <div class="price__number">
                       <input 
-                        type="number" 
-                        name="priceMin"
+                        type="number"
+                        value="${filtering.minPrice }" 
+                        name="minPrice"
                         placeholder="Min"
                       >
                       <input 
-                        type="number" 
-                        name="priceMax"
+                        type="number"
+                        value="${filtering.maxPrice }" 
+                        name="maxPrice"
                         placeholder="Max"
-                      >
+                      > 
                     </div>
                   </div>
               </div>
+              <input type="submit" value="Filter"/>
+              </form>
             </div>
           </div>
           </div>
