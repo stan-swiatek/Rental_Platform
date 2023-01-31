@@ -35,8 +35,8 @@ public class DefaultUserDetailsService implements UserDetailsService {
 		return repo.findByUsername(username);
 	}
 	
-	public void saveUser(User user) {
-		repo.save(user);
+	public User saveUser(User user) {
+		return repo.save(user);
 	}
 
 }

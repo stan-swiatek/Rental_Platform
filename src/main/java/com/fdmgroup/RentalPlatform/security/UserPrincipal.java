@@ -31,6 +31,10 @@ public class UserPrincipal implements UserDetails {
 //		roleList.add(role);
 		return user.getRoleList();
 	}
+	
+	public User getUser() {
+		return user;
+	}
 
 	@Override
 	public String getPassword() {
@@ -49,7 +53,10 @@ public class UserPrincipal implements UserDetails {
 		// TODO Auto-generated method stub
 		return user.getFirstName();
 	}
-
+	
+	public int getId() {
+		return user.getId();
+	}
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub

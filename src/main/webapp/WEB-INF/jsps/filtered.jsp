@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Shazar</title>
+	<title>Filtered Products</title>
 </head>
 <body>
   <div class="wrapper">
@@ -18,21 +18,45 @@
           <div class="header-description-container">
             <p class="det__title">Detailed searchbar</p>
           <div class="header-description-what-is-get-help">
-          <form action="/filtered" method="post">
+           <form action="/filtered" method="post">
             <input 
             class="searchbar"
             type="search" 
             name="filter"
             placeholder="Type here..."
-          >
-          <input type="submit" value="Search"/>
-          </form>
+          />
+			<input type="submit" value="Search"/>
+			</form>
           </div>
-          <div class="main-banner">
-          <div class="detailed__searchbar">
 
-      
-              <div class="block__main">
+
+	<h3>Filtered Products</h3>
+	<table>
+		<tr>
+			<td>ID</td>
+			<th>Name</th>
+			<th>Category</th>
+			<th>Type</th>
+			<th>Color</th>
+			<th>Price</th>
+		</tr>
+		<c:forEach items="${filterProducts}" var="product">
+			<tr>
+				<td>${product.id}</td>
+				<td>${product.productName}</td>
+				<td>${product.category}</td>
+				<td>${product.type}</td>
+				<td>${product.color}</td>
+				<td>${product.price}</td>
+				<td><a href="/ProductPage/${product.id}">Details</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+	
+	          <div class="main-banner">
+          <div class="detailed__searchbar">
+          
+  <div class="block__main">
                   <div class="year">
                     <div class="a">Color</div>
                     <select name="year">
@@ -124,53 +148,7 @@
     </header>
     <main class="main">
 
-      <div class="main-title-name">Top Deals</div>
-      <div class="main-row">
-          <div class="main-row-item-block">
-              <div class="main-row-item-block-image">
-                  <img src="new_car_landing_S_2.jpg" alt="">
-              </div>
-              <div class="main-row-item-block-title">Car Make and Model</div>
-              <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-              <div class="main-row-item-block-description-price">Price per hour</div>
-              <div class="main-row-item-block-button">
-                  <a href="/ProductPage"><span>Rent me!</span></a>
-              </div>
-          </div>
-          <div class="main-row-item-block">
-            <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
-            </div>
-            <div class="main-row-item-block-title">Car Make & Model</div>
-            <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
-            <div class="main-row-item-block-button">
-                <a href="/ProductPage"><span>Rent me!</span></a>
-            </div>
-          </div>
-          <div class="main-row-item-block">
-            <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
-            </div>
-            <div class="main-row-item-block-title">Car Make and Model</div>
-            <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
-            <div class="main-row-item-block-button">
-                <a href="/ProductPage"><span>Rent me!</span></a>
-            </div>
-          </div>
-          <div class="main-row-item-block">
-            <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
-            </div>
-            <div class="main-row-item-block-title">Car Make and Model</div>
-            <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
-            <div class="main-row-item-block-button">
-                <a href="/ProductPage"><span>Rent me!</span></a>
-            </div>
-          </div>
-      </div>
+
 
       <div class="main-title-name">Useful information</div>
       <div class="main-row-blog">
@@ -222,3 +200,4 @@
   </div>
 </body>
 </html>
+	
