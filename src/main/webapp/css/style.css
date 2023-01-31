@@ -38,7 +38,7 @@ body {
   display: flex;
   justify-content: center;
 }
-.header-bar img {
+.logo {
   height: 40px;
 }
 .header-bar-logo-name {
@@ -874,5 +874,9 @@ footer {
 
 .filtered-tr {
   border: 0.5px solid #000;
+}
+.png {
+  height: 20px;
+  width: 30px;
 }
 
