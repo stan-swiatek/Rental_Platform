@@ -62,7 +62,7 @@
       </div>
     </header>
     <main class="main">
-
+<!-- 
 
 
       <div class="main-title-name">Useful information</div>
@@ -100,7 +100,7 @@
 
         </div>
       </div>
-
+ -->
     </main>
     <footer class="footer-contact-information">
         <div class="footer-contact-information-container">
