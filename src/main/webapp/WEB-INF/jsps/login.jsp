@@ -26,9 +26,11 @@
     <main class="main">
   
       <div class="log-name">Log in</div>
+      
         <div class="main-row">
         <div class="log-name-block">
           <div class="log-name-block-main">
+          <div>${message2}</div>
             <form action="/login" method="post">
               <label for="username">Username:</label><br>
               <input 
@@ -46,6 +48,7 @@
                 class="second"
                 placeholder="type here..."
               >
+              
               <div class="register-button">
                 <a href=""><input type="submit" value="Log in"></a>
               </div>

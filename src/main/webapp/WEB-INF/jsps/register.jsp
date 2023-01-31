@@ -28,6 +28,7 @@
         <div class="main-row">
         <div class="log-name-block">
           <div class="log-name-block-main">
+          <div>${message}</div>
             <form action="/register" method="POST">
               <label for="username">Create username:</label><br>
               <input 
@@ -42,6 +43,14 @@
                 type="password"
                 id="password"
                 name="password"
+                class="second"
+                placeholder="type here..."
+              ><br>
+              <label for="confrimPassword">Confirm password:</label><br>
+              <input 
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
                 class="second"
                 placeholder="type here..."
               ><br>
