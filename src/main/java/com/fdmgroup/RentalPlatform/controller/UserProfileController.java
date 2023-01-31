@@ -71,13 +71,24 @@ public class UserProfileController {
 	}
 	
 	
-//	@GetMapping("/editUserDetails")
-//	public String editUserDetails(ModelMap model) {
-//		login.isLoggedIn(model);
-//		
-//		return "editUserDetails";
-//	}
-//	
+	@GetMapping("/UserProfile")
+//	@RequestMapping(value = "/UserProfile", method = RequestMethod.GET)
+	public String showUserDetails(ModelMap model) {
+		login.isLoggedIn(model);
+		User loggedInUser = login.getLoggedUser();
+		
+		model.addAttribute("userName", loggedInUser.getUsername());
+		model.addAttribute("userFristName", loggedInUser.getFirstName());
+		model.addAttribute("userSurName", loggedInUser.getSurName());
+		model.addAttribute("userEmail", loggedInUser.getEmail());
+		model.addAttribute("userAddress", loggedInUser.getAddress());
+		
+		
+		return "UserProfile";
+	}
+	
+	
+
 
 	
 	
@@ -101,6 +112,9 @@ public class UserProfileController {
 	 
 	    return "UserProfile";
 	}
+	
+	
+	
 	
 	
 

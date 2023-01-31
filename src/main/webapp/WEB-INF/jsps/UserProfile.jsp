@@ -30,6 +30,15 @@
         <div class="log-name-block">
           <div class="user-block-main">
           <div class="log-in-button">Here will be user details
+           <div class="product-main-text">User name:  ${userName}</div>
+           <div class="product-main-text">First name: ${userFristName}</div>
+           <div class="product-main-text">Sure name: ${userSurName}</div>
+           <div class="product-main-text">E-mail: ${userEmail}</div>
+           <div class="product-main-text">Address: ${userAddress}</div>
+           
+          <div>${user.firstName} </div>
+          <div>${user.surName} </div>
+          <div>${user.email} </div>
           </div>
           </div>
         </div>
