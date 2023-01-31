@@ -120,8 +120,8 @@ public class ProductController {
 	}
 	
 	@PostMapping("/dropDownFilters")
-	public String filteringFunction(ModelMap model, @RequestParam String filter, @RequestParam String color, @RequestParam String category,
-			@RequestParam String type, @RequestParam String minPrice, @RequestParam String maxPrice) {
+	public String filteringFunction(ModelMap model, @RequestParam String filter, @RequestParam(required = false) String color, @RequestParam(required = false) String category,
+			@RequestParam(required = false) String type, @RequestParam(required = false) String minPrice, @RequestParam(required = false) String maxPrice) {
 		
 		Filtering filtering = new Filtering(color, type, category, minPrice, maxPrice);
 		
@@ -130,29 +130,59 @@ public class ProductController {
 		List<Product> searchedByCategory = new ArrayList<>(0);
 		List<Product> searchedByPrice = new ArrayList<>(0);
 		
+		List<Product> searchedProducts = new ArrayList<>();
+		
 		if (color != "") {
-			searchedByColor = service.findProductByColor(filter);
+			searchedByColor = service.findProductByColor(color);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByColor);
 		}
 		
 		if (type != "") {
-			searchedByType = service.findProductByType(filter);
+			searchedByType = service.findProductByType(type);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByType);
 		}
 		
 		if (category != "") {
-			searchedByCategory = service.findProductByCategory(filter);
+			searchedByCategory = service.findProductByCategory(category);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByCategory);
 		}
 		
-		if (minPrice != "") {
-			System.out.println("Minumum price " + minPrice);
-			searchedByPrice = service.findProductByPrice(minPrice, maxPrice);
-		}
+//		if (minPrice != "") {
+//			searchedByPrice = service.findProductByPrice(minPrice, maxPrice);
+//			if (searchedProducts.isEmpty())
+//				searchedProducts.addAll(searchedByPrice);
+//		}
 		
 		if (maxPrice != "") {
 			searchedByPrice = service.findProductByPrice(minPrice, maxPrice);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByPrice);
 		}
 		
-		List<Product> searchedProducts = new ArrayList<>();
-		Stream.of(searchedByColor, searchedByType, searchedByCategory, searchedByPrice).forEach(searchedProducts::addAll);
+		
+		if (color != "") {
+			searchedProducts.retainAll(searchedByColor);
+		}
+		
+		if (type != "") {
+			searchedProducts.retainAll(searchedByType);
+		}
+		
+		if (category != "") {
+			searchedProducts.retainAll(searchedByCategory);
+		}
+		
+//		if (minPrice != "") {
+//			searchedProducts.retainAll(searchedByPrice);
+//		}
+		
+		if (maxPrice != "") {
+			searchedProducts.retainAll(searchedByPrice);
+		}
+		
 		
 		model.addAttribute("resultsOfSearch", searchedProducts);
 		model.addAttribute("filter", filter);

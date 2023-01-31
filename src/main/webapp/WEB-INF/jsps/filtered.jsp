@@ -30,34 +30,37 @@
           </div>
 
 
-	<h3>Filtered Products</h3>
+	<br>
+	<h1>Search results</h1><br>
 	<table>
 		<tr>
 			<td>ID</td>
 			<th>Name</th>
-			<th>Category</th>
-			<th>Type</th>
 			<th>Color</th>
+			<th>Type</th>
+			<th>Category</th>
 			<th>Price</th>
 		</tr>
 		<c:forEach items="${filterProducts}" var="product">
 			<tr>
 				<td>${product.id}</td>
 				<td>${product.productName}</td>
-				<td>${product.category}</td>
-				<td>${product.type}</td>
 				<td>${product.color}</td>
+				<td>${product.type}</td>
+				<td>${product.category}</td>
 				<td>${product.price}</td>
 				<td><a href="/ProductPage/${product.id}">Details</a></td>
 			</tr>
 		</c:forEach>
 	</table>
+	</div> <%-- Remove in case of adding back filters--%>
+	</div> <%-- Remove in case of adding back filters--%>
 	
-	          <div class="main-banner">
+	          <%--<div class="main-banner">
           <div class="detailed__searchbar">
           
-          <h2>START</h2>
           
+           
        <form action="/dropDownFilters" method="post">
           
   <div class="block__main">
@@ -140,9 +143,8 @@
             </div>
           </div>
           
-          </div>
-          
-      </div>
+         </div>
+       </div>
     </header>
     <main class="main">
     
@@ -206,8 +208,10 @@
             </div>
 
         </div>
-      </div>
+      </div>--%>
 
+    </header> <%-- Remove in case of adding back filters--%>
+    <main class="main"><%-- Remove in case of adding back filters--%>
     </main>
     <footer class="footer-contact-information">
         <%@ include file ="footerBar.jsp" %>
