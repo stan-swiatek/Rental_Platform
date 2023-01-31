@@ -32,18 +32,18 @@
           </div>
 
 
-	<h3>Filtered Products</h3>
-	<table>
+	<h3 class="filtered-title">Filtered Products</h3>
+	<table class="filtered-table">
 		<tr>
-			<td>ID</td>
-			<th>Name</th>
-			<th>Category</th>
-			<th>Type</th>
-			<th>Color</th>
-			<th>Price</th>
+			<td class="filtered-td">ID</td>
+			<th class="filtered-td">Name</th>
+			<th class="filtered-td">Category</th>
+			<th class="filtered-td">Type</th>
+			<th class="filtered-td">Color</th>
+			<th class="filtered-td">Price</th>
 		</tr>
 		<c:forEach items="${filterProducts}" var="product">
-			<tr>
+			<tr class="filtered-tr">
 				<td>${product.id}</td>
 				<td>${product.productName}</td>
 				<td>${product.category}</td>

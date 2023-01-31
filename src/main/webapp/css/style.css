@@ -840,3 +840,21 @@ footer {
   align-items: center;
 }
 
+.filtered-title {
+  margin: 5px 5px 5px 0;
+  text-transform: uppercase;
+}
+
+.filtered-table {
+  border: 0.5px solid #000;
+}
+
+.filtered-td {
+  font-weight: 700;
+  text-align: left;
+}
+
+.filtered-tr {
+  border: 0.5px solid #000;
+}
+
