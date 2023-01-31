@@ -27,7 +27,7 @@
 
             <div class="main-row-item-block-description-blog">Learn more about our company</div>
             <div class="main-row-item-block-button-blog">
-                <a href=""><span>Read more...</span></a>
+                <a href="/AboutUs"><span>Read more...</span></a>
             </div>
 
           </div>

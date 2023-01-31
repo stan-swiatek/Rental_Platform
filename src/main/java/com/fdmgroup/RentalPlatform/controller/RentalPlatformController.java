@@ -43,5 +43,11 @@ public class RentalPlatformController {
 		login.isLoggedIn(model);
 		return "Information";
 	}
+	
+	@GetMapping(value = "/AboutUs")
+	public String goAboutUs(ModelMap model) {
+		login.isLoggedIn(model);
+		return "AboutUs";
+	}
 
 }
