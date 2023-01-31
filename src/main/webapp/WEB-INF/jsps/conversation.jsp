@@ -50,5 +50,6 @@
 		
 	</div>
 	<%@ include file ="send.jsp" %>
+	<%@ include file ="footerBar.jsp" %>
 </body>
 </html>

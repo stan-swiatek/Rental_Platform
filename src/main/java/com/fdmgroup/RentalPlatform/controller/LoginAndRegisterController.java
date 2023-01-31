@@ -47,6 +47,10 @@ public class LoginAndRegisterController {
 		isLoggedIn(model);
 		return "login";
 	}
+//	@GetMapping("/logout")
+//	public String logout(ModelMap model) {
+//		return "redirect:/logout";
+//	}
 
 	@GetMapping("/register")
 	public String register(ModelMap model) {

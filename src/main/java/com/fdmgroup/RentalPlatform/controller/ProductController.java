@@ -78,8 +78,8 @@ public class ProductController {
 	{
 //		model.addAttribute("product", service.findProductById(id));
 		Product product = service.findProductById(id);
-		populateModel(model);
-		
+		//populateModel(model);
+		login.isLoggedIn(model);
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
 		model.addAttribute("productCategory", product.getCategory());
@@ -102,6 +102,7 @@ public class ProductController {
 	
 	@GetMapping(value="/filtered")
 	public String goToFiltered(ModelMap model) {
+		login.isLoggedIn(model);
 		return "filtered";
 	}
 	
@@ -116,6 +117,7 @@ public class ProductController {
 	
 	
 	private void populateModel(ModelMap model) {
+		login.isLoggedIn(model);
 		model.addAttribute("products", service.findAllProducts());
 	}
 
