@@ -31,6 +31,14 @@
 		<h2>Conversation between ${buyer.username} and
 			${owner.username}</h2>
 		<h3>Subject: ${product.productName}</h3>
+		
+		<%-- <div>
+			<form action="/accept/${product.id}/${buyer.id}" method="post">
+			    <textarea name="acceptBooking" required></textarea>
+			    <button class="send-message-btn">Send</button>
+			  </form>
+		</div> --%>
+		
 		<c:forEach var="message" items="${messages}">
 			<div
 				class="<c:if test="${message.sentByBuyer}">left</c:if><c:if test="${not message.sentByBuyer}">right</c:if>">

@@ -1,7 +1,9 @@
 package com.fdmgroup.RentalPlatform.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,6 +100,13 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
+
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
+		model.addAttribute("bookings", bookings);
+		
+		model.addAttribute("isAvailable", isAvailable(product));
+		
 		return "ProductPage";
 	}
 
@@ -178,6 +187,26 @@ public class ProductController {
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
 
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
+		model.addAttribute("bookings", bookings);
+		
+		model.addAttribute("isAvailable", isAvailable(product));
+
 		return "ProductPage";
+	}
+	
+	boolean isAvailable(Product product) {
+		List<String> nope = new ArrayList<String>();
+		nope.add("Cart");
+		
+		Iterator<String> iterator = nope.iterator();
+		while(iterator.hasNext()) {
+			if(bookingService.findByProductAndStatus(product, iterator.next()).size()>0) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }

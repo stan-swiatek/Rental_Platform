@@ -38,4 +38,14 @@ public class BookingService implements IBookingService {
 		repo.save(booking);		
 	}
 
+	@Override
+	public List<Booking> findByProductAndUser(Product product, User user) {
+		return repo.findByProductAndUser(product, user);
+	}
+
+	@Override
+	public List<Booking> findByProductAndStatus(Product product, String s) {
+		return repo.findByProductAndStatus(product, s);
+	}
+
 }
