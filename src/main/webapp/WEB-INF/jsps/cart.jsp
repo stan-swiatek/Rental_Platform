@@ -20,9 +20,9 @@
 	
   <table>
     <tr>
-      <th>product_id</th>
-      <th>user_id</th>
-      <th>bookingDate</th>
+      <th>product name</th>
+      <th>username</th>
+      <th>bookingDate - status</th>
 
     </tr>
     <c:forEach items="${bookings}" var="booking">
