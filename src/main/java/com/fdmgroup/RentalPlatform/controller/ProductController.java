@@ -197,7 +197,7 @@ public class ProductController {
 		message.setOwner(owner);
 		message.setProduct(booking.getProduct());
 		message.setMessageText(
-				"You have new Booking! /n"
+				"You have new Booking! <br>"
 				+ "For product: " + booking.getProduct().getProductName()
 				+ "<br>By user: " + owner.getUsername()
 				+ "<br>From: " + booking.getStartDate()

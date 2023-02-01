@@ -44,6 +44,10 @@
 						<th>Time Sent:</th>
 						<td>${message.timeSent}</td>
 					</tr>
+					<tr>
+						<th>Is Read:</th>
+						<td>${message.isRead}</td>
+					</tr>
 				</table>
 			</div>
 		</c:forEach>

@@ -37,7 +37,7 @@ public class DataImport implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		if (!userRepository.findByUsername("admin").isPresent()) {
+		if (!userRepository.findByUsername("Shazar").isPresent()) {
 			Role roleAdmin = new Role("Admin");
 			Role roleCustomer = new Role("Customer");
 
@@ -49,9 +49,10 @@ public class DataImport implements ApplicationRunner {
 			
 			User customer = new User("customer", encoder.encode("123"), roleCustomer);
 			userRepository.save(customer);
-
+			
 		}
-
+		
+		
 		if (messageRepository.findByOwner(userRepository.findByUsername("Shazar").get()).isEmpty()) {
 			Product product = new Product("Very fine product");
 			product.setOwner(userRepository.findByUsername("Shazar").get());

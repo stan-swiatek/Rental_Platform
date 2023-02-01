@@ -45,6 +45,12 @@ public class MessageService implements IMessageService {
 	public void saveMessage(Message message) {
 		repo.save(message);
 	}
+
+	@Override
+	public Optional<Message> findById(int id) {
+		
+		return repo.findById(id);
+	}
 	
 	
 

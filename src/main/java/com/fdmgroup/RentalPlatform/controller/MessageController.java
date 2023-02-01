@@ -53,6 +53,7 @@ public class MessageController {
 	public String goToConversation(ModelMap model, @PathVariable int product_id, @PathVariable int buyer_id) {
 		login.isLoggedIn(model);
 		populateConversation(model, product_id, buyer_id);
+		
 		return "conversation";
 	}
 
@@ -89,7 +90,21 @@ public class MessageController {
 		System.out.println(messagesByOwnerAndProduct);
 		// Filter for only messages with this buyer
 		messagesByOwnerAndProduct.retainAll(messageService.findByBuyer(buyer));
-		System.out.println(messagesByOwnerAndProduct);
+		//System.out.println(messagesByOwnerAndProduct);
+		for(Message message : messagesByOwnerAndProduct) {
+			message = messageService.findById(message.getId()).get();
+			if(login.getLoggedUser().equals(user)) {
+				if(message.isSentByBuyer()) {		
+					message.setisRead(true);
+					messageService.saveMessage(message);
+				}
+			}else if(login.getLoggedUser().equals(buyer)) {
+				if(!message.isSentByBuyer()) {
+					message.setisRead(true);
+					messageService.saveMessage(message);
+				}
+			}
+		}
 		model.addAttribute("product", product);
 		model.addAttribute("owner",user);
 		model.addAttribute("buyer",buyer);
