@@ -103,11 +103,13 @@ public class ProductController {
 	
 	@GetMapping(value="/filtered")
 	public String goToFiltered(ModelMap model) {
+		login.isLoggedIn(model);
 		return "filtered";
 	}
 	
 	@PostMapping("/filtered")
 	public String filterProducts(ModelMap model, @RequestParam String filter) {
+		login.isLoggedIn(model);
 		List<Product> finalFilteredProducts = service.filterProducts(filter);
 		
 		model.addAttribute("filterProducts", finalFilteredProducts);
@@ -117,13 +119,14 @@ public class ProductController {
 	
 	@GetMapping(value="/dropDownFilters")
 	public String goToDropDownFilters(ModelMap model) {
+		login.isLoggedIn(model);
 		return "dropDownFilters";
 	}
 	
 	@PostMapping("/dropDownFilters")
 	public String filteringFunction(ModelMap model, @RequestParam String filter, @RequestParam(required = false) String color, @RequestParam(required = false) String category,
 			@RequestParam(required = false) String type, @RequestParam(required = false) String minPrice, @RequestParam(required = false) String maxPrice) {
-		
+		login.isLoggedIn(model);
 		Filtering filtering = new Filtering(color, type, category, minPrice, maxPrice);
 		
 		List<Product> searchedByColor = new ArrayList<>(0);

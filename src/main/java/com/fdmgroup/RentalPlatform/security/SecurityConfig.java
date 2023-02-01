@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 
-				.antMatchers("/css/**", "/js/**", "/h2/**"/*not suitable for production level app*/, "WEB-INF/jsps/**", "/", "/**/*.png", "/register", "/editUserDetails", "/filtered", "/dropDownFilters", "/terms", "/*.png", "/*.jpg").permitAll()
+				.antMatchers("/css/**", "/js/**", "/h2/**"/*not suitable for production level app*/, "WEB-INF/jsps/**", "/", "/**/*.png", "/register", "/editUserDetails", "/dropDownFilters", "/filtered", "/terms", "/*.png", "/*.jpg").permitAll()
 
 				.antMatchers("/admin/**").hasRole("Admin")
 				.anyRequest().authenticated()
