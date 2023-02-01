@@ -23,7 +23,7 @@
             <img src="/new_car_landing_S_2.jpg" alt="">
           </div>
           <div class="product-main-two">
-            <div class="product-main-title">${productName}</div>
+            <div class="product-main-title">${productName}${test}</div>
 
             <div class="product-main-text">Bike category: ${productCategory}</div>
             <div class="product-main-text">Bike type: ${productType}</div>
@@ -39,11 +39,27 @@
             <div class="product-main-price-description">One hour (more than 24 hours): x</div>
 
             <div class="product-button-block">
-              <div class="product-button-row-one">
+            <form action="/Booking/${id}" method="POST">
+            	<!-- <label for="startDate">Start date:</label>
+				<input type="date" id="startDate" name="start date"
+				value="2018-07-22"
+				min="2018-01-01" max="2018-12-31"> -->
+				
+            	<label for="startDate">End date:</label>
+				<input type="date" id="startDate" name="startDate">
+				
+            	<label for="endDate">End date:</label>
+				<input type="date" id="endDate" name="endDate">
+			  
+			  <button>book</button>
+            
+              <!-- <div class="product-button-row-one">
                 <div class="main-row-item-block-button">
                   <a href="#"><span>Book</span></a>
                 </div>
-              </div>
+              </div> -->
+              </form>
+              
               <div class="product-button-row-two">
                 <div class="main-row-item-block-button" id="rate">
                   <a href="#"><span>Rate the product</span></a>
