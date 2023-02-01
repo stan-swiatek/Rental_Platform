@@ -27,16 +27,17 @@ public class User {
 	@GeneratedValue
 	private Integer userId;
 
-	public User(String username, String password, String email, String firstName, String surName) {
+	public User(String username, String password, String email, String firstName, String surName, String phoneNumber) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.firstName = firstName;
 		this.surName = surName;
+		this.phoneNumber = phoneNumber;
 	}
 
-	private String username, password, email, firstName, surName;
+	private String username, password, email, firstName, surName, phoneNumber;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
@@ -186,6 +187,18 @@ public class User {
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", firstName=" + firstName + ", surName=" + surName + ", address=" + address + ", roleList="
 				+ roleList + ", productList=" + productList + ", borrowedProductList=" + borrowedProductList + "]";
+	}
+
+
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 }

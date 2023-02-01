@@ -62,6 +62,14 @@
                 class="second"
                 placeholder="type here..."
               ><br>
+              <label for="email">Enter your phone number:</label><br>
+              <input 
+                type="text" 
+                id="phoneNumber" 
+                name="phoneNumber"
+                class="second"
+                placeholder="type here..."
+              ><br>
               <label for="firstName">Name:</label><br>
               <input 
               	type="text"
