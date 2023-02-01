@@ -3,6 +3,8 @@ package com.fdmgroup.RentalPlatform.controller;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,10 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.fdmgroup.RentalPlatform.model.Product;
+import com.fdmgroup.RentalPlatform.model.Review;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 
 
@@ -24,6 +29,9 @@ public class ProductController {
 	private IProductService service;
 	@Autowired
 	private LoginAndRegisterController login;
+	
+//	@Autowired
+//	private IRatingService rating;
 	
 
 	@GetMapping(value = "/ProductOffer")
@@ -86,9 +94,25 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
+		
+		Review review = new Review();
+//		review.setProduct(product);
+		model.put("review", review);
+		
+		
 		return "ProductPage";
 	}
 	
+	@RequestMapping(value = "sendReview", method = RequestMethod.POST)
+	public String sendReview(
+		@ModelAttribute("review") Review review,
+		@RequestParam("hdrating") float hdrating,
+		HttpSession session) {
+//		String username = session.getAttribute("username");
+//		review.setRating(hdrating);
+//		rating.create(rating);
+		return "redirect:/product/detail/";
+	}
 	
 	
 	

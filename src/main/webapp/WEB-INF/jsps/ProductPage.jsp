@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="css/jquery.rateyo.min.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.rateyo.min.js"></script>
+  <script type="text/javascript">
+  
+  $ (function () {
+	  $("#rating").rateYo({
+		  rating: 0,
+		  numStars: 5,
+		  maxValue: 5,
+		  halfStar: true,
+ 		  onChange: function (rating, rateYoInstance) {
+			  $('#hdrating').val(rating);
+		  } 
+	  });
+  });
+  
+  </script>
+    
   <title>Shazar</title>
 </head>
 <body>
@@ -35,12 +56,11 @@
             <div class="product-main-text">Bike category: ${productCategory}</div>
             <div class="product-main-text">Bike type: ${productType}</div>
             <div class="product-main-text">Bike Color: ${productColor}</div>
+            
+            <div class="product-main-text">Rating: <span id="ratingsList"></span></div>
+            
             <div class="product-main-text">Price: ${productPrice} $ per 24 hours</div>
 
-<!--             <div class="product-main-price">Pricing policy:</div>
-            <div class="product-main-price-description">One hour (up to 12 hours): x</div>
-            <div class="product-main-price-description">One hour (more than 12 hours): x</div>
-            <div class="product-main-price-description">One hour (more than 24 hours): x</div> -->
             </div>
             <div class="product-button-block">
               <div class="product-button-row-one">
@@ -50,11 +70,27 @@
               </div>
               <div class="product-button-row-two">
                 <div class="main-row-item-block-button" id="rate">
-                  <a href="#"><span>Rate the product</span></a> 
+                
+                  <s:form method="post" commandName="review">
+                    <div>Rating:</div>
+                    <div id="rating"></div>
+                    <input type="hidden" id="hdrating" name="hdrating">
+                    <input type="submit" value="Rate">
+<%--                     <s:hidden path="product.id"/> --%>
+                  </s:form>  
+                
+<!-- 				    <form id="addRatingForm">
+				      <label for="ratingInput">Rating:</label>
+				      <input type="text" id="ratingInput" name="ratingInput">
+				      <input type="submit" value="Submit">
+				    </form> -->
+<!--                   <input type="number" id="rating" name="rating"
+                    min="0" max="5">
+                  <a href="#"><span>Rate the product</span></a>  -->
                 </div>
-                <div class="main-row-item-block-button" id="rate">
+<%--                 <div class="main-row-item-block-button" id="rate">
                   <a href="#"><span>Rate the owner</span></a>
-                </div> 
+                </div> --%> 
               </div>
             </div>
           </div>
@@ -73,5 +109,23 @@
         </div>
     </footer>
   </div>
+  
+      <script>
+      function getAverageRating() {
+        fetch("/ratings/average")
+          .then(response => response.json())
+          .then(average => {
+            document.getElementById("average").innerHTML = average;
+          });
+      }
+      
+      function addRating() {
+        const rating = document.getElementById("rating").value;
+        fetch("/ratings/add?rating=" + rating, { method: "POST" })
+          .then(() => {
+            getAverageRating();
+          });
+      }
+    </script>
 </body>
 </html>
