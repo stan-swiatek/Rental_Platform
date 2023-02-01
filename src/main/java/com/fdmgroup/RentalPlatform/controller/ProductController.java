@@ -55,6 +55,7 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
+		model.addAttribute("pickUpLocation", product.getPickUpLocation());
 //		String productName = product.getProductName();
 //		String description = product.getDescription();
 //		String category = product.getCategory();
@@ -88,6 +89,7 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
+		model.addAttribute("pickUpLocation", product.getPickUpLocation());
 		return "ProductPage";
 	}
 	

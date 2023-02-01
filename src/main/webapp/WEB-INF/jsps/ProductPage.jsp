@@ -33,10 +33,12 @@
             <div class="product-main-description">Description: </div>
             <div class="product-main-description-text">${productDescription}</div>
 
-            <div class="product-main-price">Pricing policy:</div>
+            <%--<div class="product-main-price">Pricing policy:</div>
             <div class="product-main-price-description">One hour (up to 12 hours): x</div>
             <div class="product-main-price-description">One hour (more than 12 hours): x</div>
-            <div class="product-main-price-description">One hour (more than 24 hours): x</div>
+            <div class="product-main-price-description">One hour (more than 24 hours): x</div>--%>
+            
+            <div class="product-main-text">Pick-up location: ${pickUpLocation} <br>Contact the owner for more details.</div>
 
             <div class="product-button-block">
               <div class="product-button-row-one">

@@ -84,6 +84,14 @@
               class="first"
               placeholder="type here..."
             ><br>
+            <label for="pickUpLocation">Pick-up location:</label><br>
+            <input 
+              type="text" 
+              id="pickUpLocation" 
+              name="pickUpLocation"
+              class="first"
+              placeholder="type here..."
+            ><br>
             <div class="register-button">
            		<input type="submit" value="Create">
           	</div>

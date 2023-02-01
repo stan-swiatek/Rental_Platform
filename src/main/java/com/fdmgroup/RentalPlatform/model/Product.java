@@ -1,8 +1,6 @@
 package com.fdmgroup.RentalPlatform.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +14,7 @@ public class Product {
 	@GeneratedValue
 	private Integer id;
 
-	private String productName, description, category, type, color;
+	private String productName, description, category, type, color, pickUpLocation;
 
 	private Double price;
 
@@ -116,6 +114,14 @@ public class Product {
 		this.color = color;
 	}
 	
+	public String getPickUpLocation() {
+		return pickUpLocation;
+	}
+
+	public void setPickUpLocation(String pickUpLocation) {
+		this.pickUpLocation = pickUpLocation;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productName=" + productName + ", owner=" + owner + "]";
