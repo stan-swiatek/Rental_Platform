@@ -14,8 +14,8 @@
     <header class="header">
       <%@ include file="headerBar.jsp" %>
     </header>
-    <main class="main">
-  
+    <main class="main-user">
+      <div class="user-main">
       <div class="log-name">Your profile</div>
       <div class="user-wrapper">
         <div class="log-name-block">
@@ -31,6 +31,32 @@
           <div class="user-button">
             <a class="user-button-button-two" href="/ProductOffer"><span>Add new product</span></a>
           </div>
+        </div>
+      </div>
+      </div>
+      <div class="help-block">
+        <div class="help-block-main">
+          <div class="help-block-one">
+            <div class="help-sec-main-one">Have questions?</div>
+            <div class="help-sec-a">Visit our <a class="link" href="/FAQ">FAQ page</a> - you will find most of the answers there.</div>
+          </div>
+          <div class="help-block-two">
+          <div class="help-sec-main-one">FAQ page didn't help you?</div>
+          <div class="help-sec">Feel free to contact our support team!</div>
+          <div class="help-sec"><span>Email:</span> shazar-support@gmail.com</div> 
+          <div class="help-sec">OR</div>
+          <div class="logos">
+          <a href="https://telegram.me/tobosssss">
+            <img class="logo-site" src="pngwing.com.png" alt="">
+          </a>
+          <a href="https://wa.me/48452750127">
+            <img class="logo-site" src="pngwing.com-3.png" alt="">
+          </a>
+          <a href="https://www.instagram.com/ann.peretyatko/">
+            <img class="logo-site" src="pngwing.com-2.png" alt="">
+          </a>
+        </div>
+        </div>
         </div>
       </div>
   

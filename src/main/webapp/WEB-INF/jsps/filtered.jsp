@@ -41,16 +41,17 @@
 			<th class="filtered-td">Type</th>
 			<th class="filtered-td">Color</th>
 			<th class="filtered-td">Price</th>
+			<th class="filtered-td">Details</th>
 		</tr>
 		<c:forEach items="${filterProducts}" var="product">
 			<tr class="filtered-tr">
-				<td>${product.id}</td>
-				<td>${product.productName}</td>
-				<td>${product.category}</td>
-				<td>${product.type}</td>
-				<td>${product.color}</td>
-				<td>${product.price}</td>
-				<td><a href="/ProductPage/${product.id}">Details</a></td>
+				<td class="filtered-tr">${product.id}</td>
+				<td class="filtered-tr">${product.productName}</td>
+				<td class="filtered-tr">${product.category}</td>
+				<td class="filtered-tr">${product.type}</td>
+				<td class="filtered-tr">${product.color}</td>
+				<td class="filtered-tr">${product.price}</td>
+				<td><a href="/ProductPage/${product.id}" class="link-details">Details</a></td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -62,45 +63,6 @@
       </div>
     </header>
     <main class="main">
-<!-- 
-
-
-      <div class="main-title-name">Useful information</div>
-      <div class="main-row-blog">
-        <div class="main-row-item-block-blog">
-
-          <div class="main-row-a">
-            <div class="main-row-b">
-              <div class="main-row-item-block-title-blog-b">FAQ</div>
-            </div>
-          </div>
-
-          <div class="main-row-item-block-description-blog">Find answers to all your questions</div>
-          <div class="main-row-item-block-button-blog">
-              <a href="/FAQ"><span>Read more</span></a>
-          </div>
-
-      </div>
-
-
-          <div class="main-row-item-block-blog">
-            <div class="main-row-a">
-               <div class="main-row-b"> 
-                <div 
-                  class="main-row-item-block-title-blog-b"
-                >Legal regulations
-                </div>
-              </div>
-            </div>
-
-            <div class="main-row-item-block-description-blog">Find out about our terms and conditions</div>
-            <div class="main-row-item-block-button-blog">
-                <a href="/terms"><span>Read more...</span></a>
-            </div>
-
-        </div>
-      </div>
- -->
     </main>
     <footer class="footer-contact-information">
         <div class="footer-contact-information-container">
