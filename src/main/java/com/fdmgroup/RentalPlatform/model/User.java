@@ -124,8 +124,8 @@ public class User {
 		this.surName = surName;
 	}
 
-	public Address getAddress() {
-		return address;
+	public String getAddress() {
+		return address.toString();
 	}
 
 	public void setAddress(Address address) {

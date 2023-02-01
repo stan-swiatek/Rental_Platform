@@ -56,6 +56,8 @@ public class UserProfileController {
 	@Autowired
 	private LoginAndRegisterController login;
 	
+	private Address address;
+	
 	
 
 	//method to populate fields with current values of user details
@@ -83,6 +85,7 @@ public class UserProfileController {
 		model.addAttribute("userEmail", loggedInUser.getEmail());
 		model.addAttribute("userPhone", loggedInUser.getPhoneNumber());
 		model.addAttribute("userAddress", loggedInUser.getAddress());
+		
 		
 		
 		return "UserProfile";
