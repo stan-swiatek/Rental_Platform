@@ -4,6 +4,6 @@ import com.fdmgroup.RentalPlatform.model.Rating;
 
 public interface IRatingService {
 	
-	public Rating create(Rating rating);
+	public void create(Rating rating);
 
 }

@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="/css/style.css">
   
   <link href="css/jquery.rateyo.min.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/jquery.rateyo.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.rateyo.min.js"></script>
   <script type="text/javascript">
   
   $ (function () {
@@ -42,7 +42,7 @@
         <div class="product-main">
           <div class="product-main-one">
             <div class="product-main-one-container">
-              <img src="new_car_landing_S_2.jpg" alt="">  
+              <img src="/new_car_landing_S_2.jpg" alt="">  
             </div>
             <div>
             <div class="product-main-description">Description: </div>
@@ -71,13 +71,22 @@
               <div class="product-button-row-two">
                 <div class="main-row-item-block-button" id="rate">
                 
-                  <s:form method="post" commandName="review">
-                    <div>Rating:</div>
-                    <div id="rating"></div>
-                    <input type="hidden" id="hdrating" name="hdrating">
+                  <form action="/rate" method="post">
+<!--                   commandName="review"> -->
+<!--                     <div>Rating:</div> -->
+<!--                     <div id="rating"></div>
+                    <input type="hidden" id="hdrating" name="hdrating"> -->
+                    <label for="country">Rating</label><br>
+			  <input 
+			  	id="country" 
+			  	class="second"
+			  	type="text" 
+			  	name="country"
+				placeholder="Country"
+			  >
                     <input type="submit" value="Rate">
 <%--                     <s:hidden path="product.id"/> --%>
-                  </s:form>  
+                  </form>  
                 
 <!-- 				    <form id="addRatingForm">
 				      <label for="ratingInput">Rating:</label>

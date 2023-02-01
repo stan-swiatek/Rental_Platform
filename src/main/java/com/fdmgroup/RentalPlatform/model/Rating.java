@@ -18,13 +18,25 @@ public class Rating {
 	  @ManyToOne
 	  private User user;
 	  
-	  public Rating() {};
+	  @ManyToOne
+	  private Product product;
 	  
-	public Rating(Long id, Integer value, User user) {
+	  public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Rating() {};
+	  
+	public Rating(Long id, Integer value, User user, Product product) {
 		super();
 		this.id = id;
 		this.value = value;
 		this.user = user;
+		this.product = product;
 	}
 
 	public Long getId() {
@@ -53,7 +65,12 @@ public class Rating {
 
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", value=" + value + ", user=" + user + "]";
+		return "Rating [id=" + id + ", value=" + value + ", user=" + user + ", product=" + product + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Rating [id=" + id + ", value=" + value + ", user=" + user + "]";
+//	}
 
 }

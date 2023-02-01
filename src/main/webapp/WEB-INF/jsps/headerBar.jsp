@@ -7,7 +7,7 @@
 <body>
 	<div class="header-bar">
 		<div class="header-a">
-			<img class="logo" src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+			<img class="logo" src="/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
 			<div class="header-bar-logo-name">Shazar</div>
 		</div>
 		<div class="header-bar-content">

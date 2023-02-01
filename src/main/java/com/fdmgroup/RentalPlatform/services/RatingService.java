@@ -15,8 +15,8 @@ public class RatingService implements IRatingService {
   private RatingRepository ratingRepository;
   
   @Override
-  public Rating create(Rating rating) {
-	  return ratingRepository.save(rating);
+  public void create(Rating rating) {
+	 ratingRepository.save(rating);
   }
   
   public Double getAverageRating() {
