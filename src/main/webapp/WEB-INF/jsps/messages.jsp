@@ -35,6 +35,7 @@
       </tr>
       
     </c:forEach>
+    
   </table>
   <footer>
   	<%@ include file ="footerBar.jsp" %>

@@ -114,11 +114,12 @@ public class ProductController {
 	public String getCart(ModelMap model) {
 		login.isLoggedIn(model);
 		user = login.getLoggedUser();
-		List<Booking> bookings = bookingService.findAll();
-//		List<Booking> bookings = bookingService.findByUser(user);
+//		List<Booking> bookings = bookingService.findAll();
+		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
 //		messages.addAll(messageService.findByBuyer(user));
 //		List<Message> conversations = splitToConversation(messages);
 		model.addAttribute("bookings", bookings);
+		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
 		return "cart";
 	}
 	
@@ -208,5 +209,42 @@ public class ProductController {
 		}
 		
 		return true;
+	}
+	
+	@PostMapping("/confirm_cart")
+	public String confirmCart(ModelMap model) {
+		login.isLoggedIn(model);
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
+		Iterator<Booking> iterator = bookings.iterator();
+		while(iterator.hasNext()) {
+			Booking newBooking = iterator.next();
+			newBooking.setStatus("Pending");
+			bookingService.saveBooking(newBooking);
+		}
+		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
+		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
+		return "cart";
+	}
+	
+	@PostMapping("/delete_item/{booking_id}")
+	public String deleteItem(ModelMap model, @PathVariable int booking_id) {
+		login.isLoggedIn(model);
+		user = login.getLoggedUser();
+		
+		Booking booking = bookingService.findByID(booking_id);
+		booking.setStatus("Discarded");
+		bookingService.saveBooking(booking);
+		
+		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
+		Iterator<Booking> iterator = bookings.iterator();
+		while(iterator.hasNext()) {
+			Booking newBooking = iterator.next();
+			newBooking.setStatus("Pending");
+			bookingService.saveBooking(newBooking);
+		}
+		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
+		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
+		return "cart";
 	}
 }
