@@ -17,5 +17,7 @@ public interface IProductService {
 	List<Product> findProductByCategory(String filter);
 	//List<Product> findProductByTimeFrame(String filter);
 	List<Product> findProductByPrice(String min, String max);
+	List<Product> findProductByMinPrice(String min);
+	List<Product> findProductByMaxPrice(String max);
 	
 }

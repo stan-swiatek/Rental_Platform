@@ -157,12 +157,19 @@ public class ProductController {
 //				searchedProducts.addAll(searchedByPrice);
 //		}
 		
-		if (maxPrice != "") {
+		if (minPrice != "" && maxPrice != "") {
 			searchedByPrice = service.findProductByPrice(minPrice, maxPrice);
 			if (searchedProducts.isEmpty())
 				searchedProducts.addAll(searchedByPrice);
+		} else if (minPrice != "") {
+			searchedByPrice = service.findProductByMinPrice(minPrice);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByPrice);
+		} else if (maxPrice != "") {
+			searchedByPrice = service.findProductByMaxPrice(maxPrice);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByPrice);
 		}
-		
 		
 		if (color != "") {
 			searchedProducts.retainAll(searchedByColor);
@@ -180,7 +187,7 @@ public class ProductController {
 //			searchedProducts.retainAll(searchedByPrice);
 //		}
 		
-		if (maxPrice != "") {
+		if (minPrice != "" || maxPrice != "") {
 			searchedProducts.retainAll(searchedByPrice);
 		}
 		

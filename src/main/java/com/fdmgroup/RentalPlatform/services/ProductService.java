@@ -100,7 +100,15 @@ public class ProductService implements IProductService {
 		return repo.findByPriceBetween(Double.parseDouble(min), Double.parseDouble(max));
 	}
 	
+	@Override
+	public List<Product> findProductByMinPrice(String min) {
+		return repo.findByPriceGreaterThanEqual(Double.parseDouble(min));
+	}
 	
+	@Override
+	public List<Product> findProductByMaxPrice(String max) {
+		return repo.findByPriceLessThanEqual(Double.parseDouble(max));
+	}
 	
 
 }
