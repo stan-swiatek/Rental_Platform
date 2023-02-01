@@ -34,11 +34,10 @@
            <div class="product-main-text">First name: ${userFristName}</div>
            <div class="product-main-text">Sure name: ${userSurName}</div>
            <div class="product-main-text">E-mail: ${userEmail}</div>
+           <div class="product-main-text">Phone: ${userPhone}</div>
            <div class="product-main-text">Address: ${userAddress}</div>
            
-          <div>${user.firstName} </div>
-          <div>${user.surName} </div>
-          <div>${user.email} </div>
+          
           </div>
           </div>
         </div>

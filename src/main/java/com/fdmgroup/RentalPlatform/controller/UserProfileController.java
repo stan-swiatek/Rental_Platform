@@ -56,6 +56,8 @@ public class UserProfileController {
 	@Autowired
 	private LoginAndRegisterController login;
 	
+	private Address address;
+	
 	
 
 	//method to populate fields with current values of user details
@@ -81,7 +83,9 @@ public class UserProfileController {
 		model.addAttribute("userFristName", loggedInUser.getFirstName());
 		model.addAttribute("userSurName", loggedInUser.getSurName());
 		model.addAttribute("userEmail", loggedInUser.getEmail());
+		model.addAttribute("userPhone", loggedInUser.getPhoneNumber());
 		model.addAttribute("userAddress", loggedInUser.getAddress());
+		
 		
 		
 		return "UserProfile";
@@ -105,6 +109,7 @@ public class UserProfileController {
 	    currentUser.setFirstName(updatedUser.getFirstName());
 	    currentUser.setSurName(updatedUser.getSurName());
 	    currentUser.setEmail(updatedUser.getEmail());
+	    currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
 	 
 	    // Save the updated user to the database
 	    

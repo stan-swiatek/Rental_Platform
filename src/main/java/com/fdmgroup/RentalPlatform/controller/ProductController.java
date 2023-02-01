@@ -78,7 +78,7 @@ public class ProductController {
 	
 	@GetMapping(value="/ProductPage/{id}")
 	public String seeDetails(ModelMap model, @PathVariable int id) //throws PlaceNotFoundException 
-	{
+	{	login.isLoggedIn(model);
 //		model.addAttribute("product", service.findProductById(id));
 		Product product = service.findProductById(id);
 		populateModel(model);

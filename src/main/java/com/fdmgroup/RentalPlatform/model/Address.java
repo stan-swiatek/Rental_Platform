@@ -112,6 +112,16 @@ public class Address {
 				&& Objects.equals(country, other.country) && Objects.equals(flatNumber, other.flatNumber)
 				&& Objects.equals(postalCode, other.postalCode) && Objects.equals(street, other.street);
 	}
+
+	@Override
+	public String toString() {
+		return  " Country: " + country +
+				" City: " + city + 
+				" Street: " + street +
+				" Postal Code: " + postalCode +
+				" Building Number: " + buildingNumber + 
+				" Flat Number: " + flatNumber;
+	}
 	
 	
 	
