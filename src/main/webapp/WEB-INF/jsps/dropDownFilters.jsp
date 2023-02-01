@@ -66,6 +66,9 @@
                     <div class="a">Color</div>
                     <select name="color">
                     <option value="${filtering.color }" selected="selected">${filtering.color }</option>
+                       <option value="">
+                        
+                      </option>
                       <option value="White">
                         White
                       </option>
@@ -102,7 +105,10 @@
                   <div class="brand">
                     <div class="a">Type</div>
                     <select name="type">
-                    <option value="${filtering.type }" selected="selected">${filtering.type }</option>                      
+                    <option value="${filtering.type }" selected="selected">${filtering.type }</option>                     
+                      <option value="">
+                        
+                      </option>
                       <option value="Ladies' bikes">
                         Ladies' bikes
                       </option>
@@ -124,7 +130,10 @@
                   <div class="engine">
                     <div class="a">Category</div>
                     <select name="category">
-                    <option value="${filtering.category }" selected="selected">${filtering.category }</option>                      
+                    <option value="${filtering.category }" selected="selected">${filtering.category }</option> 
+                      <option value="">
+                        
+                      </option>                  
                       <option value="BMX">
                         BMX
                       </option>
