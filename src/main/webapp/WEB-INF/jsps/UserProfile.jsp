@@ -26,10 +26,10 @@
         </div>
         <div class="user-block">
           <div class="user-button">
-            <a class="user-button-button-one" href="/editUserDetails"><span>editUserDetails</span></a>
+            <a class="user-button-button-one" href="/editUserDetails"><span>Settings</span></a>
           </div>
           <div class="user-button">
-            <a class="user-button-button-two" href="/ProductOffer"><span>createProduct</span></a>
+            <a class="user-button-button-two" href="/ProductOffer"><span>Add new product</span></a>
           </div>
         </div>
       </div>

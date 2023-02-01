@@ -26,8 +26,10 @@
       <div class="log-name">Sign up</div>
         <div class="main-row">
         <div class="log-name-block">
-          <div class="log-name-block-main">
-            <form action="/register" method="POST">
+          <div class="form-block-main">
+            <form action="/register" method="POST" class="form">
+            <div class=form-container>
+            <div class="form-one">
               <label for="username">Create username:</label><br>
               <input 
                 type="text" 
@@ -68,6 +70,8 @@
 				name="surName" 
 				placeholder="Surname"
 			  ><br>
+			</div>
+			<div class="form-two">
               <label for="street">Street:</label><br>
               <input 
               	id="surName" 
@@ -116,6 +120,8 @@
 				name="flatNumber" 
 				placeholder="Flat Number"
 			  ><br>
+			</div>
+			</div>
 			  <div class="register-button">
            		<input type="submit" value="Register">
           	  </div>
