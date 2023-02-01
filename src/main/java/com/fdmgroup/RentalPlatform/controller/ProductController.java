@@ -187,14 +187,14 @@ public class ProductController {
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
 		sendNotification(product.getOwner(), booking);
-		return "ProductPage/{product_id}";
+		return "ProductPage";
 	}
-	@PostMapping("/Booking/{product_id}/approve")
-	public String approveBooking(@ModelAttribute Booking booking, @PathVariable int product_id,
+	@GetMapping("/booking/{booking_id}/accept")
+	public String approveBooking(@ModelAttribute Booking booking, @PathVariable int booking_id,
 			ModelMap model) {
 		booking.setAccepted(true);
 		return "ProductPage";
-	}
+	}                                                                                                                          
 	private void sendNotification(User owner, Booking booking) {
 		Message message = new Message();
 		User shazar = userService.findByUsername("Shazar");
@@ -208,8 +208,8 @@ public class ProductController {
 				+ "<br>From: " + booking.getStartDate()
 				+ "<br>To: " + booking.getEndDate()
 				+ "<br><br>Do you accept?<br>"
-				+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
-				+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>"
+				+ "<a href=\"/Booking/"+booking.getId()+"/accept\"> Yes </a>"
+				+ "<a href=\"/Booking/"+booking.getId()+"/decline\"> No </a>"
 				);
 		messageService.saveMessage(message);
 		
