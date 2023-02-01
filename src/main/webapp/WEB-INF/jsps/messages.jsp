@@ -16,22 +16,22 @@
     <header class="header">
       <%@ include file="headerBar.jsp" %>
     </header>
-  <h1>Message Box</h1>
+  <div class="faq-title">Message Box</div>
 	
-  <table>
+  <table class="filtered-table-mes">
     <tr>
-      <th>Subject</th>
-      <th>From</th>
-      <th>Message</th>
+      <th class="filtered-td">Subject</th>
+      <th class="filtered-td">From</th>
+      <th class="filtered-td">Message</th>
 
     </tr>
     <c:forEach items="${messages}" var="message">
       <tr>
       
-        <td>${message.subject}</td>
-        <td>${message.buyer.username}</td>
-        <td>${message.messageText}</td>
-      <td><a href="/messages/${message.product.id}/${message.buyer.id}">Go to conversation</a></td>
+        <td class="filtered-tr">${message.subject}</td>
+        <td class="filtered-tr">${message.buyer.username}</td>
+        <td class="filtered-tr">${message.messageText}</td>
+      <td><a href="/messages/${message.product.id}/${message.buyer.id}" class="link-details">Go to conversation</a></td>
       </tr>
       
     </c:forEach>

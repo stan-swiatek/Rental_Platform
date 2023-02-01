@@ -1186,3 +1186,60 @@ footer {
   margin-right: 20px;
 }
 
+/* Messages styles */
+
+.messages {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px;
+  border: 1px solid #2F86DE;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.filtered-table-mes {
+  margin: 0 auto;
+  border: 0.5px solid #000;
+  min-width: 800px;
+  max-width: 1000px;
+}
+
+.send-message-input {
+  border: 0.5px solid #000;
+  max-width: 600px;
+}
+
+.convo {
+  font-size: 20px;
+  margin: 10px 0;
+  text-align: center;
+}
+.sub-convo {
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: flex-start;
+}
+.wrapper-convo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+/*   align-items: center; */
+  margin: auto;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.convo-name {
+  color: #2F86DE;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.convo-name-two {
+  color: #2F86DE; 
+  font-weight: 700;
+  font-size: 20px;
+  /* #0060c0; #389cff; */
+  
+}
+
