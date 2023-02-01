@@ -20,7 +20,9 @@ import com.fdmgroup.RentalPlatform.model.Message;
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.services.IBookingService;
+import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IProductService;
+import com.fdmgroup.RentalPlatform.services.IUserService;
 
 
 @Controller
@@ -33,6 +35,12 @@ public class ProductController {
 
 	@Autowired
 	private IBookingService bookingService;
+	
+	@Autowired
+	private IMessageService messageService;
+	
+	@Autowired
+	private IUserService userService;
 	
 	User user;
 
@@ -155,6 +163,7 @@ public class ProductController {
 		booking.setStatus("Cart");
 		bookingService.saveBooking(booking);
 		model.addAttribute("test", booking);
+		
 //		Optional<User> userFromDatabase = userService.findByUsername(user.getUsername());
 //		if (userFromDatabase.isPresent()) {
 //			model.addAttribute("message", "This user name already exists");
@@ -177,7 +186,27 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
-
+		sendNotification(product.getOwner(), booking);
 		return "ProductPage";
+	}
+
+	private void sendNotification(User owner, Booking booking) {
+		Message message = new Message();
+		User shazar = userService.findByUsername("Shazar");
+		message.setBuyer(shazar);
+		message.setOwner(owner);
+		message.setProduct(booking.getProduct());
+		message.setMessageText(
+				"You have new Booking! /n"
+				+ "For product: " + booking.getProduct().getProductName()
+				+ "<br>By user: " + owner.getUsername()
+				+ "<br>From: " + booking.getStartDate()
+				+ "<br>To: " + booking.getEndDate()
+				+ "<br><br>Do you accept?<br>"
+				+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
+				+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>"
+				);
+		messageService.saveMessage(message);
+		
 	}
 }

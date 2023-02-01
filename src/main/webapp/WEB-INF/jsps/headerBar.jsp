@@ -21,7 +21,7 @@
 				<p>
 					Hello, <span>${firstname}</span>!
 				</p>
-				<a href="messages/${user_id}">Messages</a>
+				<a href="/messages/${user_id}">Messages</a>
 				<a href="/logout">Log out</a>
 			</c:if>
 
