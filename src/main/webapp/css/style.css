@@ -927,3 +927,84 @@ footer {
   max-width: 750px;
 }
 
+.faq-item-block-blog {
+  padding: 10px;
+  background-color: white;
+  width: 70%;
+  border: 0.5px solid;
+  border-color: #000;
+  border-radius: 5px;
+  transition-duration: 0.5s;
+  margin-bottom: 10px;
+  margin-left: 40px;
+}
+
+.faq-item-block-blog:hover {
+  border: 2px solid;
+  border-color: #2F86DE;
+}
+
+.faq-item-block-blog div {
+  padding: 5px 0;
+}
+
+.faq-item-block-title-blog-b {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.faq-block {
+  display: flex;
+  flex-direction: column;
+  margin-left: 70px;
+  margin-bottom: 20px;
+}
+
+.faq-block-main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 10px;
+  max-width: 700px;
+  background-color: #2F86DE;
+  border: 0.5px solid;
+  border-color: #000;
+  border-radius: 5px;
+  transition-duration: 1s;
+  transition-delay: 3ms;
+}
+
+.faq-block-main:hover {
+  box-shadow: 0 0 10px #2F86DE;
+  transition-duration: 0.6s;
+  position: relative;
+  max-width: 750px;
+}
+
+.faq-block-description {
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+}
+.faq-block-description div {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.faq-block-description a {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.faq-title {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 20px;
+  margin: 20px auto 30px;
+  padding: 15px;
+  max-width: 400px;
+  border: 2px solid #2F86DE;
+  border-radius: 5px;
+}
+

@@ -186,7 +186,7 @@
 
           <div class="main-row-item-block-description-blog">Find answers to all your questions</div>
           <div class="main-row-item-block-button-blog">
-              <a href="#"><span>Read more</span></a>
+              <a href="/FAQ"><span>Read more</span></a>
           </div>
 
       </div>
