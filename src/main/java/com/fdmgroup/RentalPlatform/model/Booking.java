@@ -5,11 +5,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,14 +15,7 @@ public class Booking {
 	@GeneratedValue
 	private Integer id;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date startDate;
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date endDate;
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date bookingDate = new Date();
+	private Date startDate, endDate, bookingDate;
 	
 	private String status;
 	
@@ -43,23 +32,10 @@ public class Booking {
 	}
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "product_id")
 	private Product product;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@Override
-	public String toString() {
-		return "<br>status: "+status+
-				"<br>startDate: "+startDate+
-				"<br>endDate: "+endDate+
-				"<br>product_id: "+product.getId()+
-				"<br>username: "+user.getUsername()+"|"+user.getId()+
-				"<br>booking time: "+bookingDate+
-				"<br>booking_id: "+id;
-	}
 	
 	// old comments
 //	private User owner, requester;
