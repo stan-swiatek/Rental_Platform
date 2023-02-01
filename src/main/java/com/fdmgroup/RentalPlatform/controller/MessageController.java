@@ -48,12 +48,12 @@ public class MessageController {
 		model.addAttribute("messages", conversations);
 		return "messages";
 	}
+	
 
 	@GetMapping(value = "/messages/{product_id}/{buyer_id}")
 	public String goToConversation(ModelMap model, @PathVariable int product_id, @PathVariable int buyer_id) {
 		login.isLoggedIn(model);
 		populateConversation(model, product_id, buyer_id);
-		
 		return "conversation";
 	}
 

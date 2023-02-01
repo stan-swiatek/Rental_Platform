@@ -187,9 +187,14 @@ public class ProductController {
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
 		sendNotification(product.getOwner(), booking);
+		return "ProductPage/{product_id}";
+	}
+	@PostMapping("/Booking/{product_id}/approve")
+	public String approveBooking(@ModelAttribute Booking booking, @PathVariable int product_id,
+			ModelMap model) {
+		booking.setAccepted(true);
 		return "ProductPage";
 	}
-
 	private void sendNotification(User owner, Booking booking) {
 		Message message = new Message();
 		User shazar = userService.findByUsername("Shazar");
@@ -205,6 +210,25 @@ public class ProductController {
 				+ "<br><br>Do you accept?<br>"
 				+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
 				+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>"
+				);
+		messageService.saveMessage(message);
+		
+	}
+	
+	private void sendApproval(User buyer, Booking booking) {
+		Message message = new Message();
+		User shazar = userService.findByUsername("Shazar");
+		message.setBuyer(shazar);
+		message.setOwner(buyer);
+		message.setProduct(booking.getProduct());
+		message.setMessageText(
+				"Your offer have been approved! <br>"
+				+ "For product: " + booking.getProduct().getProductName()
+				+ "<br>By user: " + buyer.getUsername()
+				+ "<br>From: " + booking.getStartDate()
+				+ "<br>To: " + booking.getEndDate()
+				+ "<br><br>Claim your product at: "+ booking.getProduct().getOwner().getAddress() +"<br>"
+				
 				);
 		messageService.saveMessage(message);
 		

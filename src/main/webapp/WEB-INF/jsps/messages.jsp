@@ -25,6 +25,7 @@
       <th>Subject</th>
       <th>From</th>
       <th>Message</th>
+      <th>Unread Messages</th>
 
     </tr>
     <c:forEach items="${messages}" var="message">
