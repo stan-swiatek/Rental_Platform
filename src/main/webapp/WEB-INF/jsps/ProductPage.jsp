@@ -109,7 +109,6 @@
                 <div class="main-row-item-block-button" id="rate">
                   <a href="/messages/${product.id}/${user_id}"><span>Send message to the product owner</span></a>
                 </div>
-            </div>
 			</c:if>
           </div>
         </div>
@@ -127,7 +126,7 @@
       </tr>
       
     </c:forEach>
-  
+  </div>
     </main>
     <footer class="footer-contact-information">
         <%@ include file ="footerBar.jsp" %>

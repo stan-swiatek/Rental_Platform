@@ -16,24 +16,25 @@
     <header class="header">
       <%@ include file="headerBar.jsp" %>
     </header>
-  <h1>Message Box</h1>
+  <main class="main">
+  <div class="faq-title">Message Box</div>
 	
-  <table>
+  <table class="filtered-table-mes">
     <tr>
-      <th>product name</th>
-      <th>username</th>
-      <th>bookingDate - status</th>
+      <th class="filtered-td">Product name</th>
+      <th class="filtered-td">Username</th>
+      <th class="filtered-td">BookingDate - status</th>
 
     </tr>
     <c:forEach items="${bookings}" var="booking">
-      <tr>
+      <tr class="filtered-tr">
       
-        <td>${booking.product.productName}</td>
-        <td>${booking.user.username}</td>
-        <td>${booking.bookingDate} - ${booking.status}</td>
-        <td>
+        <td class="filtered-tr">${booking.product.productName}</td>
+        <td class="filtered-tr">${booking.user.username}</td>
+        <td class="filtered-tr">${booking.bookingDate} - ${booking.status}</td>
+        <td class="filtered-tr-a">
         	<form action="/delete_item/${booking.id}" method="post">
-        		<button>delete</button>
+        		<button class="delete-input">delete</button>
         	</form>
         </td>
       <%-- <td><a href="/messages/${message.product.id}/${message.buyer.id}">Go to conversation</a></td> --%>
@@ -42,11 +43,11 @@
     </c:forEach>
     
     <c:forEach items="${pending}" var="booking">
-      <tr>
+      <tr class="filtered-tr">
       
-        <td>${booking.product.productName}</td>
-        <td>${booking.user.username}</td>
-        <td>${booking.bookingDate} - ${booking.status}</td>
+        <td class="filtered-tr">${booking.product.productName}</td>
+        <td class="filtered-tr">${booking.user.username}</td>
+        <td class="filtered-tr">${booking.bookingDate} - ${booking.status}</td>
       <%-- <td><a href="/messages/${message.product.id}/${message.buyer.id}">Go to conversation</a></td> --%>
       </tr>
       
@@ -54,8 +55,9 @@
     
   </table>
     <form action="/confirm_cart" method="post">
-    	<button>confirm</button>
+    	<button class="delete-input">Confirm</button>
     </form>
+   </main>
   <footer>
   	<%@ include file ="footerBar.jsp" %>
   </footer>
