@@ -2,7 +2,10 @@ package com.fdmgroup.RentalPlatform.controller;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -17,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.fdmgroup.RentalPlatform.model.Address;
+import com.fdmgroup.RentalPlatform.model.Booking;
+import com.fdmgroup.RentalPlatform.model.Message;
 import com.fdmgroup.RentalPlatform.model.Product;
+import com.fdmgroup.RentalPlatform.model.User;
+import com.fdmgroup.RentalPlatform.services.IBookingService;
 import com.fdmgroup.RentalPlatform.model.Review;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 import com.fdmgroup.RentalPlatform.services.IRatingService;
@@ -38,6 +45,10 @@ public class ProductController {
 	
 	@Autowired
 	private LoginAndRegisterController login;
+	
+	@Autowired
+	private IBookingService bookingService;
+
 	
 //	@Autowired
 //	private IRatingService rating;
@@ -122,6 +133,19 @@ public class ProductController {
 		
 		return "ProductPage";
 	}
+	
+	@GetMapping("/cart")
+	public String getCart(ModelMap model) {
+		login.isLoggedIn(model);
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findAll();
+//		List<Booking> bookings = bookingService.findByUser(user);
+//		messages.addAll(messageService.findByBuyer(user));
+//		List<Message> conversations = splitToConversation(messages);
+		model.addAttribute("bookings", bookings);
+		return "cart";
+	}
+
 	
 	@RequestMapping(value = "sendReview", method = RequestMethod.POST)
 	public String sendReview(
@@ -248,6 +272,42 @@ public class ProductController {
 	private void populateModel(ModelMap model) {
 		login.isLoggedIn(model);
 		model.addAttribute("products", service.findAllProducts());
+	}
+
+	@PostMapping("/Booking/{product_id}")
+	public String registerSubmit(@ModelAttribute Booking booking, @PathVariable int product_id,
+			ModelMap model) {
+		user = login.getLoggedUser();
+		Product product = service.findProductById(product_id);
+		booking.setProduct(product);
+		booking.setUser(user);
+		booking.setStatus("Cart");
+		bookingService.saveBooking(booking);
+		model.addAttribute("test", booking);
+//		Optional<User> userFromDatabase = userService.findByUsername(user.getUsername());
+//		if (userFromDatabase.isPresent()) {
+//			model.addAttribute("message", "This user name already exists");
+//			return "register";
+//		}
+//
+//		user.setRole(roleService.findByRoleName("Customer"));
+//		user.setPassword(encoder.encode(user.getPassword()));
+//		user.setAddress(address);
+//
+//		addressService.saveAddress(address);
+//		userService.saveUser(user);
+//		model.addAttribute("places", productService.findAllPlaces());
+		//populateModel(model);
+		login.isLoggedIn(model);
+		model.addAttribute("product",product);
+		model.addAttribute("productName", product.getProductName());
+		model.addAttribute("productDescription", product.getDescription());
+		model.addAttribute("productCategory", product.getCategory());
+		model.addAttribute("productType", product.getType());
+		model.addAttribute("productColor", product.getColor());
+		model.addAttribute("productPrice", product.getPrice());
+
+		return "ProductPage";
 	}
 
 
