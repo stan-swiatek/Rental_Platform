@@ -902,6 +902,16 @@ footer {
   width: 30px;
 }
 
+.envelope {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ row-gap: 3px;
+}
+.photo {
+ margin-right: 3px;
+}
+
 .about-item-block-title {
   text-align: center;
   text-transform: uppercase;

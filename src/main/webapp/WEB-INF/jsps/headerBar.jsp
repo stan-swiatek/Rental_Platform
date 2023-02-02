@@ -20,12 +20,14 @@
 				<p>
 					Hello, <span>${firstname}</span>!
 				</p>
-                <a href="/messages/${user_id}">
-				  <img class="png" alt="" src="/pngkey.com-email-icon-white-png-9311379.png">
-				</a>
-				<c:if test="${unread > 0}">
-					<span>(${unread})</span>
-				</c:if>
+				<div class="envelope">
+	                <a class="photo" href="/messages/${user_id}">
+					  <img class="png" alt="" src="/pngkey.com-email-icon-white-png-9311379.png">
+					</a>
+					<c:if test="${unread > 0}">
+						<span>(${unread})</span>
+					</c:if>
+				</div>
 				<a href="/logout">Log out</a>
 			</c:if>
 
