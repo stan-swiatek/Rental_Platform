@@ -1,6 +1,8 @@
 package com.fdmgroup.RentalPlatform.dataimport;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -49,9 +51,9 @@ public class DataImport implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		if (!userRepository.findByUsername("admin").isPresent()) {
-
-			EntityManager manager = factory.createEntityManager();
 			
+			EntityManager manager = factory.createEntityManager();
+			//Dummy users
 			User admin = new User("admin", encoder.encode("123"), "admin@admin.pl", "John", "Doe", "123456789");
 			Address address1 = new Address("Poland", "Warsaw", "Main St", "00-001", 1, 1);
 			userRepository.save(admin);
@@ -96,9 +98,48 @@ public class DataImport implements ApplicationRunner {
 			manager.merge(address5);
 			addressRepository.save(address5);
 			userRepository.save(user5);
-//			Product product = new Product();
-//			
-//			productRepository.save(product);
+			
+			//Add dummy products
+			List<Product> products = new ArrayList<>();
+
+			String[] names = {"Schwinn Fairhaven", "Sixthreezero Around the Block", "Huffy Nel Lusso", "Mongoose Excursion",
+							  "Schwinn Discover", "Sixthreezero Ride in the Park", "Huffy Pantera", "Mongoose Dolomite",
+							  "Schwinn Koenig", "Sixthreezero Every Journey"};
+			String[] descriptions = {"Comfortable and stylish city bike", "Ideal for leisurely rides in the park", 
+									 "Sporty and stylish mountain bike", "Powerful fat tire bike for all terrains", 
+									 "Lightweight and efficient road bike", "Stylish beach cruiser bike", 
+									 "Rugged and reliable BMX bike", "Smooth and comfortable electric bike", 
+									 "Elegant and efficient gravel bike", "Sturdy and versatile unisex bike"};
+			String[] categories = {"City Bike", "City Bike", "Mountain Bike", "Mountain Bike", "Road Bike", "City Bike",
+								   "BMX", "Electric Bike", "Gravel", "Unisex Bike"};
+			String[] types = {"Ladies Bike", "Men's Bike", "Children's Bike", "Men's Bike", "Men's Bike", "Ladies Bike", 
+							  "Men's Bike", "Unisex Bike", "Unisex Bike", "Unisex Bike"};
+			String[] colors = {"Black", "Blue", "Green", "Pink", "Red", "White", "Yellow", "Other", "Other", "Other"};
+			double[] prices = {289.99, 199.99, 139.99, 599.99, 799.99, 299.99, 199.99, 999.99, 799.99, 599.99};
+			String[] pickUpLocations = {user5.getAddress().getCity(),user1.getAddress().getCity(), 
+					user2.getAddress().getCity(), user3.getAddress().getCity(), 
+					user4.getAddress().getCity(), user5.getAddress().getCity(), 
+					user1.getAddress().getCity(), user2.getAddress().getCity(), 
+					user3.getAddress().getCity(), user4.getAddress().getCity()};
+			
+			User[] owners = {user5, user1, user2, user3, user4, user5, user1, user2, user3, user4};
+
+			for (int i = 0; i < 10; i++) {
+				Product product = new Product();
+				product.setProductName(names[i]);
+				product.setDescription(descriptions[i]);
+				product.setCategory(categories[i]);
+				product.setType(types[i]);
+				product.setColor(colors[i]);
+				product.setPrice(prices[i]);
+				product.setPickUpLocation(pickUpLocations[i]);
+				product.setOwner(owners[i]);
+				product.setAvailable(true);
+				products.add(product);
+			}
+
+			productRepository.saveAll(products);
+
 			
 		}
 		

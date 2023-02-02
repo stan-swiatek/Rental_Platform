@@ -1,6 +1,8 @@
 package com.fdmgroup.RentalPlatform.model;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,6 +26,10 @@ public class Product {
 	private boolean isAvailable;
 
 	private double rating;
+	
+	private List<String> imageUrl;
+
+	
 
 	public Product() {
 	}
@@ -121,7 +127,13 @@ public class Product {
 	public void setPickUpLocation(String pickUpLocation) {
 		this.pickUpLocation = pickUpLocation;
 	}
+	public List<String> getImageUrl() {
+		return imageUrl;
+	}
 
+	public void setImageUrl(List<String> imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 	@Override
 	public String toString() {
 		return "Product [productName=" + productName + ", owner=" + owner + "]";
