@@ -25,45 +25,32 @@
     </header>
     <main class="main">
   
-      <div class="log-name">Log in</div>
+      <div class="log-name">Forgotten Password</div>
       
         <div class="main-row">
         <div class="log-name-block">
           <div class="log-name-block-main">
-          <div>${message2}</div>
-            <form action="/login" method="post">
-              <label for="username">Username:</label><br>
+          <div>${message3}</div>
+          
+            <form action="/forgottenPassword" method="post">
+             <label for="email">Enter your email:</label><br>
               <input 
-                type="text" 
-                id="username" 
-                name="username"
-                class="first"
-                placeholder="type here..."
-              ><br>
-              <label for="password">Password:</label><br>
-              <input 
-                type="password" 
-                id="password" 
-                name="password"
+                type="email" 
+                id="email" 
+                name="email"
                 class="second"
                 placeholder="type here..."
-              >
+              ><br>
+              <div>${message4}</div>
               
               <div class="register-button">
-                <a href=""><input type="submit" value="Log in"></a>
+                <a href=""><input type="submit" value="Send"></a>
               </div>
+              
             </form>
-            <a class="forgot-pass" href="/forgottenPassword">Forgot password</a>
+            
           </div>
-          <div class="check"> 
-            <form>
-              <input type="checkbox" id="remain" name="remain" value="remain">
-              <label for="remain">Remain logged in</label><br>
-            </form>
-          </div>
-          <div class="log-in-button">
-			<span class="button-reg">Not with us yet?</span> <a href="/register">Register here</a>
-		  </div>
+          
         </div>
       </div>
   

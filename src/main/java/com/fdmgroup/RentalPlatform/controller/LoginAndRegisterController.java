@@ -130,6 +130,28 @@ public class LoginAndRegisterController {
 	}
 	
 	
+	@GetMapping("/forgottenPassword")
+	public String ForgottenPassword(ModelMap model) {
+		return "forgottenPassword";
+	}
+	
+	
+	@PostMapping("/forgottenPassword")
+	public String submitForgottenPassword(@RequestParam("email") String email, ModelMap model) {
+		if (!email.isEmpty()) {
+			model.addAttribute("message4", "");
+			model.addAttribute("message3", "Password-reset link was sent to your e-mail");
+			return "forgottenPassword";
+	    } 
+		model.addAttribute("message4", "field cannot be empty");
+//		model.addAttribute("message3", "Password-reset link was sent to your e-mail");
+		return "forgottenPassword";
+	    
+	}
+	
+	
+	
+	
 //	@PostMapping("/login")
 //	public String loginSubmit(@RequestParam("username") String username, 
 //	                                 @RequestParam("password") String password, ModelMap model) {
