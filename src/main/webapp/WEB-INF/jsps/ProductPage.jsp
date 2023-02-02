@@ -64,7 +64,27 @@
 
             </div>
             <div class="product-button-block">
-              <div class="product-button-row-one">
+            <form action="/Booking/${id}" method="POST">
+            	<!-- <label for="startDate">Start date:</label>
+				<input type="date" id="startDate" name="start date"
+				value="2018-07-22"
+				min="2018-01-01" max="2018-12-31"> -->
+				
+            	<label for="startDate">End date:</label>
+				<input type="date" id="startDate" name="startDate">
+				
+            	<label for="endDate">End date:</label>
+				<input type="date" id="endDate" name="endDate">
+			  
+			  <button>book</button>
+            
+              <!-- <div class="product-button-row-one">
+                <div class="main-row-item-block-button">
+                  <a href="#"><span>Book</span></a>
+                </div>
+              </div> -->
+              </form>
+
                 <div class="main-row-item-block-button">
                   <a href="#"><span>Book</span></a>
                 </div>
