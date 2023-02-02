@@ -137,6 +137,7 @@ body {
 .main-row {
   display: flex;
   justify-content: center;
+  flex-direction: row;
   /*flex-wrap: wrap;*/
   column-gap: 20px;
   row-gap: 10px;
@@ -1041,9 +1042,9 @@ footer {
 }
 
 .form {
-/*   display: flex; */
-/*   flex-direction: row; */
-  /* color: #fff; */
+  display: flex; 
+  flex-direction: column;
+/*   color: #fff;  */
 }
 
 .form-one {
@@ -1259,6 +1260,44 @@ footer {
   font-weight: 700;
   font-size: 20px;
   /* #0060c0; #389cff; */
-  
+}
+
+.register-block-main {
+  display: flex;
+  flex-direction: column;
+}
+.form-container-main {
+  display: flex;
+  flex-direction: column;
+  transition-duration: 0.6s;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.form-container-main:hover {
+  box-shadow: 0 0 10px #2F86DE;
+  transition-duration: 0.6s;
+}
+.form-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.special-mes {
+  color: darkred;
+  text-align: center;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.main-row-reg {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /*flex-wrap: wrap;*/
+  column-gap: 20px;
+  row-gap: 10px;
+  margin: 0 0 10px 0;
 }
 
