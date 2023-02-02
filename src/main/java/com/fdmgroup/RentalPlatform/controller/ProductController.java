@@ -200,6 +200,7 @@ public class ProductController {
 	boolean isAvailable(Product product) {
 		List<String> nope = new ArrayList<String>();
 		nope.add("Cart");
+		nope.add("Pending");
 		
 		Iterator<String> iterator = nope.iterator();
 		while(iterator.hasNext()) {
