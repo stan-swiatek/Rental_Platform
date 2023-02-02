@@ -1,6 +1,7 @@
 package com.fdmgroup.RentalPlatform.dataimport;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -135,6 +136,7 @@ public class DataImport implements ApplicationRunner {
 				product.setPickUpLocation(pickUpLocations[i]);
 				product.setOwner(owners[i]);
 				product.setAvailable(true);
+				product.setImageUrl(Arrays.asList("/img/"+ i + "_1"));;
 				products.add(product);
 			}
 

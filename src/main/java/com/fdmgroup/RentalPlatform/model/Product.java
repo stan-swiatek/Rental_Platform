@@ -3,6 +3,7 @@ package com.fdmgroup.RentalPlatform.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,10 +28,10 @@ public class Product {
 
 	private double rating;
 	
+	@ElementCollection
 	private List<String> imageUrl;
 
 	
-
 	public Product() {
 	}
 
