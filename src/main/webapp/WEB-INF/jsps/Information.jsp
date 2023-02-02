@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@
 
             <div class="main-row-item-block-description-blog">Learn more about our company</div>
             <div class="main-row-item-block-button-blog">
-                <a href=""><span>Read more...</span></a>
+                <a href="/AboutUs"><span>Read more...</span></a>
             </div>
 
           </div>
@@ -41,7 +41,7 @@
 
             <div class="main-row-item-block-description-blog">Find answers to all your questions</div>
             <div class="main-row-item-block-button-blog">
-                <a href=""><span>Read more...</span></a>
+                <a href="/FAQ"><span>Read more...</span></a>
             </div>
 
           </div>

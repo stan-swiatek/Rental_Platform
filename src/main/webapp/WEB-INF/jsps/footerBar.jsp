@@ -2,10 +2,10 @@
 <body>
 	<div class="footer-contact-information-container">
 		<div class="footer-contact-information-links-social-media">
-			<a href="/">Home</a> 
-			<a href="/cart">Cart</a> 
+			<a href="/">Home</a>
+			<a href="/cart">Cart</a>
 			<a href="/UserProfile">Personal</a>
-			<a href="/information">Information</a>
+			<a href="/Information">Information</a>
 		</div>
 	</div>
 </body>

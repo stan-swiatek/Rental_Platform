@@ -14,11 +14,10 @@
     <header class="header">
       <div class="header-bar">
         <div class="header-a">
-          <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+          <img class="logo" src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
           <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
-            <a href="#">C</a>
             <a href="/">Back to main page</a>
           </div>
       </div>
@@ -26,9 +25,11 @@
     <main class="main">
   
       <div class="log-name">Log in</div>
+      
         <div class="main-row">
         <div class="log-name-block">
           <div class="log-name-block-main">
+          <div>${message2}</div>
             <form action="/login" method="post">
               <label for="username">Username:</label><br>
               <input 
@@ -46,11 +47,12 @@
                 class="second"
                 placeholder="type here..."
               >
+              
               <div class="register-button">
                 <a href=""><input type="submit" value="Log in"></a>
               </div>
             </form>
-            <a class="forgot-pass" href="#">Forgot password</a>
+            <a class="forgot-pass" href="/forgottenPassword">Forgot password</a>
           </div>
           <div class="check"> 
             <form>

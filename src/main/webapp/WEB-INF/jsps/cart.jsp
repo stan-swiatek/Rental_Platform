@@ -31,11 +31,31 @@
         <td>${booking.product.productName}</td>
         <td>${booking.user.username}</td>
         <td>${booking.bookingDate} - ${booking.status}</td>
+        <td>
+        	<form action="/delete_item/${booking.id}" method="post">
+        		<button>delete</button>
+        	</form>
+        </td>
       <%-- <td><a href="/messages/${message.product.id}/${message.buyer.id}">Go to conversation</a></td> --%>
       </tr>
       
     </c:forEach>
+    
+    <c:forEach items="${pending}" var="booking">
+      <tr>
+      
+        <td>${booking.product.productName}</td>
+        <td>${booking.user.username}</td>
+        <td>${booking.bookingDate} - ${booking.status}</td>
+      <%-- <td><a href="/messages/${message.product.id}/${message.buyer.id}">Go to conversation</a></td> --%>
+      </tr>
+      
+    </c:forEach>
+    
   </table>
+    <form action="/confirm_cart" method="post">
+    	<button>confirm</button>
+    </form>
   <footer>
   	<%@ include file ="footerBar.jsp" %>
   </footer>

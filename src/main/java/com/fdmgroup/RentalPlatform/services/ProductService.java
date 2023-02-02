@@ -1,5 +1,6 @@
 package com.fdmgroup.RentalPlatform.services;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -55,9 +56,9 @@ public class ProductService implements IProductService {
 		
 		for (String filters : filtersArray) {
 			List<Product> filteredByProductName = repo.findByProductNameIgnoreCaseContaining(filters);
-			List<Product> filteredByType = repo.findByTypeIgnoreCaseContaining(filters);
-			List<Product> filteredByCatogory = repo.findByCategoryIgnoreCaseContaining(filters);
-			List<Product> filteredByColor = repo.findByColorIgnoreCaseContaining(filters);
+			List<Product> filteredByType = repo.findByTypeIgnoreCase(filters);
+			List<Product> filteredByCatogory = repo.findByCategoryIgnoreCase(filters);
+			List<Product> filteredByColor = repo.findByColorIgnoreCase(filters);
 			
 			List<Product> filteredProducts = new ArrayList<>();
 			Stream.of(filteredByProductName, filteredByType, filteredByCatogory, filteredByColor).forEach(filteredProducts::addAll);
@@ -71,6 +72,42 @@ public class ProductService implements IProductService {
 	    }
 		
 		return finalFilteredProducts;
+	}
+
+	@Override
+	public List<Product> findProductByColor(String filter) {
+		return repo.findByColorIgnoreCase(filter);
+	}
+
+	@Override
+	public List<Product> findProductByType(String filter) {
+		return repo.findByTypeIgnoreCase(filter);
+	}
+
+	@Override
+	public List<Product> findProductByCategory(String filter) {
+		return repo.findByCategoryIgnoreCase(filter);
+	}
+
+//	@Override
+//	public List<Product> findProductByTimeFrame(String filter) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	@Override
+	public List<Product> findProductByPrice(String min, String max) {
+		return repo.findByPriceBetween(Double.parseDouble(min), Double.parseDouble(max));
+	}
+	
+	@Override
+	public List<Product> findProductByMinPrice(String min) {
+		return repo.findByPriceGreaterThanEqual(Double.parseDouble(min));
+	}
+	
+	@Override
+	public List<Product> findProductByMaxPrice(String max) {
+		return repo.findByPriceLessThanEqual(Double.parseDouble(max));
 	}
 	
 

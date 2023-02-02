@@ -14,13 +14,12 @@
     <header class="header">
       <div class="header-bar">
         <div class="header-a">
-          <img src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+          <img class="logo" src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
           <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
-            <a href="/">C</a>
-            <a href="/">Back to main page</a>
-          </div>
+            <a href="/UserProfile">Back to your profile</a>
+        </div>
       </div>
     </header>
     <main class="main">
@@ -34,6 +33,15 @@
                 type="email" 
                 id="email" 
                 name="email"
+                class="second"
+                
+                placeholder="type here..."
+              ><br>
+              <label for="email">Enter your phone number:</label><br>
+              <input 
+                type="text" 
+                id="phoneNumber" 
+                name="phoneNumber"
                 class="second"
                 
                 placeholder="type here..."

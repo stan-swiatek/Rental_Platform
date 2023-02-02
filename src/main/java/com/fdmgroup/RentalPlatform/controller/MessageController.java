@@ -12,15 +12,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.fdmgroup.RentalPlatform.model.Booking;
 import com.fdmgroup.RentalPlatform.model.Message;
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.model.User;
+import com.fdmgroup.RentalPlatform.services.BookingService;
 import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 import com.fdmgroup.RentalPlatform.services.IUserService;
 
 @Controller
 public class MessageController {
+	
+	@Autowired
+	private BookingService bookingService;
 
 	@Autowired
 	private LoginAndRegisterController login;
@@ -61,6 +66,10 @@ public class MessageController {
 	public String goToConversation(ModelMap model, @PathVariable int product_id, @PathVariable int buyer_id) {
 		login.isLoggedIn(model);
 		populateConversation(model, product_id, buyer_id);
+		
+		List<Booking> bookings = bookingService.findByProductAndUser(product, userService.findByUserId(buyer_id));
+		model.addAttribute("bookings", bookings);
+		
 		return "conversation";
 	}
 

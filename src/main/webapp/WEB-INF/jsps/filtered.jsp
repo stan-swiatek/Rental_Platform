@@ -18,174 +18,54 @@
           <div class="header-description-container">
             <p class="det__title">Detailed searchbar</p>
           <div class="header-description-what-is-get-help">
-           <form action="/filtered" method="post">
+           <form action="/filtered" method="post" class="search-form">
             <input 
-            class="searchbar"
-            type="search" 
-            name="filter"
-            placeholder="Type here..."
-          />
-			<input type="submit" value="Search"/>
+              class="searchbar"
+              type="search" 
+              name="filter"
+              placeholder="Type here..."
+            >
+<!--             <div class="search-button"> -->
+           	  <input type="submit" value="Search" class="search-input">
+<!--           	</div> -->
 			</form>
           </div>
 
 
-	<h3>Filtered Products</h3>
-	<table>
+	<h3 class="filtered-title">Filtered Products</h3>
+	<table class="filtered-table">
 		<tr>
-			<td>ID</td>
-			<th>Name</th>
-			<th>Category</th>
-			<th>Type</th>
-			<th>Color</th>
-			<th>Price</th>
+			<td class="filtered-td">ID</td>
+			<th class="filtered-td">Name</th>
+			<th class="filtered-td">Category</th>
+			<th class="filtered-td">Type</th>
+			<th class="filtered-td">Color</th>
+			<th class="filtered-td">Price</th>
+			<th class="filtered-td">Details</th>
 		</tr>
 		<c:forEach items="${filterProducts}" var="product">
-			<tr>
-				<td>${product.id}</td>
-				<td>${product.productName}</td>
-				<td>${product.category}</td>
-				<td>${product.type}</td>
-				<td>${product.color}</td>
-				<td>${product.price}</td>
-				<td><a href="/ProductPage/${product.id}">Details</a></td>
+			<tr class="filtered-tr">
+				<td class="filtered-tr">${product.id}</td>
+				<td class="filtered-tr">${product.productName}</td>
+				<td class="filtered-tr">${product.category}</td>
+				<td class="filtered-tr">${product.type}</td>
+				<td class="filtered-tr">${product.color}</td>
+				<td class="filtered-tr">${product.price}</td>
+				<td><a href="/ProductPage/${product.id}" class="link-details">Details</a></td>
 			</tr>
 		</c:forEach>
 	</table>
+	</div> <%-- Remove in case of adding back filters--%>
+	</div> <%-- Remove in case of adding back filters--%>
 	
 	          <div class="main-banner">
-          <div class="detailed__searchbar">
-          
-  <div class="block__main">
-                  <div class="year">
-                    <div class="a">Color</div>
-                    <select name="year">
-                      <option value="first" selected>
-                        White
-                      </option>
-            
-                      <option value="second">
-                        Black
-                      </option>
-            
-                      <option value="third">
-                        Blue
-                      </option>
-            
-                      <option value="forth">
-                        Red
-                      </option>
-                    </select>
-                  </div>
-      
-                  <div class="brand">
-                    <div class="a">Type</div>
-                    <select name="brand">
-                      <option value="brandFirst" selected>
-                        Crossover
-                      </option>
-            
-                      <option value="brandSecond">
-                        Sedan
-                      </option>
-            
-                      <option value="brandThird">
-                        Minivan
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="engine">
-                    <div class="a">Category</div>
-                    <select name="engine">
-                      <option value="engineFirst" selected>
-                        New
-                      </option>
-            
-                      <option value="emgineSecond">
-                        Used
-                      </option>
-                    </select>
-                  </div>
-
-                  <div class="time-frame">
-                    <div class="a">Time frame</div>
-                    <select name="engine">
-                      <option value="engineFirst" selected>
-                        1h - 12h
-                      </option>
-            
-                      <option value="emgineSecond">
-                        12h - 24h
-                      </option>
-
-                      <option value="emgineSecond">
-                        24h - more
-                      </option>
-                    </select>
-                  </div>
-          
-                  <div class="price">
-                    <div class="a">Price</div>
-                    <div class="price__number">
-                      <input 
-                        type="number" 
-                        name="priceMin"
-                        placeholder="Min"
-                      >
-                      <input 
-                        type="number" 
-                        name="priceMax"
-                        placeholder="Max"
-                      >
-                    </div>
-                  </div>
-              </div>
-            </div>
+ 
           </div>
-          </div>
-      </div>
+          
+         </div>
+       </div>
     </header>
     <main class="main">
-
-
-
-      <div class="main-title-name">Useful information</div>
-      <div class="main-row-blog">
-        <div class="main-row-item-block-blog">
-
-          <div class="main-row-a">
-            <div class="main-row-b">
-              <div class="main-row-item-block-title-blog-b">FAQ</div>
-            </div>
-          </div>
-
-          <div class="main-row-item-block-description-blog">Find answers to all your questions</div>
-          <div class="main-row-item-block-button-blog">
-              <a href="#"><span>Read more</span></a>
-          </div>
-
-      </div>
-
-
-          <div class="main-row-item-block-blog">
-            <div class="main-row-a">
-               <div class="main-row-b"> 
-                <div 
-                  class="main-row-item-block-title-blog-b"
-                >Legal regulations
-                </div>
-              </div>
-            </div>
-
-            <div class="main-row-item-block-description-blog">Find out about our terms and conditions</div>
-            <div class="main-row-item-block-button-blog">
-                <a href="/terms"><span>Read more...</span></a>
-            </div>
-
-        </div>
-      </div>
-
     </main>
     <footer class="footer-contact-information">
         <%@ include file ="footerBar.jsp" %>

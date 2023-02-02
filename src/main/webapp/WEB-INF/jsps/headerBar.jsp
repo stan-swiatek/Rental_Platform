@@ -7,11 +7,10 @@
 <body>
 	<div class="header-bar">
 		<div class="header-a">
-			<img src="/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+			<img class="logo" src="/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
 			<div class="header-bar-logo-name">Shazar</div>
 		</div>
 		<div class="header-bar-content">
-			<a href="#">C</a>
 
 			<c:if test="${not loggedIn}">
 				<a href="login">Log in</a>
@@ -21,12 +20,13 @@
 				<p>
 					Hello, <span>${firstname}</span>!
 				</p>
-				<a href="/messages/${user_id}">Messages</a>
+                <a href="messages/${user_id}">
+				  <img class="png" alt="" src="/pngkey.com-email-icon-white-png-9311379.png">
+				</a>
 				<c:if test="${unread > 0}">
 					<span>(${unread})</span>
 				</c:if>
 				<a href="/logout">Log out</a>
-				
 			</c:if>
 
 			<c:if test="${not fn:endsWith(request.requestURI, '/')}">
