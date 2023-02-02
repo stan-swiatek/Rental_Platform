@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -68,7 +69,7 @@ public class UserProfileController {
 		ModelAndView modelAndView = new ModelAndView("editUserDetails");
 		User loggedUser = login.getLoggedUser();
 		modelAndView.addObject("user", loggedUser);
-	//	model.addAttribute("user", loggedUser);
+
 		return modelAndView;
 	}
 	
@@ -91,78 +92,40 @@ public class UserProfileController {
 		return "UserProfile";
 	}
 	
-	
-
 
 	
 	
 	@PostMapping("/editUserDetails")
-	public String editUserDetails(@ModelAttribute("user") User updatedUser) {
+	public String editUserDetails(@ModelAttribute("user") User updatedUser, ModelMap model) {
 		System.out.println("current user updated " + updatedUser);
-		
+		login.isLoggedIn(model);
 	 
-	    // Get the current logged-in user from the security context
+	    // Get the current logged-in user from the security
 	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    User currentUser = ((UserPrincipal)authentication.getPrincipal()).getUser();
+	    User loggedInUser = ((UserPrincipal)authentication.getPrincipal()).getUser();
 	 
 	    // Update the current user's details with the updated information
-	    currentUser.setFirstName(updatedUser.getFirstName());
-	    currentUser.setSurName(updatedUser.getSurName());
-	    currentUser.setEmail(updatedUser.getEmail());
-	    currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
+	    loggedInUser.setFirstName(updatedUser.getFirstName());
+	    loggedInUser.setSurName(updatedUser.getSurName());
+	    loggedInUser.setEmail(updatedUser.getEmail());
+	    loggedInUser.setPhoneNumber(updatedUser.getPhoneNumber());
+	    
+	    model.addAttribute("userName", loggedInUser.getUsername());
+		model.addAttribute("userFristName", loggedInUser.getFirstName());
+		model.addAttribute("userSurName", loggedInUser.getSurName());
+		model.addAttribute("userEmail", loggedInUser.getEmail());
+		model.addAttribute("userPhone", loggedInUser.getPhoneNumber());
+		model.addAttribute("userAddress", loggedInUser.getAddress());
 	 
 	    // Save the updated user to the database
 	    
-	    User savedUser = userService.saveUser(currentUser);
+	    User savedUser = userService.saveUser(loggedInUser);
 	 
 	    return "UserProfile";
 	}
 	
 	
-	
-	
-	
 
-	
-	
-	
-	
-//	@PutMapping("/editUserDetails")
-//	public ResponseEntity<User> updateUser(@AuthenticationPrincipal User loggedInUser, @RequestBody User updatedUser) {
-//	  loggedInUser.setUsername(updatedUser.getUsername());
-//	  // Password should not be updated directly as plain text, but rather it should be hashed and salted before storing it.
-//	  loggedInUser.setEmail(updatedUser.getEmail());
-//	  loggedInUser.setFirstName(updatedUser.getFirstName());
-//	  loggedInUser.setSurName(updatedUser.getSurName());
-//	  
-//	  // Update address separately
-//	  Address updatedAddress = updatedUser.getAddress();
-//	  if (updatedAddress != null) {
-//	    Address loggedInUserAddress = loggedInUser.getAddress();
-//	    if (loggedInUserAddress == null) {
-//	      loggedInUserAddress = new Address();
-//	      loggedInUser.setAddress(loggedInUserAddress);
-//	    }
-//	    loggedInUserAddress.setStreet(updatedAddress.getStreet());
-//	    // Update other address fields if necessary
-//	  }
-//	  
-//	  try {
-//	    userService.saveUser(loggedInUser);
-//	    return ResponseEntity.ok(loggedInUser);
-//	  } catch (Exception e) {
-//	    return ResponseEntity.badRequest().build();
-//	  }
-//	}
-
-
-
-//	@Override
-//	public User displayUserDetails(User user) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//	
 	
 
 
