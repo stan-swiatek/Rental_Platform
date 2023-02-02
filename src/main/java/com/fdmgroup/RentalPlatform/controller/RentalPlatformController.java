@@ -2,8 +2,10 @@ package com.fdmgroup.RentalPlatform.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RentalPlatformController {
@@ -40,6 +42,18 @@ public class RentalPlatformController {
 	public String goInformation(ModelMap model) {
 		login.isLoggedIn(model);
 		return "Information";
+	}
+	
+	@GetMapping(value = "/AboutUs")
+	public String goAboutUs(ModelMap model) {
+		login.isLoggedIn(model);
+		return "AboutUs";
+	}
+	
+	@GetMapping(value = "/FAQ")
+	public String goFAQ(ModelMap model) {
+		login.isLoggedIn(model);
+		return "FAQ";
 	}
 
 }

@@ -14,11 +14,10 @@
     <header class="header" id="header">
       <div class="header-bar">
         <div class="header-a">
-          <img src="img/pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
+          <img class="logo" src="pngtree-vector-tyre-icon-png-image_1833985.png" alt="">
           <div class="header-bar-logo-name">Shazar</div>
         </div>
           <div class="header-bar-content">
-            <a href="#">C</a>
             <a href="/UserProfile">Back to your profile</a>
           </div>
       </div>
@@ -93,7 +92,9 @@
               placeholder="type here..."
             ><br>
             <div class="register-button">
+
            		<input type="submit" value="Create">
+
           	</div>
           </form>
         </div>

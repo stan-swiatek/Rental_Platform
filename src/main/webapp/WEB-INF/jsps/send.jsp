@@ -5,8 +5,17 @@
 <body>
 <div class="send-container">
   <form action="/sendMessage/${product.id}/${buyer.id}" method="post">
-    <textarea class="send-message-input" name="messageText" required></textarea>
-    <button class="send-message-btn">Send</button>
+    <textarea 
+      class="send-message-input" 
+      name="messageText"
+      rows="15" 
+      cols="90"
+      required
+    ></textarea>
+    <div class="register-button">
+      <input type="submit" value="Save changes">
+    </div>
+<!--     <button class="send-message-btn">Send</button> -->
   </form>
 </div>
 </body>

@@ -18,14 +18,16 @@
           <div class="header-description-container">
             <p class="det__title">Detailed searchbar</p>
           <div class="header-description-what-is-get-help">
-          <form action="/filtered" method="post">
+          <form action="/filtered" method="post" class="search-form">
             <input 
-            class="searchbar"
-            type="search" 
-            name="filter"
-            placeholder="Type here..."
-          >
-          <input type="submit" value="Search"/>
+              class="searchbar"
+              type="search" 
+              name="filter"
+              placeholder="Type here..."
+            >
+<!--             <div class="search-button"> -->
+           	  <input type="submit" value="Search" class="search-input">
+<!--           	</div> -->
           </form>
           </div>
           <div class="main-banner">
@@ -230,7 +232,7 @@
 
           <div class="main-row-item-block-description-blog">Find answers to all your questions</div>
           <div class="main-row-item-block-button-blog">
-              <a href="#"><span>Read more</span></a>
+              <a href="/FAQ"><span>Read more</span></a>
           </div>
 
       </div>

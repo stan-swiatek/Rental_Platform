@@ -24,13 +24,12 @@
 </style>
 </head>
 <body>
-	<div class="wrapper">
-		<header class="header">
-			<%@ include file="headerBar.jsp"%>
-		</header>
-		<h2>Conversation between ${buyer.username} and
-			${owner.username}</h2>
-		<h3>Subject: ${product.productName}</h3>
+	<header class="header">
+		<%@ include file="headerBar.jsp"%>
+	</header>
+	  <div class="wrapper-convo">
+		<h2 class="convo">Conversation between <span class="convo-name">${buyer.username}</span> and <span class="convo-name-two">${owner.username}</span></h2>
+		<h3 class="sub-convo">Subject: ${product.productName}</h3>
 		<c:forEach var="message" items="${messages}">
 			<div
 				class="<c:if test="${message.sentByBuyer}">left</c:if><c:if test="${not message.sentByBuyer}">right</c:if>">
@@ -48,7 +47,6 @@
 			</div>
 		</c:forEach>
 		
-	</div>
 	<%@ include file ="send.jsp" %>
 	<%@ include file ="footerBar.jsp" %>
 </body>
