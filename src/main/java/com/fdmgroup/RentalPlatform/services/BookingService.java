@@ -18,6 +18,14 @@ public class BookingService implements IBookingService {
 	@Autowired
 	private BookingRepository repo;
 
+	public BookingRepository getRepo() {
+		return repo;
+	}
+
+	public void setRepo(BookingRepository repo) {
+		this.repo = repo;
+	}
+
 	@Override
 	public List<Booking> findByUser(User user) {
 		return repo.findByUser(user);
