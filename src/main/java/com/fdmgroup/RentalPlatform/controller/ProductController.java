@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.fdmgroup.RentalPlatform.model.Product;
+import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 import com.fdmgroup.RentalPlatform.util.Filtering;
 
@@ -27,6 +28,7 @@ public class ProductController {
 	@Autowired
 	private LoginAndRegisterController login;
 	
+	User user;
 
 	@GetMapping(value = "/ProductOffer")
 	public String goProductOffer(ModelMap model) {
@@ -46,8 +48,11 @@ public class ProductController {
 	
 	@PostMapping(value="/ProductOffer")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
+		user = login.getLoggedUser();
+		product.setOwner(user);
 		service.createNewProduct(product);
 		populateModel(model);
+		model.addAttribute("product",product);
 		
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
@@ -78,11 +83,13 @@ public class ProductController {
 	
 	@GetMapping(value="/ProductPage/{id}")
 	public String seeDetails(ModelMap model, @PathVariable int id) //throws PlaceNotFoundException 
-	{	login.isLoggedIn(model);
+	{
+		login.isLoggedIn(model);
 //		model.addAttribute("product", service.findProductById(id));
 		Product product = service.findProductById(id);
-		populateModel(model);
-		
+//		populateModel(model);
+		model.addAttribute("product",product);
+
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
 		model.addAttribute("productCategory", product.getCategory());
@@ -205,6 +212,7 @@ public class ProductController {
 	
 	
 	private void populateModel(ModelMap model) {
+		login.isLoggedIn(model);
 		model.addAttribute("products", service.findAllProducts());
 	}
 
