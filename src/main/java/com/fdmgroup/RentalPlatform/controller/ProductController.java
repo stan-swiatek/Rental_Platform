@@ -156,7 +156,7 @@ public class ProductController {
 //		messages.addAll(messageService.findByBuyer(user));
 //		List<Message> conversations = splitToConversation(messages);
 		model.addAttribute("bookings", bookings);
-		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
+		model.addAttribute("others", bookingService.findByUserAndStatusNot(user, "Cart"));
 		return "cart";
 	}
 
@@ -288,16 +288,83 @@ public class ProductController {
 		model.addAttribute("products", service.findAllProducts());
 	}
 	
-	@GetMapping("/booking/{booking_id}/accept")
-	public String approveBooking(@PathVariable int booking_id,
+	@GetMapping("/returned/{booking_id}/{message_id}")
+	public String confirmReturn(@PathVariable int booking_id, @PathVariable int message_id,
+			ModelMap model) {
+		
+		Booking booking = bookingService.findByID(booking_id);
+		
+		if(ownerSafeguard(booking, login.getLoggedUser())) {
+			return "redirect:/messages";
+		}
+		
+		booking.setStatus("Returned");
+		bookingService.saveBooking(booking);
+		
+		Message message = messageService.findById(message_id).get();
+		String returnTextOwner = "You confirmed return of product!"
+			+ "For product: " + booking.getProduct().getProductName()
+			+ "<br>By user: " + booking.getProduct().getOwner().getUsername()
+			+ "<br>From: " + booking.getStartDate()
+			+ "<br>To: " + booking.getEndDate();
+		message.setMessageText(returnTextOwner);
+		messageService.saveMessage(message);
+		
+		String returnTextBuyer = "Owner confirmed return of product! <br>"
+				+ "For product: " + booking.getProduct().getProductName()
+				+ "<br>By user: " + booking.getProduct().getOwner().getUsername()
+				+ "<br>From: " + booking.getStartDate()
+				+ "<br>To: " + booking.getEndDate();
+		sendNotification(booking.getUser(), booking.getProduct().getOwner(), true, booking.getProduct(), returnTextBuyer);
+		
+		
+		return "redirect:/messages";
+	}
+
+	private boolean ownerSafeguard(Booking booking, User user) {
+		if(booking.getProduct().getOwner().equals(user)) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean buyerSafeguard(Booking booking, User user) {
+		if(booking.getUser().equals(user)) {
+			return false;
+		}
+		return true;
+	}
+
+	@GetMapping("/booking/{booking_id}/accept/{message_id}")
+	public String approveBooking(@PathVariable int booking_id, @PathVariable int message_id,
 			ModelMap model) {
 		login.isLoggedIn(model);
 		Booking booking = bookingService.findByID(booking_id);
+
+		user = login.getLoggedUser();
+		if(ownerSafeguard(booking, user)) {
+			return "redirect:/messages";
+		}
+		
 		booking.setStatus("Accepted");
 		bookingService.saveBooking(booking);
 		Product product = service.findProductById(booking.getProduct().getId());
 //		product.setAvailable(false);
 //		service.createNewProduct(product);
+		String ownerText = "You accepted this booking! <br>"
+		+ "For product: " + booking.getProduct().getProductName()
+		+ "<br>By user: " + product.getOwner().getUsername()
+		+ "<br>From: " + booking.getStartDate()
+		+ "<br>To: " + booking.getEndDate()
+		+ "<br><a href=\"/returned/"
+		+ booking_id
+		+ "/"
+		+ message_id
+		+ "\">confirm return</a>";
+		Message ownerMessage = messageService.findById(message_id).get();
+		ownerMessage.setMessageText(ownerText);
+		messageService.saveMessage(ownerMessage);
+		
 		String approvalText = "Your offer have been approved! <br>"
 				+ "For product: " + booking.getProduct().getProductName()
 				+ "<br>By user: " + product.getOwner().getUsername()
@@ -306,21 +373,38 @@ public class ProductController {
 				+ "<br><br>Claim your product at: "+ booking.getProduct().getOwner().getAddress() +"<br>"
 				
 				;
-		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),approvalText);
+		sendNotification(booking.getProduct().getOwner(), booking.getUser(), true, booking.getProduct(),approvalText);
 		
-		return "/index";
+		return "redirect:/messages";
 	}            
 	
-	@GetMapping("/booking/{booking_id}/decline")
-	public String declineBooking( @PathVariable int booking_id,
+	@GetMapping("/booking/{booking_id}/decline/{message_id}")
+	public String declineBooking( @PathVariable int booking_id, @PathVariable int message_id,
 			ModelMap model) {
 		login.isLoggedIn(model);
 		Booking booking = bookingService.findByID(booking_id);
+
+		user = login.getLoggedUser();
+		if(ownerSafeguard(booking, user)) {
+			return "redirect:/messages";
+		}
+		
 		booking.setStatus("Declined");
+		Product product = service.findProductById(booking.getProduct().getId());
+		
+		String ownerText = "You declined this booking! <br>"
+		+ "For product: " + booking.getProduct().getProductName()
+		+ "<br>By user: " + product.getOwner().getUsername()
+		+ "<br>From: " + booking.getStartDate()
+		+ "<br>To: " + booking.getEndDate();
+		Message ownerMessage = messageService.findById(message_id).get();
+		ownerMessage.setMessageText(ownerText);
+		messageService.saveMessage(ownerMessage);
+		
 		String declineText = "Your offer have been declined! <br>"
 				+ "Search for other products.";
-		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),declineText);
-		return"/index";
+		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(), declineText);
+		return "redirect:/messages";
 	}
 	
 	
@@ -329,8 +413,9 @@ public class ProductController {
 		message.setBuyer(buyer);
 		message.setOwner(owner);
 		message.setProduct(product);
+		messageService.saveMessage(message);
 		message.setMessageText(
-				text
+				text.replaceAll("MMIIDD", ""+message.getId())
 				);
 		messageService.saveMessage(message);
 		
@@ -343,7 +428,7 @@ public class ProductController {
 		message.setOwner(buyer);
 		message.setProduct(booking.getProduct());
 		message.setMessageText(
-				"Your offer have been approved! <br>"
+				"Your offer has been approved! <br>"
 				+ "For product: " + booking.getProduct().getProductName()
 				+ "<br>By user: " + buyer.getUsername()
 				+ "<br>From: " + booking.getStartDate()
@@ -380,38 +465,8 @@ public class ProductController {
 //		model.addAttribute("places", productService.findAllPlaces());
 		//populateModel(model);
 		login.isLoggedIn(model);
-		model.addAttribute("product",product);
-		model.addAttribute("productName", product.getProductName());
-		model.addAttribute("productDescription", product.getDescription());
-		model.addAttribute("productCategory", product.getCategory());
-		model.addAttribute("productType", product.getType());
-		model.addAttribute("productColor", product.getColor());
-		model.addAttribute("productPrice", product.getPrice());
-		String notificationText = "You have new Booking! <br>"
-				+ "For product: " + booking.getProduct().getProductName()
-				+ "<br>By user: " + product.getOwner().getUsername()
-				+ "<br>From: " + booking.getStartDate()
-				+ "<br>To: " + booking.getEndDate()
-				+ "<br><br>Do you accept?<br>"
-						+ "<c:if test=\"${booking.status=='Pending'}\">"
-						+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
-						+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>"
-						+ "</c:if>"
-						+ "<c:if test=\"${booking.status=='Accepted'}\">"
-						+ "accepted"
-						+ "</c:if>"
-						+ "<c:if test=\"${booking.status=='Declined'}\">"
-						+ "declined"
-						+ "</c:if>";
-		sendNotification(product.getOwner(), booking.getUser(),true,product, notificationText);
 
-		user = login.getLoggedUser();
-		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
-		model.addAttribute("bookings", bookings);
-		
-		model.addAttribute("isAvailable", isAvailable(product));
-
-		return "ProductPage";
+		return "redirect:/ProductPage/"+product_id;
 	}
 	
 	@PostMapping("/delete_item/{booking_id}")
@@ -430,9 +485,7 @@ public class ProductController {
 			newBooking.setStatus("Pending");
 			bookingService.saveBooking(newBooking);
 		}
-		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
-		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
-		return "cart";
+		return "redirect:/cart";
 	}
 	
 	boolean isAvailable(Product product) {
@@ -461,9 +514,16 @@ public class ProductController {
 			Booking newBooking = iterator.next();
 			newBooking.setStatus("Pending");
 			bookingService.saveBooking(newBooking);
+			String notificationText = "You have new Booking! <br>"
+					+ "For product: " + newBooking.getProduct().getProductName()
+					+ "<br>By user: " + newBooking.getProduct().getOwner().getUsername()
+					+ "<br>From: " + newBooking.getStartDate()
+					+ "<br>To: " + newBooking.getEndDate()
+					+ "<br><br>Do you accept?<br>"
+							+ "<a href=\"/booking/"+newBooking.getId()+"/accept/MMIIDD\"> Yes </a>"
+							+ "<a href=\"/booking/"+newBooking.getId()+"/decline/MMIIDD\"> No </a>";
+			sendNotification(newBooking.getProduct().getOwner(), newBooking.getUser(), true, newBooking.getProduct(), notificationText);
 		}
-		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
-		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
-		return "cart";
+		return "redirect:/cart";
 	}
 }

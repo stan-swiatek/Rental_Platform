@@ -41,7 +41,7 @@
       
     </c:forEach>
     
-    <c:forEach items="${pending}" var="booking">
+    <c:forEach items="${others}" var="booking">
       <tr>
       
         <td>${booking.product.productName}</td>

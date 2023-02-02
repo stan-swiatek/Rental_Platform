@@ -22,4 +22,6 @@ public interface MessageRepository extends JpaRepository<Message, Integer>{
 
 	List<Message> findByBuyer(User user);
 
+	List<Message> findByOwnerOrBuyer(User owner, User buyer);
+
 }

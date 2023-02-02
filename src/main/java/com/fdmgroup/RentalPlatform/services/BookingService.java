@@ -58,4 +58,9 @@ public class BookingService implements IBookingService {
 		return repo.findById(booking_id).get();
 	}
 
+	@Override
+	public List<Booking> findByUserAndStatusNot(User user, String string) {
+		return repo.findByUserAndStatusNot(user, string);
+	}
+
 }
