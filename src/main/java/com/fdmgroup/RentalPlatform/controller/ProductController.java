@@ -1,8 +1,8 @@
 package com.fdmgroup.RentalPlatform.controller;
 
-
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -129,7 +129,12 @@ public class ProductController {
 ////		review.setProduct(product);
 //		model.put("review", review);
 		model.addAttribute("pickUpLocation", product.getPickUpLocation());
+
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
+		model.addAttribute("bookings", bookings);
 		
+		model.addAttribute("isAvailable", isAvailable(product));
 		
 		return "ProductPage";
 	}
@@ -138,11 +143,12 @@ public class ProductController {
 	public String getCart(ModelMap model) {
 		login.isLoggedIn(model);
 		user = login.getLoggedUser();
-		List<Booking> bookings = bookingService.findAll();
-//		List<Booking> bookings = bookingService.findByUser(user);
+//		List<Booking> bookings = bookingService.findAll();
+		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
 //		messages.addAll(messageService.findByBuyer(user));
 //		List<Message> conversations = splitToConversation(messages);
 		model.addAttribute("bookings", bookings);
+		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
 		return "cart";
 	}
 
@@ -307,8 +313,64 @@ public class ProductController {
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
 
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
+		model.addAttribute("bookings", bookings);
+		
+		model.addAttribute("isAvailable", isAvailable(product));
+
 		return "ProductPage";
 	}
-
-
+	
+	boolean isAvailable(Product product) {
+		List<String> nope = new ArrayList<String>();
+		nope.add("Cart");
+		nope.add("Pending");
+		
+		Iterator<String> iterator = nope.iterator();
+		while(iterator.hasNext()) {
+			if(bookingService.findByProductAndStatus(product, iterator.next()).size()>0) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	@PostMapping("/confirm_cart")
+	public String confirmCart(ModelMap model) {
+		login.isLoggedIn(model);
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
+		Iterator<Booking> iterator = bookings.iterator();
+		while(iterator.hasNext()) {
+			Booking newBooking = iterator.next();
+			newBooking.setStatus("Pending");
+			bookingService.saveBooking(newBooking);
+		}
+		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
+		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
+		return "cart";
+	}
+	
+	@PostMapping("/delete_item/{booking_id}")
+	public String deleteItem(ModelMap model, @PathVariable int booking_id) {
+		login.isLoggedIn(model);
+		user = login.getLoggedUser();
+		
+		Booking booking = bookingService.findByID(booking_id);
+		booking.setStatus("Discarded");
+		bookingService.saveBooking(booking);
+		
+		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
+		Iterator<Booking> iterator = bookings.iterator();
+		while(iterator.hasNext()) {
+			Booking newBooking = iterator.next();
+			newBooking.setStatus("Pending");
+			bookingService.saveBooking(newBooking);
+		}
+		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
+		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
+		return "cart";
+	}
 }

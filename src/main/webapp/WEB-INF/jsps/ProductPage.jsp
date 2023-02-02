@@ -62,7 +62,19 @@
             
             <div class="product-main-text">Price: ${productPrice} $ per 24 hours</div>
 
-            </div>
+            <div class="product-main-description">Description: </div>
+            <div class="product-main-description-text">${productDescription}</div>
+
+            <div class="product-main-price">Pricing policy:</div>
+            <div class="product-main-price-description">One hour (up to 12 hours): x</div>
+            <div class="product-main-price-description">One hour (more than 12 hours): x</div>
+            <div class="product-main-price-description">One hour (more than 24 hours): x</div>
+
+
+			<c:if test="${not isAvailable}">
+				NOT AVAILABLE
+			</c:if>
+			<c:if test="${isAvailable}">
             <div class="product-button-block">
             <form action="/Booking/${id}" method="POST">
             	<!-- <label for="startDate">Start date:</label>
@@ -132,9 +144,23 @@
                 </div>
               </div>
             </div>
+			</c:if>
           </div>
         </div>
       </div>
+      
+      <c:forEach items="${bookings}" var="booking">
+      <br>
+      <tr>
+      
+        <td>${booking.product.productName}</td>
+        <td>${booking.user.username}</td>
+        <td>${booking.bookingDate} - ${booking.status}</td>
+        <%-- <td><form action="/messages/${booking.product.id}/${booking.user.id}"</td> --%>
+      <%-- <td><a href="/messages/${message.product.id}/${message.buyer.id}">Go to conversation</a></td> --%>
+      </tr>
+      
+    </c:forEach>
   
     </main>
     <footer class="footer-contact-information">
