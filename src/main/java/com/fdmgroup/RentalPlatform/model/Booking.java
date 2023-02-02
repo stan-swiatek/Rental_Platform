@@ -30,7 +30,7 @@ public class Booking {
 	
 	private String status;
 	
-	private Boolean accepted;
+//	private Boolean accepted;
 	
 	private Integer rating;
 	
@@ -217,13 +217,13 @@ public class Booking {
 		this.bookingDate = bookingDate;
 	}
 
-	public Boolean getAccepted() {
-		return accepted;
-	}
-
-	public void setAccepted(Boolean accepted) {
-		this.accepted = accepted;
-	}
+//	public Boolean getAccepted() {
+//		return accepted;
+//	}
+//
+//	public void setAccepted(Boolean accepted) {
+//		this.accepted = accepted;
+//	}
 }
 
 //package com.fdmgroup.RentalPlatform.model;

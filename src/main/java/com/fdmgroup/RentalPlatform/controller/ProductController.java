@@ -287,16 +287,17 @@ public class ProductController {
 		login.isLoggedIn(model);
 		model.addAttribute("products", service.findAllProducts());
 	}
+	
 	@GetMapping("/booking/{booking_id}/accept")
 	public String approveBooking(@PathVariable int booking_id,
 			ModelMap model) {
 		login.isLoggedIn(model);
 		Booking booking = bookingService.findByID(booking_id);
-		booking.setAccepted(true);
+		booking.setStatus("Accepted");
 		bookingService.saveBooking(booking);
 		Product product = service.findProductById(booking.getProduct().getId());
-		product.setAvailable(false);
-		service.createNewProduct(product);
+//		product.setAvailable(false);
+//		service.createNewProduct(product);
 		String approvalText = "Your offer have been approved! <br>"
 				+ "For product: " + booking.getProduct().getProductName()
 				+ "<br>By user: " + product.getOwner().getUsername()
@@ -315,7 +316,7 @@ public class ProductController {
 			ModelMap model) {
 		login.isLoggedIn(model);
 		Booking booking = bookingService.findByID(booking_id);
-		booking.setAccepted(false);
+		booking.setStatus("Declined");
 		String declineText = "Your offer have been declined! <br>"
 				+ "Search for other products.";
 		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),declineText);
@@ -392,8 +393,16 @@ public class ProductController {
 				+ "<br>From: " + booking.getStartDate()
 				+ "<br>To: " + booking.getEndDate()
 				+ "<br><br>Do you accept?<br>"
-				+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
-				+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>";
+						+ "<c:if test=\"${booking.status=='Pending'}\">"
+						+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
+						+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>"
+						+ "</c:if>"
+						+ "<c:if test=\"${booking.status=='Accepted'}\">"
+						+ "accepted"
+						+ "</c:if>"
+						+ "<c:if test=\"${booking.status=='Declined'}\">"
+						+ "declined"
+						+ "</c:if>";
 		sendNotification(product.getOwner(), booking.getUser(),true,product, notificationText);
 
 		user = login.getLoggedUser();
@@ -430,6 +439,7 @@ public class ProductController {
 		List<String> nope = new ArrayList<String>();
 		nope.add("Cart");
 		nope.add("Pending");
+		nope.add("Accepted");
 		
 		Iterator<String> iterator = nope.iterator();
 		while(iterator.hasNext()) {
