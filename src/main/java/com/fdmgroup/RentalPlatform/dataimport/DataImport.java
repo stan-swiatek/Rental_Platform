@@ -115,8 +115,8 @@ public class DataImport implements ApplicationRunner {
 								   "BMX", "Electric Bike", "Gravel", "Unisex Bike"};
 			String[] types = {"Ladies Bike", "Men's Bike", "Children's Bike", "Men's Bike", "Men's Bike", "Ladies Bike", 
 							  "Men's Bike", "Unisex Bike", "Unisex Bike", "Unisex Bike"};
-			String[] colors = {"Black", "Blue", "Green", "Pink", "Red", "White", "Yellow", "Other", "Other", "Other"};
-			double[] prices = {289.99, 199.99, 139.99, 599.99, 799.99, 299.99, 199.99, 999.99, 799.99, 599.99};
+			String[] colors = {"Black", "Blue", "Green", "Pink", "Red", "White", "Yellow", "Aquamarine", "Beige", "Cornflower"};
+			double[] prices = {28.99, 19.99, 13.99, 59.99, 79.99, 29.99, 19.99, 99.99, 79.99, 59.99};
 			String[] pickUpLocations = {user5.getAddress().getCity(),user1.getAddress().getCity(), 
 					user2.getAddress().getCity(), user3.getAddress().getCity(), 
 					user4.getAddress().getCity(), user5.getAddress().getCity(), 
@@ -124,7 +124,7 @@ public class DataImport implements ApplicationRunner {
 					user3.getAddress().getCity(), user4.getAddress().getCity()};
 			
 			User[] owners = {user5, user1, user2, user3, user4, user5, user1, user2, user3, user4};
-
+	
 			for (int i = 0; i < 10; i++) {
 				Product product = new Product();
 				product.setProductName(names[i]);
