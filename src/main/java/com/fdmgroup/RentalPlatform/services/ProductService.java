@@ -56,9 +56,9 @@ public class ProductService implements IProductService {
 		
 		for (String filters : filtersArray) {
 			List<Product> filteredByProductName = repo.findByProductNameIgnoreCaseContaining(filters);
-			List<Product> filteredByType = repo.findByTypeIgnoreCaseContaining(filters);
-			List<Product> filteredByCatogory = repo.findByCategoryIgnoreCaseContaining(filters);
-			List<Product> filteredByColor = repo.findByColorIgnoreCaseContaining(filters);
+			List<Product> filteredByType = repo.findByTypeIgnoreCase(filters);
+			List<Product> filteredByCatogory = repo.findByCategoryIgnoreCase(filters);
+			List<Product> filteredByColor = repo.findByColorIgnoreCase(filters);
 			
 			List<Product> filteredProducts = new ArrayList<>();
 			Stream.of(filteredByProductName, filteredByType, filteredByCatogory, filteredByColor).forEach(filteredProducts::addAll);
@@ -76,17 +76,17 @@ public class ProductService implements IProductService {
 
 	@Override
 	public List<Product> findProductByColor(String filter) {
-		return repo.findByColorIgnoreCaseContaining(filter);
+		return repo.findByColorIgnoreCase(filter);
 	}
 
 	@Override
 	public List<Product> findProductByType(String filter) {
-		return repo.findByTypeIgnoreCaseContaining(filter);
+		return repo.findByTypeIgnoreCase(filter);
 	}
 
 	@Override
 	public List<Product> findProductByCategory(String filter) {
-		return repo.findByCategoryIgnoreCaseContaining(filter);
+		return repo.findByCategoryIgnoreCase(filter);
 	}
 
 //	@Override
