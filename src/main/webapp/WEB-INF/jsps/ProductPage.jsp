@@ -49,26 +49,27 @@
 						<div class="product-main-one-container">
 							<!-- <img src="/new_car_landing_S_2.jpg" alt="">  -->
 							<img src="${mainPhotoUrl}" />
-							<div>
+							<div class="carousel">
+								<div class="carousel-row-one">
 								<c:forEach var="url" items="${pictureUrls}" varStatus="status">
 									<c:if test="${!status.first&&url==mainPhotoUrl}">
 										<form action="/ProductPage/${id}/${status.index-1}"
 											method="POST">
-											<input type="submit" value="Previous Photo">
+											<input  type="submit" id="previousPhoto" value="Previous Photo" >
 										</form>
 									</c:if>
 								</c:forEach>
-							</div>
-							
-							<div>
-								<c:forEach var="url" items="${pictureUrls}" varStatus="status">
+								</div>
+								<div class="carousel-row-two">
+								<c:forEach var="url" items="${pictureUrls}" varStatus="status" >
 									<c:if test="${!status.last&&url==mainPhotoUrl}">
 										<form action="/ProductPage/${id}/${status.index+1}"
 											method="POST">
-											<input type="submit" value="Next Photo">
+											<input type="submit" id="nextPhoto" value="Next Photo">
 										</form>
 									</c:if>
 								</c:forEach>
+								</div>
 							</div>
 						</div>
 						<!-- Carousel for photos -->

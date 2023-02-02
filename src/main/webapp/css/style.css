@@ -653,6 +653,7 @@ footer {
 }
 
 .product-main-description {
+  margin-top:10px;
   font-weight: 700;
   margin-bottom: 5px;
 }
@@ -671,6 +672,7 @@ footer {
 .product-main-one-container {
   height: 70%;
   margin-bottom: 10px;
+  width: 100%;
 }
 .product-main-one img {
   height: 100%;
@@ -1242,38 +1244,23 @@ footer {
   /* #0060c0; #389cff; */
   
 }
-.carousel-indicators li {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: gray;
-  display: inline-block;
-  margin: 10px;
+
+.carousel {
+	margin-top: 5px;
+	display: flex;
+	flex-direction: row;
+	margin-bottom:10px;
+	justify-content: space-between;
+}
+.carousel-row-one{
+	
+
+}
+.carousel-row-two{
+	
+
 }
 
-.carousel-indicators .active {
-  background-color: #007bff;
+.a{
+	padding:10px;
 }
-
-.carousel-inner .carousel-item {
-  height: 400px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.carousel-control-prev, .carousel-control-next {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  color: white;
-  font-size: 24px;
-  text-align: center;
-  line-height: 40px;
-}
-
-.carousel-control-prev:hover, .carousel-control-next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
