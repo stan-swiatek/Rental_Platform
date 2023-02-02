@@ -27,9 +27,9 @@
       <div class="log-name">Log in</div>
       
         <div class="main-row">
-        <div class="log-name-block">
+        <div class="login-name-block">
+        <div class="special-mes">${message2}</div>
           <div class="log-name-block-main">
-          <div>${message2}</div>
             <form action="/login" method="post">
               <label for="username">Username:</label><br>
               <input 
