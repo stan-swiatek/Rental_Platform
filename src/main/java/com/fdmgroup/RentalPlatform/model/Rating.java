@@ -13,9 +13,27 @@ public class Rating {
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private Long id;
 	  
-	  private Integer value;
+	  private Integer userValue;
 	  
-	  @ManyToOne
+	  private Integer productValue;
+	  
+	  public Integer getUserValue() {
+		return userValue;
+	}
+
+	public void setUserValue(Integer userValue) {
+		this.userValue = userValue;
+	}
+
+	public Integer getProductValue() {
+		return productValue;
+	}
+
+	public void setProductValue(Integer productValue) {
+		this.productValue = productValue;
+	}
+
+	@ManyToOne
 	  private User user;
 	  
 	  @ManyToOne
@@ -31,10 +49,11 @@ public class Rating {
 
 	public Rating() {};
 	  
-	public Rating(Long id, Integer value, User user, Product product) {
+	public Rating(Long id, User user, Product product, Integer productValue, Integer userValue) {
 		super();
 		this.id = id;
-		this.value = value;
+		this.productValue = productValue;
+		this.userValue = userValue;
 		this.user = user;
 		this.product = product;
 	}
@@ -46,15 +65,7 @@ public class Rating {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Integer getValue() {
-		return value;
-	}
-
-	public void setValue(Integer value) {
-		this.value = value;
-	}
-
+	
 	public User getUser() {
 		return user;
 	}
@@ -62,10 +73,16 @@ public class Rating {
 	public void setUser(User user) {
 		this.user = user;
 	}
+//
+//	@Override
+//	public String toString() {
+//		return "Rating [id=" + id + ", value=" + value + ", user=" + user + ", product=" + product + "]";
+//	}
 
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", value=" + value + ", user=" + user + ", product=" + product + "]";
+		return "Rating [id=" + id + ", userValue=" + userValue + ", productValue=" + productValue + ", user=" + user
+				+ ", product=" + product + "]";
 	}
 
 //	@Override

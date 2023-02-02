@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.model.Review;
 import com.fdmgroup.RentalPlatform.services.IProductService;
+import com.fdmgroup.RentalPlatform.services.IRatingService;
+import com.fdmgroup.RentalPlatform.services.RatingService;
 
 
 @Controller
@@ -27,6 +29,10 @@ public class ProductController {
 	
 	@Autowired
 	private IProductService service;
+	
+	@Autowired
+	private RatingService ratingService;
+	
 	@Autowired
 	private LoginAndRegisterController login;
 	
@@ -95,9 +101,12 @@ public class ProductController {
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
 		
-		Review review = new Review();
-//		review.setProduct(product);
-		model.put("review", review);
+		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
+		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
+		
+//		Review review = new Review();
+////		review.setProduct(product);
+//		model.put("review", review);
 		
 		
 		return "ProductPage";

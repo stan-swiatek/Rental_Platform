@@ -57,7 +57,8 @@
             <div class="product-main-text">Bike type: ${productType}</div>
             <div class="product-main-text">Bike Color: ${productColor}</div>
             
-            <div class="product-main-text">Rating: <span id="ratingsList"></span></div>
+            <div class="product-main-text">Owner rating: ${userRating}</div>
+            <div class="product-main-text">Product rating: ${productRating}</div>
             
             <div class="product-main-text">Price: ${productPrice} $ per 24 hours</div>
 
@@ -71,21 +72,27 @@
               <div class="product-button-row-two">
                 <div class="main-row-item-block-button" id="rate">
                 
-                  <form action="/rate" method="post">
+                  <form action="/rate/${id}" method="post">
 <!--                   commandName="review"> -->
 <!--                     <div>Rating:</div> -->
 <!--                     <div id="rating"></div>
                     <input type="hidden" id="hdrating" name="hdrating"> -->
-                    <label for="country">Rating</label><br>
-			  <input 
-			  	id="country" 
-			  	class="second"
-			  	type="text" 
-			  	name="country"
-				placeholder="Country"
-			  >
+                    <label for="value">Rating</label><br>
+					  <input 
+					  	id="value" 
+					  	class="second"
+					  	type="number" 
+					  	name="userValue"
+						placeholder="User rating"
+					  >
+					  <input 
+					  	id="value" 
+					  	class="second"
+					  	type="number" 
+					  	name="productValue"
+						placeholder="Product rating"
+					  >
                     <input type="submit" value="Rate">
-<%--                     <s:hidden path="product.id"/> --%>
                   </form>  
                 
 <!-- 				    <form id="addRatingForm">
