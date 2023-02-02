@@ -10,6 +10,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Address {
+	
+
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -112,7 +114,10 @@ public class Address {
 				&& Objects.equals(country, other.country) && Objects.equals(flatNumber, other.flatNumber)
 				&& Objects.equals(postalCode, other.postalCode) && Objects.equals(street, other.street);
 	}
-	
+	@Override
+	public String toString() {
+		return  street + " " + getBuildingNumber()+ "/" + getFlatNumber()+ ", "+ city;
+	}
 	
 	
 	

@@ -23,6 +23,7 @@ import com.fdmgroup.RentalPlatform.services.IBookingService;
 import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 import com.fdmgroup.RentalPlatform.services.IUserService;
+import com.fdmgroup.RentalPlatform.services.ProductService;
 
 
 @Controller
@@ -186,30 +187,60 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
-		sendNotification(product.getOwner(), booking);
-		return "ProductPage";
-	}
-	@GetMapping("/booking/{booking_id}/accept")
-	public String approveBooking(@ModelAttribute Booking booking, @PathVariable int booking_id,
-			ModelMap model) {
-		booking.setAccepted(true);
-		return "ProductPage";
-	}                                                                                                                          
-	private void sendNotification(User owner, Booking booking) {
-		Message message = new Message();
-		User shazar = userService.findByUsername("Shazar");
-		message.setBuyer(shazar);
-		message.setOwner(owner);
-		message.setProduct(booking.getProduct());
-		message.setMessageText(
-				"You have new Booking! <br>"
+		String notificationText = "You have new Booking! <br>"
 				+ "For product: " + booking.getProduct().getProductName()
-				+ "<br>By user: " + owner.getUsername()
+				+ "<br>By user: " + product.getOwner().getUsername()
 				+ "<br>From: " + booking.getStartDate()
 				+ "<br>To: " + booking.getEndDate()
 				+ "<br><br>Do you accept?<br>"
-				+ "<a href=\"/Booking/"+booking.getId()+"/accept\"> Yes </a>"
-				+ "<a href=\"/Booking/"+booking.getId()+"/decline\"> No </a>"
+				+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
+				+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>";
+		sendNotification(product.getOwner(), booking.getUser(),true,product, notificationText);
+		return "ProductPage";
+	}
+	@GetMapping("/booking/{booking_id}/accept")
+	public String approveBooking(@PathVariable int booking_id,
+			ModelMap model) {
+		login.isLoggedIn(model);
+		Booking booking = bookingService.findById(booking_id);
+		booking.setAccepted(true);
+		bookingService.saveBooking(booking);
+		Product product = service.findProductById(booking.getProduct().getId());
+		product.setAvailable(false);
+		service.createNewProduct(product);
+		String approvalText = "Your offer have been approved! <br>"
+				+ "For product: " + booking.getProduct().getProductName()
+				+ "<br>By user: " + product.getOwner().getUsername()
+				+ "<br>From: " + booking.getStartDate()
+				+ "<br>To: " + booking.getEndDate()
+				+ "<br><br>Claim your product at: "+ booking.getProduct().getOwner().getAddress() +"<br>"
+				
+				;
+		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),approvalText);
+		
+		return "/index";
+	}            
+	
+	@GetMapping("/booking/{booking_id}/decline")
+	public String declineBooking( @PathVariable int booking_id,
+			ModelMap model) {
+		login.isLoggedIn(model);
+		Booking booking = bookingService.findById(booking_id);
+		booking.setAccepted(false);
+		String declineText = "Your offer have been declined! <br>"
+				+ "Search for other products.";
+		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),declineText);
+		return"/index";
+	}
+	
+	
+	private void sendNotification(User owner, User buyer, boolean sentByBuyer,Product product, String text) {
+		Message message = new Message();
+		message.setBuyer(buyer);
+		message.setOwner(owner);
+		message.setProduct(product);
+		message.setMessageText(
+				text
 				);
 		messageService.saveMessage(message);
 		

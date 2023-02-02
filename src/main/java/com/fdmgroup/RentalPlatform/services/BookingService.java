@@ -38,4 +38,10 @@ public class BookingService implements IBookingService {
 		repo.save(booking);		
 	}
 
+	@Override
+	public Booking findById(int booking_id) {
+		
+		return repo.findById(booking_id).get();
+	}
+
 }

@@ -12,4 +12,5 @@ public interface IBookingService {
 	List<Booking> findByProduct(Product product);
 	List<Booking> findAll();
 	void saveBooking(Booking booking);
+	Booking findById(int booking_id);
 }
