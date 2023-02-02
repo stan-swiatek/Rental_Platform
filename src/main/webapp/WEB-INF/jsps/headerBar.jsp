@@ -20,7 +20,7 @@
 				<p>
 					Hello, <span>${firstname}</span>!
 				</p>
-                <a href="messages/${user_id}">
+                <a href="/messages/${user_id}">
 				  <img class="png" alt="" src="/pngkey.com-email-icon-white-png-9311379.png">
 				</a>
 				<c:if test="${unread > 0}">
