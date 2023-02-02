@@ -1247,7 +1247,7 @@ footer {
   height: 10px;
   border-radius: 50%;
   background-color: gray;
-  display: flex;
+  display: inline-block;
   margin: 10px;
 }
 

@@ -215,6 +215,38 @@ public class ProductController {
 		return "ProductPage";
 	}
 	
+	@PostMapping(value="/ProductPage/{id}/{photoIndex}")
+	public String goToNextPhoto(ModelMap model, @PathVariable int id,@PathVariable int photoIndex) {
+		login.isLoggedIn(model);
+//		model.addAttribute("product", service.findProductById(id));
+		Product product = service.findProductById(id);
+//		populateModel(model);
+		model.addAttribute("product",product);
+
+		model.addAttribute("productName", product.getProductName());
+		model.addAttribute("productDescription", product.getDescription());
+		model.addAttribute("productCategory", product.getCategory());
+		model.addAttribute("productType", product.getType());
+		model.addAttribute("productColor", product.getColor());
+		model.addAttribute("productPrice", product.getPrice());
+		model.addAttribute("mainPhotoUrl",product.getPhotos().get(photoIndex));
+		model.addAttribute("pictureUrls", product.getPhotos());
+		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
+		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
+		
+//		Review review = new Review();
+////		review.setProduct(product);
+//		model.put("review", review);
+		model.addAttribute("pickUpLocation", product.getPickUpLocation());
+
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
+		model.addAttribute("bookings", bookings);
+		
+		model.addAttribute("isAvailable", isAvailable(product));
+		return "ProductPage";
+	}
+	
 	@GetMapping("/cart")
 	public String getCart(ModelMap model) {
 		login.isLoggedIn(model);

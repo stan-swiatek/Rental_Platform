@@ -49,9 +49,30 @@
 						<div class="product-main-one-container">
 							<!-- <img src="/new_car_landing_S_2.jpg" alt="">  -->
 							<img src="${mainPhotoUrl}" />
+							<div>
+								<c:forEach var="url" items="${pictureUrls}" varStatus="status">
+									<c:if test="${!status.first&&url==mainPhotoUrl}">
+										<form action="/ProductPage/${id}/${status.index-1}"
+											method="POST">
+											<input type="submit" value="Previous Photo">
+										</form>
+									</c:if>
+								</c:forEach>
+							</div>
+							
+							<div>
+								<c:forEach var="url" items="${pictureUrls}" varStatus="status">
+									<c:if test="${!status.last&&url==mainPhotoUrl}">
+										<form action="/ProductPage/${id}/${status.index+1}"
+											method="POST">
+											<input type="submit" value="Next Photo">
+										</form>
+									</c:if>
+								</c:forEach>
+							</div>
 						</div>
 						<!-- Carousel for photos -->
-						<div id="carouselExampleIndicators" class="carousel slide"
+						<%-- <div id="carouselExampleIndicators" class="carousel slide"
 							data-ride="carousel">
 							<ol class="carousel-indicators">
 								<c:forEach var="i" begin="0"
@@ -78,7 +99,7 @@
 								data-slide="next"> <span class="carousel-control-next-icon"
 								aria-hidden="true"></span> <span class="sr-only">Next</span>
 							</a>
-						</div>
+						</div> --%>
 
 						<div>
 							<div class="product-main-description">Description:</div>
@@ -152,10 +173,10 @@
                     <input type="hidden" id="hdrating" name="hdrating"> -->
 											<label for="value">Rating</label><br> <input id="value"
 												class="second" type="number" name="userValue"
-												placeholder="User rating"> <input
-												id="value" class="second" type="number" name="productValue"
-												placeholder="Product rating"> <input
-												type="submit" value="Rate">
+												placeholder="User rating"> <input id="value"
+												class="second" type="number" name="productValue"
+												placeholder="Product rating"> <input type="submit"
+												value="Rate">
 										</form>
 
 										<!-- 				    <form id="addRatingForm">
@@ -187,7 +208,7 @@
 
 					<td>${booking.product.productName}</td>
 					<td>${booking.user.username}</td>
-					<td>${booking.bookingDate}- ${booking.status}</td>
+					<td>${booking.bookingDate}-${booking.status}</td>
 					<%-- <td><form action="/messages/${booking.product.id}/${booking.user.id}"</td> --%>
 					<%-- <td><a href="/messages/${message.product.id}/${message.buyer.id}">Go to conversation</a></td> --%>
 				</tr>
