@@ -291,7 +291,7 @@ public class ProductController {
 	public String approveBooking(@PathVariable int booking_id,
 			ModelMap model) {
 		login.isLoggedIn(model);
-		Booking booking = bookingService.findById(booking_id);
+		Booking booking = bookingService.findByID(booking_id);
 		booking.setAccepted(true);
 		bookingService.saveBooking(booking);
 		Product product = service.findProductById(booking.getProduct().getId());
@@ -314,7 +314,7 @@ public class ProductController {
 	public String declineBooking( @PathVariable int booking_id,
 			ModelMap model) {
 		login.isLoggedIn(model);
-		Booking booking = bookingService.findById(booking_id);
+		Booking booking = bookingService.findByID(booking_id);
 		booking.setAccepted(false);
 		String declineText = "Your offer have been declined! <br>"
 				+ "Search for other products.";

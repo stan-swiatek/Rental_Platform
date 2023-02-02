@@ -16,4 +16,5 @@ public interface IBookingService {
 	List<Booking> findByProductAndStatus(Product product, String s);
 	List<Booking> findByUserAndStatus(User user, String string);
 	Booking findByID(int booking_id);
+	
 }
