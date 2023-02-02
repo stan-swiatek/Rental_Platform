@@ -17,5 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	List<Product> findByCategoryIgnoreCaseContaining(String filter);
 	List<Product> findByColorIgnoreCaseContaining(String filter);
 	List<Product> findByPriceBetween(Double startPrice, Double endPrice);
+	List<Product> findByPriceGreaterThanEqual(Double startPrice);
+	List<Product> findByPriceLessThanEqual(Double endPrice);
 	
 }
