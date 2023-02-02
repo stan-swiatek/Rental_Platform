@@ -37,6 +37,15 @@
                 
                 placeholder="type here..."
               ><br>
+              <label for="email">Enter your phone number:</label><br>
+              <input 
+                type="text" 
+                id="phoneNumber" 
+                name="phoneNumber"
+                class="second"
+                
+                placeholder="type here..."
+              ><br>
               <label for="firstName">Name:</label><br>
               <input 
               	type="text"
@@ -71,14 +80,7 @@
   
     </main>
     <footer class="footer-contact-information">
-        <div class="footer-contact-information-container">
-          <div class="footer-contact-information-links-social-media">
-              <a href="#">Home</a>
-              <a href="#">Cart</a>
-              <a href="/UserProfile">Personal</a>
-              <a href="/Information">Information</a>
-          </div>
-        </div>
+        <%@ include file ="footerBar.jsp" %>
     </footer>
   </div>
 </body>

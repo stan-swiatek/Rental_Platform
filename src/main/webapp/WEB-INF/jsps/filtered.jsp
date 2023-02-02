@@ -55,24 +55,20 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div> <%-- Remove in case of adding back filters--%>
+	</div> <%-- Remove in case of adding back filters--%>
 	
 	          <div class="main-banner">
  
           </div>
-          </div>
-      </div>
+          
+         </div>
+       </div>
     </header>
     <main class="main">
     </main>
     <footer class="footer-contact-information">
-        <div class="footer-contact-information-container">
-          <div class="footer-contact-information-links-social-media">
-              <a href="#">Home</a>
-              <a href="#">Cart</a>
-              <a href="/UserProfile">Personal</a>
-              <a href="/Information">Information</a>
-          </div>
-        </div>
+        <%@ include file ="footerBar.jsp" %>
     </footer>
   </div>
 </body>

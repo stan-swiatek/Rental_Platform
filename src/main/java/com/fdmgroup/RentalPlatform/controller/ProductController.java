@@ -1,6 +1,7 @@
 package com.fdmgroup.RentalPlatform.controller;
 
-import java.math.BigDecimal;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,8 @@ import com.fdmgroup.RentalPlatform.model.Review;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 import com.fdmgroup.RentalPlatform.services.IRatingService;
 import com.fdmgroup.RentalPlatform.services.RatingService;
+import com.fdmgroup.RentalPlatform.model.User;
+import com.fdmgroup.RentalPlatform.util.Filtering;
 
 
 @Controller
@@ -39,6 +42,7 @@ public class ProductController {
 //	@Autowired
 //	private IRatingService rating;
 	
+	User user;
 
 	@GetMapping(value = "/ProductOffer")
 	public String goProductOffer(ModelMap model) {
@@ -58,8 +62,11 @@ public class ProductController {
 	
 	@PostMapping(value="/ProductOffer")
 	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
+		user = login.getLoggedUser();
+		product.setOwner(user);
 		service.createNewProduct(product);
 		populateModel(model);
+		model.addAttribute("product",product);
 		
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
@@ -67,6 +74,7 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
+		model.addAttribute("pickUpLocation", product.getPickUpLocation());
 //		String productName = product.getProductName();
 //		String description = product.getDescription();
 //		String category = product.getCategory();
@@ -90,10 +98,12 @@ public class ProductController {
 	@GetMapping(value="/ProductPage/{id}")
 	public String seeDetails(ModelMap model, @PathVariable int id) //throws PlaceNotFoundException 
 	{
+		login.isLoggedIn(model);
 //		model.addAttribute("product", service.findProductById(id));
 		Product product = service.findProductById(id);
-		populateModel(model);
-		
+//		populateModel(model);
+		model.addAttribute("product",product);
+
 		model.addAttribute("productName", product.getProductName());
 		model.addAttribute("productDescription", product.getDescription());
 		model.addAttribute("productCategory", product.getCategory());
@@ -107,6 +117,7 @@ public class ProductController {
 //		Review review = new Review();
 ////		review.setProduct(product);
 //		model.put("review", review);
+		model.addAttribute("pickUpLocation", product.getPickUpLocation());
 		
 		
 		return "ProductPage";
@@ -123,8 +134,6 @@ public class ProductController {
 		return "redirect:/product/detail/";
 	}
 	
-	
-	
 	@PostMapping("/delete")
 	public String deleteProduct(ModelMap model, @RequestParam int id) //throws PlaceNotFoundException 
 	{
@@ -135,11 +144,13 @@ public class ProductController {
 	
 	@GetMapping(value="/filtered")
 	public String goToFiltered(ModelMap model) {
+		login.isLoggedIn(model);
 		return "filtered";
 	}
 	
 	@PostMapping("/filtered")
 	public String filterProducts(ModelMap model, @RequestParam String filter) {
+		login.isLoggedIn(model);
 		List<Product> finalFilteredProducts = service.filterProducts(filter);
 		
 		model.addAttribute("filterProducts", finalFilteredProducts);
@@ -147,8 +158,95 @@ public class ProductController {
 		return "filtered";
 	}
 	
+	@GetMapping(value="/dropDownFilters")
+	public String goToDropDownFilters(ModelMap model) {
+		login.isLoggedIn(model);
+		return "dropDownFilters";
+	}
+	
+	@PostMapping("/dropDownFilters")
+	public String filteringFunction(ModelMap model, @RequestParam String filter, @RequestParam(required = false) String color, @RequestParam(required = false) String category,
+			@RequestParam(required = false) String type, @RequestParam(required = false) String minPrice, @RequestParam(required = false) String maxPrice) {
+		login.isLoggedIn(model);
+		Filtering filtering = new Filtering(color, type, category, minPrice, maxPrice);
+		
+		List<Product> searchedByColor = new ArrayList<>(0);
+		List<Product> searchedByType = new ArrayList<>(0);
+		List<Product> searchedByCategory = new ArrayList<>(0);
+		List<Product> searchedByPrice = new ArrayList<>(0);
+		
+		List<Product> searchedProducts = new ArrayList<>();
+		
+		if (color != "") {
+			searchedByColor = service.findProductByColor(color);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByColor);
+		}
+		
+		if (type != "") {
+			searchedByType = service.findProductByType(type);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByType);
+		}
+		
+		if (category != "") {
+			searchedByCategory = service.findProductByCategory(category);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByCategory);
+		}
+		
+//		if (minPrice != "") {
+//			searchedByPrice = service.findProductByPrice(minPrice, maxPrice);
+//			if (searchedProducts.isEmpty())
+//				searchedProducts.addAll(searchedByPrice);
+//		}
+		
+		if (minPrice != "" && maxPrice != "") {
+			searchedByPrice = service.findProductByPrice(minPrice, maxPrice);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByPrice);
+		} else if (minPrice != "") {
+			searchedByPrice = service.findProductByMinPrice(minPrice);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByPrice);
+		} else if (maxPrice != "") {
+			searchedByPrice = service.findProductByMaxPrice(maxPrice);
+			if (searchedProducts.isEmpty())
+				searchedProducts.addAll(searchedByPrice);
+		}
+		
+		if (color != "") {
+			searchedProducts.retainAll(searchedByColor);
+		}
+		
+		if (type != "") {
+			searchedProducts.retainAll(searchedByType);
+		}
+		
+		if (category != "") {
+			searchedProducts.retainAll(searchedByCategory);
+		}
+		
+//		if (minPrice != "") {
+//			searchedProducts.retainAll(searchedByPrice);
+//		}
+		
+		if (minPrice != "" || maxPrice != "") {
+			searchedProducts.retainAll(searchedByPrice);
+		}
+		
+		
+		model.addAttribute("resultsOfSearch", searchedProducts);
+		model.addAttribute("filter", filter);
+		model.addAttribute("filtering", filtering);
+		
+		return "dropDownFilters";
+	}
+	
+	
 	
 	private void populateModel(ModelMap model) {
+		login.isLoggedIn(model);
 		model.addAttribute("products", service.findAllProducts());
 	}
 

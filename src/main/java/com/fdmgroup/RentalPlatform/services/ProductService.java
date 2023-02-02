@@ -1,5 +1,6 @@
 package com.fdmgroup.RentalPlatform.services;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -71,6 +72,42 @@ public class ProductService implements IProductService {
 	    }
 		
 		return finalFilteredProducts;
+	}
+
+	@Override
+	public List<Product> findProductByColor(String filter) {
+		return repo.findByColorIgnoreCaseContaining(filter);
+	}
+
+	@Override
+	public List<Product> findProductByType(String filter) {
+		return repo.findByTypeIgnoreCaseContaining(filter);
+	}
+
+	@Override
+	public List<Product> findProductByCategory(String filter) {
+		return repo.findByCategoryIgnoreCaseContaining(filter);
+	}
+
+//	@Override
+//	public List<Product> findProductByTimeFrame(String filter) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	@Override
+	public List<Product> findProductByPrice(String min, String max) {
+		return repo.findByPriceBetween(Double.parseDouble(min), Double.parseDouble(max));
+	}
+	
+	@Override
+	public List<Product> findProductByMinPrice(String min) {
+		return repo.findByPriceGreaterThanEqual(Double.parseDouble(min));
+	}
+	
+	@Override
+	public List<Product> findProductByMaxPrice(String max) {
+		return repo.findByPriceLessThanEqual(Double.parseDouble(max));
 	}
 	
 

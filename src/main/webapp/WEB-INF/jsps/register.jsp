@@ -26,10 +26,9 @@
       <div class="log-name">Sign up</div>
         <div class="main-row">
         <div class="log-name-block">
-          <div class="form-block-main">
-            <form action="/register" method="POST" class="form">
-            <div class=form-container>
-            <div class="form-one">
+          <div class="log-name-block-main">
+          <div>${message}</div>
+            <form action="/register" method="POST">
               <label for="username">Create username:</label><br>
               <input 
                 type="text" 
@@ -46,11 +45,27 @@
                 class="second"
                 placeholder="type here..."
               ><br>
+              <label for="confrimPassword">Confirm password:</label><br>
+              <input 
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                class="second"
+                placeholder="type here..."
+              ><br>
               <label for="email">Enter your email:</label><br>
               <input 
                 type="email" 
                 id="email" 
                 name="email"
+                class="second"
+                placeholder="type here..."
+              ><br>
+              <label for="email">Enter your phone number:</label><br>
+              <input 
+                type="text" 
+                id="phoneNumber" 
+                name="phoneNumber"
                 class="second"
                 placeholder="type here..."
               ><br>
@@ -138,14 +153,7 @@
   
     </main>
     <footer class="footer-contact-information">
-        <div class="footer-contact-information-container">
-          <div class="footer-contact-information-links-social-media">
-              <a href="#">Home</a>
-              <a href="#">Cart</a>
-              <a href="/UserProfile">Personal</a>
-              <a href="/Information">Information</a>
-          </div>
-        </div>
+        <%@ include file ="footerBar.jsp" %>
     </footer>
   </div>
 </body>

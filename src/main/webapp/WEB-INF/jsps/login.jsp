@@ -25,9 +25,11 @@
     <main class="main">
   
       <div class="log-name">Log in</div>
+      
         <div class="main-row">
         <div class="log-name-block">
           <div class="log-name-block-main">
+          <div>${message2}</div>
             <form action="/login" method="post">
               <label for="username">Username:</label><br>
               <input 
@@ -45,6 +47,7 @@
                 class="second"
                 placeholder="type here..."
               >
+              
               <div class="register-button">
                 <a href=""><input type="submit" value="Log in"></a>
               </div>
@@ -65,14 +68,7 @@
   
     </main>
     <footer class="footer-contact-information">
-        <div class="footer-contact-information-container">
-          <div class="footer-contact-information-links-social-media">
-              <a href="#">Home</a>
-              <a href="#">Cart</a>
-              <a href="/UserProfile">Personal</a>
-              <a href="/Information">Information</a>
-          </div>
-        </div>
+        <%@ include file ="footerBar.jsp" %>
     </footer>
   </div>
 </body>

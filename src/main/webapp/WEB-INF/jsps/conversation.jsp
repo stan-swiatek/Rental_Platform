@@ -48,6 +48,6 @@
 		</c:forEach>
 		
 	<%@ include file ="send.jsp" %>
-    </div>
+	<%@ include file ="footerBar.jsp" %>
 </body>
 </html>

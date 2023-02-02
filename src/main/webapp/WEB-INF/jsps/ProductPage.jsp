@@ -106,7 +106,10 @@
                 </div>
 <%--                 <div class="main-row-item-block-button" id="rate">
                   <a href="#"><span>Rate the owner</span></a>
-                </div> --%> 
+                </div> 
+                <div class="main-row-item-block-button" id="rate">
+                  <a href="/messages/${product.id}/${user_id}"><span>Send a message</span></a>
+                </div>
               </div>
             </div>
           </div>
@@ -115,14 +118,7 @@
   
     </main>
     <footer class="footer-contact-information">
-        <div class="footer-contact-information-container">
-          <div class="footer-contact-information-links-social-media">
-              <a href="#">Home</a>
-              <a href="#">Cart</a>
-              <a href="/UserProfile">Personal</a>
-              <a href="/Information">Information</a>
-          </div>
-        </div>
+        <%@ include file ="footerBar.jsp" %>
     </footer>
   </div>
   

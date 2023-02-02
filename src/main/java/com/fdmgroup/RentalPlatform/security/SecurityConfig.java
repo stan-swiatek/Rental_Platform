@@ -28,6 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		this.userDetailsService = userDetailsService;
 	}
 	
+	@Autowired
+    private AuthenticationFailureHandlerCustomClass customAuthenticationFailureHandler;
+	
 	@Bean
     PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
@@ -46,14 +49,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 
-				.antMatchers("/css/**", "/js/**", "/h2/**"/*not suitable for production level app*/, "WEB-INF/jsps/**", "/", "/**/*.png", "/register", "/editUserDetails", "/addproduct", "/filtered", "/*.png", "/*.jpg").permitAll()
+				.antMatchers("/css/**", "/js/**", "/h2/**"/*not suitable for production level app*/, "WEB-INF/jsps/**", "/", "/**/*.png", "/register", "/editUserDetails", "/dropDownFilters", "/filtered", "/terms", "/*.png", "/*.jpg").permitAll()
 
 				.antMatchers("/admin/**").hasRole("Admin")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin().loginPage("/login").permitAll()  // Spring won't inject it's own login page
 				.defaultSuccessUrl("/logged", true)
-				.failureUrl("/login")
+				.failureHandler(customAuthenticationFailureHandler)
+//				.failureUrl("/login")
 				.and()
 			.logout()
 				.logoutSuccessUrl("/")
