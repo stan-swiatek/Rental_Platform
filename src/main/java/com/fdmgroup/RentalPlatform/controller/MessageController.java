@@ -45,6 +45,13 @@ public class MessageController {
 		List<Message> messages = messageService.findByOwner(user);
 		messages.addAll(messageService.findByBuyer(user));
 		List<Message> conversations = splitToConversation(messages);
+		List<Integer> unreadMessages = new ArrayList<>();
+		for (Message conversation : conversations) {
+			
+			unreadMessages.add((Integer) checkUnreadMessagesInConversation(conversation));
+			
+		}
+		model.addAttribute("unreadMarks",unreadMessages);
 		model.addAttribute("messages", conversations);
 		return "messages";
 	}
@@ -130,5 +137,22 @@ public class MessageController {
 		}
 		return conversations;
 	}
-
+	
+	private int checkUnreadMessagesInConversation(Message conversation) {
+		int unread = 0;
+//		System.out.println(user);
+		List<Message> allMessages = messageService.findByBuyer(conversation.getBuyer());
+		allMessages.retainAll(messageService.findByOwner(conversation.getOwner()));
+//		System.out.println("Number of messages" + allMessages.size());
+		for(Message message : allMessages) {
+			if(message.getOwner().equals(user)&&message.isSentByBuyer()&&!message.getisRead()) {
+				unread++;
+			}else if(message.getBuyer().equals(user)&&!message.isSentByBuyer()&&!message.getisRead()) {
+				unread++;
+			}
+		}
+		
+//		System.out.println("Unread messages " + unread );
+		return unread;
+	}
 }

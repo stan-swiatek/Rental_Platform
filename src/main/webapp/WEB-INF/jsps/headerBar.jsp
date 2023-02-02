@@ -22,10 +22,11 @@
 					Hello, <span>${firstname}</span>!
 				</p>
 				<a href="/messages/${user_id}">Messages</a>
-				<a href="/logout">Log out</a>
-				<c:if test="${unread}>0">
+				<c:if test="${unread > 0}">
 					<span>(${unread})</span>
 				</c:if>
+				<a href="/logout">Log out</a>
+				
 			</c:if>
 
 			<c:if test="${not fn:endsWith(request.requestURI, '/')}">

@@ -82,6 +82,7 @@ public class LoginAndRegisterController {
 			model.addAttribute("loggedIn", isLoggedIn);
 			model.addAttribute("firstname", user.getFirstName());
 			model.addAttribute("user_id", user.getId());
+			
 			int unread = checkUnreadMessages(getLoggedUser());
 			model.addAttribute("unread",unread);
 		}
@@ -92,7 +93,7 @@ public class LoginAndRegisterController {
 		int unread = 0;
 		System.out.println(user);
 		List<Message> allMessages = messageRepository.findByBuyer(user);
-		allMessages.addAll(messageRepository.findByBuyer(user));
+		allMessages.addAll(messageRepository.findByOwner(user));
 		System.out.println("Number of messages" + allMessages.size());
 		for(Message message : allMessages) {
 			if(message.getOwner().equals(user)&&message.isSentByBuyer()&&!message.getisRead()) {
