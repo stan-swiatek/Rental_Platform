@@ -20,4 +20,5 @@ public interface IProductService {
 	List<Product> findProductByMinPrice(String min);
 	List<Product> findProductByMaxPrice(String max);
 	
+	
 }

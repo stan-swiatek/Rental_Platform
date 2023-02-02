@@ -87,18 +87,29 @@ public class ProductController {
 //	}
 	
 	@PostMapping(value="/ProductOffer")
-	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model,
-	                                @RequestParam(value = "image", required = false) MultipartFile multipartFile) throws IOException {
-	    user = login.getLoggedUser();
+	public String createNewProduct( ModelMap model,@RequestParam String productName,@RequestParam String description,@RequestParam String category,
+									@RequestParam String type, @RequestParam String color, @RequestParam Double price, @RequestParam String pickUpLocation,
+	                                @RequestParam(value = "image", required = false) MultipartFile[] multipartFiles) throws IOException {
+	    Product product = new Product();
+	    product.setProductName(productName);
+	    product.setDescription(description);
+	    product.setCategory(category);
+	    product.setType(type);
+	    product.setColor(color);
+	    product.setPrice(price);
+	    product.setPickUpLocation(pickUpLocation);	    
+		user = login.getLoggedUser();
 	    product.setOwner(user);
-	    
-	    if (multipartFile != null && !multipartFile.isEmpty()) {
-	        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-	        System.out.println(fileName);
-	        
-	        String uploadDir = "./product-photos/" + product.getId();
-	        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-	        product.setPhotos(uploadDir);
+	    service.createNewProduct(product);
+	    for(MultipartFile multipartFile: multipartFiles) {
+	    	
+		    if (multipartFile != null && !multipartFile.isEmpty()) {
+		        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		        System.out.println("Path to file: " + fileName);
+		        String uploadDir = "./src/main/webapp/img/" + product.getId();
+		        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		        product.setPhotos("/img/"+ product.getId() + "/" + fileName);
+		    }
 	    }
 	    
 	    service.createNewProduct(product);
@@ -185,7 +196,8 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
-		
+		model.addAttribute("mainPhotoUrl",product.getPhotos().get(0));
+		model.addAttribute("pictureUrls", product.getPhotos());
 		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
 		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
 		

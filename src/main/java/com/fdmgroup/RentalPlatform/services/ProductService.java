@@ -122,6 +122,8 @@ public class ProductService implements IProductService {
 	public List<Product> findProductByMaxPrice(String max) {
 		return repo.findByPriceLessThanEqual(Double.parseDouble(max));
 	}
+
+	
 	
 
 }
