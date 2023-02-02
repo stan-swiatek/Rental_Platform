@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/css/style.css">
   
   <link href="css/jquery.rateyo.min.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
+<%--   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/jquery.rateyo.min.js"></script>
   <script type="text/javascript">
   
@@ -26,7 +26,7 @@
 	  });
   });
   
-  </script>
+  </script> --%>
     
   <title>Shazar</title>
 </head>
@@ -104,7 +104,7 @@
                     min="0" max="5">
                   <a href="#"><span>Rate the product</span></a>  -->
                 </div>
-<%--                 <div class="main-row-item-block-button" id="rate">
+                <div class="main-row-item-block-button" id="rate">
                   <a href="#"><span>Rate the owner</span></a>
                 </div> 
                 <div class="main-row-item-block-button" id="rate">
@@ -122,7 +122,7 @@
     </footer>
   </div>
   
-      <script>
+<%--       <script>
       function getAverageRating() {
         fetch("/ratings/average")
           .then(response => response.json())
@@ -138,6 +138,6 @@
             getAverageRating();
           });
       }
-    </script>
+    </script> --%>
 </body>
 </html>

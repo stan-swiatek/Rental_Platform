@@ -47,7 +47,7 @@ public class RatingController {
 	rating.setProduct(product);
 	rating.setUser(user);
     ratingService.create(rating);
-    return "redirect:/ProductPage";
+    return "redirect:/ProductPage/" + product.getId();
   }
 
 //  @GetMapping(value="/average")
