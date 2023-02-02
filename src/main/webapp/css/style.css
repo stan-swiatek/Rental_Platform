@@ -1189,7 +1189,7 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 30%;
+  min-width: 45%;
   /* margin: 0 auto; */
 }
 
@@ -1256,7 +1256,7 @@ footer {
 }
 
 .convo-name-two {
-  color: #2F86DE; 
+  color: #0060c0; 
   font-weight: 700;
   font-size: 20px;
   /* #0060c0; #389cff; */
@@ -1299,5 +1299,32 @@ footer {
   column-gap: 20px;
   row-gap: 10px;
   margin: 0 0 10px 0;
+}
+
+.left {
+  text-align: left;
+  width: 100%;
+  float: left;
+  padding: 5px 5px 5px 0;
+  border: 3px solid #2F86DE;
+  margin-bottom: 5px;
+}
+
+.right {
+  text-align: right;
+  width: 100%;
+  float: right;
+  padding: 5px 5px 5px 0;
+  border: 3px solid #0060c0;
+  margin-bottom: 5px;
+}
+
+.messages-convo {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.product-main-text {
+  margin-bottom: 5px;
 }
 
