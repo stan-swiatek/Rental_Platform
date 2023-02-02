@@ -45,7 +45,7 @@
         <td>start date: ${booking.startDate}</td>
         <td>end date: ${booking.endDate}</td>
         <td>status: ${booking.status}</td>
-        <td>
+        <%-- <td>
         	<c:if test="${booking.status=='Pending'}">
         		<form action="/accept/${booking.id}" method="POST"></form>
         		<button>accept</button>
@@ -53,7 +53,7 @@
         		<button>deny</button>
         	</c:if>
         	<c:if test="${booking.status=='Cart'}">(in shopping cart)</c:if>
-        </td>
+        </td> --%>
         <td>---</td>
       </tr>
       
