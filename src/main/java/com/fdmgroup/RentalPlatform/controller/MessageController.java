@@ -50,9 +50,17 @@ public class MessageController {
 		List<Message> messages = messageService.findByOwner(user);
 		messages.addAll(messageService.findByBuyer(user));
 		List<Message> conversations = splitToConversation(messages);
+		List<Integer> unreadMessages = new ArrayList<>();
+		for (Message conversation : conversations) {
+			
+			unreadMessages.add((Integer) checkUnreadMessagesInConversation(conversation));
+			
+		}
+		model.addAttribute("unreadMarks",unreadMessages);
 		model.addAttribute("messages", conversations);
 		return "messages";
 	}
+	
 
 	@GetMapping(value = "/messages/{product_id}/{buyer_id}")
 	public String goToConversation(ModelMap model, @PathVariable int product_id, @PathVariable int buyer_id) {
@@ -98,7 +106,21 @@ public class MessageController {
 		System.out.println(messagesByOwnerAndProduct);
 		// Filter for only messages with this buyer
 		messagesByOwnerAndProduct.retainAll(messageService.findByBuyer(buyer));
-		System.out.println(messagesByOwnerAndProduct);
+		//System.out.println(messagesByOwnerAndProduct);
+		for(Message message : messagesByOwnerAndProduct) {
+			message = messageService.findById(message.getId()).get();
+			if(login.getLoggedUser().equals(user)) {
+				if(message.isSentByBuyer()) {		
+					message.setisRead(true);
+					messageService.saveMessage(message);
+				}
+			}else if(login.getLoggedUser().equals(buyer)) {
+				if(!message.isSentByBuyer()) {
+					message.setisRead(true);
+					messageService.saveMessage(message);
+				}
+			}
+		}
 		model.addAttribute("product", product);
 		model.addAttribute("owner",user);
 		model.addAttribute("buyer",buyer);
@@ -124,5 +146,22 @@ public class MessageController {
 		}
 		return conversations;
 	}
-
+	
+	private int checkUnreadMessagesInConversation(Message conversation) {
+		int unread = 0;
+//		System.out.println(user);
+		List<Message> allMessages = messageService.findByBuyer(conversation.getBuyer());
+		allMessages.retainAll(messageService.findByOwner(conversation.getOwner()));
+//		System.out.println("Number of messages" + allMessages.size());
+		for(Message message : allMessages) {
+			if(message.getOwner().equals(user)&&message.isSentByBuyer()&&!message.getisRead()) {
+				unread++;
+			}else if(message.getBuyer().equals(user)&&!message.isSentByBuyer()&&!message.getisRead()) {
+				unread++;
+			}
+		}
+		
+//		System.out.println("Unread messages " + unread );
+		return unread;
+	}
 }

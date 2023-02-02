@@ -26,11 +26,13 @@ import com.fdmgroup.RentalPlatform.model.Message;
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.services.IBookingService;
-import com.fdmgroup.RentalPlatform.model.Review;
+import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IProductService;
+import com.fdmgroup.RentalPlatform.services.IUserService;
+import com.fdmgroup.RentalPlatform.services.ProductService;
+import com.fdmgroup.RentalPlatform.model.Review;
 import com.fdmgroup.RentalPlatform.services.IRatingService;
 import com.fdmgroup.RentalPlatform.services.RatingService;
-import com.fdmgroup.RentalPlatform.model.User;
 import com.fdmgroup.RentalPlatform.util.Filtering;
 
 
@@ -52,6 +54,12 @@ public class ProductController {
 	
 //	@Autowired
 //	private IRatingService rating;
+	
+	@Autowired
+	private IMessageService messageService;
+	
+	@Autowired
+	private IUserService userService;
 	
 	User user;
 
@@ -279,6 +287,71 @@ public class ProductController {
 		login.isLoggedIn(model);
 		model.addAttribute("products", service.findAllProducts());
 	}
+	@GetMapping("/booking/{booking_id}/accept")
+	public String approveBooking(@PathVariable int booking_id,
+			ModelMap model) {
+		login.isLoggedIn(model);
+		Booking booking = bookingService.findById(booking_id);
+		booking.setAccepted(true);
+		bookingService.saveBooking(booking);
+		Product product = service.findProductById(booking.getProduct().getId());
+		product.setAvailable(false);
+		service.createNewProduct(product);
+		String approvalText = "Your offer have been approved! <br>"
+				+ "For product: " + booking.getProduct().getProductName()
+				+ "<br>By user: " + product.getOwner().getUsername()
+				+ "<br>From: " + booking.getStartDate()
+				+ "<br>To: " + booking.getEndDate()
+				+ "<br><br>Claim your product at: "+ booking.getProduct().getOwner().getAddress() +"<br>"
+				
+				;
+		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),approvalText);
+		
+		return "/index";
+	}            
+	
+	@GetMapping("/booking/{booking_id}/decline")
+	public String declineBooking( @PathVariable int booking_id,
+			ModelMap model) {
+		login.isLoggedIn(model);
+		Booking booking = bookingService.findById(booking_id);
+		booking.setAccepted(false);
+		String declineText = "Your offer have been declined! <br>"
+				+ "Search for other products.";
+		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),declineText);
+		return"/index";
+	}
+	
+	
+	private void sendNotification(User owner, User buyer, boolean sentByBuyer,Product product, String text) {
+		Message message = new Message();
+		message.setBuyer(buyer);
+		message.setOwner(owner);
+		message.setProduct(product);
+		message.setMessageText(
+				text
+				);
+		messageService.saveMessage(message);
+		
+	}
+	
+	private void sendApproval(User buyer, Booking booking) {
+		Message message = new Message();
+		User shazar = userService.findByUsername("Shazar");
+		message.setBuyer(shazar);
+		message.setOwner(buyer);
+		message.setProduct(booking.getProduct());
+		message.setMessageText(
+				"Your offer have been approved! <br>"
+				+ "For product: " + booking.getProduct().getProductName()
+				+ "<br>By user: " + buyer.getUsername()
+				+ "<br>From: " + booking.getStartDate()
+				+ "<br>To: " + booking.getEndDate()
+				+ "<br><br>Claim your product at: "+ booking.getProduct().getOwner().getAddress() +"<br>"
+				
+				);
+		messageService.saveMessage(message);
+	}
 
 	@PostMapping("/Booking/{product_id}")
 	public String registerSubmit(@ModelAttribute Booking booking, @PathVariable int product_id,
@@ -290,6 +363,7 @@ public class ProductController {
 		booking.setStatus("Cart");
 		bookingService.saveBooking(booking);
 		model.addAttribute("test", booking);
+		
 //		Optional<User> userFromDatabase = userService.findByUsername(user.getUsername());
 //		if (userFromDatabase.isPresent()) {
 //			model.addAttribute("message", "This user name already exists");
@@ -312,6 +386,15 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
+		String notificationText = "You have new Booking! <br>"
+				+ "For product: " + booking.getProduct().getProductName()
+				+ "<br>By user: " + product.getOwner().getUsername()
+				+ "<br>From: " + booking.getStartDate()
+				+ "<br>To: " + booking.getEndDate()
+				+ "<br><br>Do you accept?<br>"
+				+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
+				+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>";
+		sendNotification(product.getOwner(), booking.getUser(),true,product, notificationText);
 
 		user = login.getLoggedUser();
 		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
@@ -320,6 +403,27 @@ public class ProductController {
 		model.addAttribute("isAvailable", isAvailable(product));
 
 		return "ProductPage";
+	}
+	
+	@PostMapping("/delete_item/{booking_id}")
+	public String deleteItem(ModelMap model, @PathVariable int booking_id) {
+		login.isLoggedIn(model);
+		user = login.getLoggedUser();
+		
+		Booking booking = bookingService.findByID(booking_id);
+		booking.setStatus("Discarded");
+		bookingService.saveBooking(booking);
+		
+		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
+		Iterator<Booking> iterator = bookings.iterator();
+		while(iterator.hasNext()) {
+			Booking newBooking = iterator.next();
+			newBooking.setStatus("Pending");
+			bookingService.saveBooking(newBooking);
+		}
+		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
+		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
+		return "cart";
 	}
 	
 	boolean isAvailable(Product product) {
@@ -341,27 +445,6 @@ public class ProductController {
 	public String confirmCart(ModelMap model) {
 		login.isLoggedIn(model);
 		user = login.getLoggedUser();
-		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
-		Iterator<Booking> iterator = bookings.iterator();
-		while(iterator.hasNext()) {
-			Booking newBooking = iterator.next();
-			newBooking.setStatus("Pending");
-			bookingService.saveBooking(newBooking);
-		}
-		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
-		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
-		return "cart";
-	}
-	
-	@PostMapping("/delete_item/{booking_id}")
-	public String deleteItem(ModelMap model, @PathVariable int booking_id) {
-		login.isLoggedIn(model);
-		user = login.getLoggedUser();
-		
-		Booking booking = bookingService.findByID(booking_id);
-		booking.setStatus("Discarded");
-		bookingService.saveBooking(booking);
-		
 		List<Booking> bookings = bookingService.findByUserAndStatus(user, "Cart");
 		Iterator<Booking> iterator = bookings.iterator();
 		while(iterator.hasNext()) {

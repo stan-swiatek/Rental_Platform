@@ -121,11 +121,11 @@ public class Message {
 		this.sentByBuyer = sentByBuyer;
 	}
 
-	public boolean isRead() {
+	public boolean getisRead() {
 		return isRead;
 	}
 
-	public void setRead(boolean isRead) {
+	public void setisRead(boolean isRead) {
 		this.isRead = isRead;
 	}
 

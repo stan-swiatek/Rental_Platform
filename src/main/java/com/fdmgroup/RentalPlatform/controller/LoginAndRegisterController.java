@@ -1,5 +1,6 @@
 package com.fdmgroup.RentalPlatform.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -20,12 +21,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.RentalPlatform.model.Address;
+import com.fdmgroup.RentalPlatform.model.Message;
 import com.fdmgroup.RentalPlatform.model.User;
+import com.fdmgroup.RentalPlatform.repository.MessageRepository;
 import com.fdmgroup.RentalPlatform.security.DefaultUserDetailsService;
 import com.fdmgroup.RentalPlatform.security.UserPrincipal;
 import com.fdmgroup.RentalPlatform.services.AddressService;
+import com.fdmgroup.RentalPlatform.services.MessageService;
 import com.fdmgroup.RentalPlatform.services.ProductService;
 import com.fdmgroup.RentalPlatform.services.RoleService;
+
 
 @Controller
 public class LoginAndRegisterController {
@@ -41,6 +46,9 @@ public class LoginAndRegisterController {
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private MessageRepository messageRepository;
 
 	@Autowired
 	private RoleService roleService;
@@ -73,18 +81,36 @@ public class LoginAndRegisterController {
 	//Perform the login check and inject user info to the header if logged in.
 	public boolean isLoggedIn(ModelMap model) {
 
-		boolean isLoggedIn = SecurityContextHolder.getContext().getAuthentication() != null
-				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
-				&& !(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken);
+		boolean isLoggedIn = isLoggedIn();
 		if (isLoggedIn) {
 			UserPrincipal user = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			model.addAttribute("loggedIn", isLoggedIn);
 			model.addAttribute("firstname", user.getFirstName());
 			model.addAttribute("user_id", user.getId());
+			
+			int unread = checkUnreadMessages(getLoggedUser());
+			model.addAttribute("unread",unread);
 		}
 		return isLoggedIn;
 	}
 	
+	private int checkUnreadMessages(User user) {
+		int unread = 0;
+		System.out.println(user);
+		List<Message> allMessages = messageRepository.findByBuyer(user);
+		allMessages.addAll(messageRepository.findByOwner(user));
+		System.out.println("Number of messages" + allMessages.size());
+		for(Message message : allMessages) {
+			if(message.getOwner().equals(user)&&message.isSentByBuyer()&&!message.getisRead()) {
+				unread++;
+			}else if(message.getBuyer().equals(user)&&!message.isSentByBuyer()&&!message.getisRead()) {
+				unread++;
+			}
+		}
+		
+		System.out.println("Unread messages " + unread );
+		return unread;
+	}
 	public boolean isLoggedIn() {
 		return  SecurityContextHolder.getContext().getAuthentication() != null
 				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()

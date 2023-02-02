@@ -2,6 +2,7 @@ package com.fdmgroup.RentalPlatform.services;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import com.fdmgroup.RentalPlatform.model.Message;
 import com.fdmgroup.RentalPlatform.model.Product;
@@ -17,4 +18,6 @@ public interface IMessageService {
 	List<Message> findByBuyer(User buyer);
 
 	void saveMessage(Message message);
+
+	Optional<Message> findById(int id);
 }

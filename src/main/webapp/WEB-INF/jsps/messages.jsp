@@ -23,19 +23,21 @@
       <th class="filtered-td">Subject</th>
       <th class="filtered-td">From</th>
       <th class="filtered-td">Message</th>
-
     </tr>
-    <c:forEach items="${messages}" var="message">
+    <c:forEach items="${messages}" var="message" varStatus="loop">
       <tr>
-      
         <td class="filtered-tr">${message.subject}</td>
         <td class="filtered-tr">${message.buyer.username}</td>
         <td class="filtered-tr">${message.messageText}</td>
       <td><a href="/messages/${message.product.id}/${message.buyer.id}" class="link-details">Go to conversation</a></td>
-      </tr>
-      
-    </c:forEach>
-    
+      	<td><c:forEach items="${unreadMarks}" var="mark" varStatus="markLoop">
+      	<c:if test = "${markLoop.index == loop.index && mark>0}">
+      	( ${mark} )
+      	</c:if>
+      	</c:forEach>
+      </td>
+      </tr> 
+   </c:forEach>
   </table>
   <footer>
   	<%@ include file ="footerBar.jsp" %>
