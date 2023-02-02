@@ -24,7 +24,7 @@
           <div class="log-in-button">
            <div class="product-main-text">User name:  ${userName}</div>
            <div class="product-main-text">First name: ${userFristName}</div>
-           <div class="product-main-text">Sure name: ${userSurName}</div>
+           <div class="product-main-text">Surname: ${userSurName}</div>
            <div class="product-main-text">E-mail: ${userEmail}</div>
            <div class="product-main-text">Phone: ${userPhone}</div>
            <div class="product-main-text">Address: ${userAddress}</div>
@@ -68,7 +68,6 @@
         </div>
         </div>
       </div>
-     
     </main>
     </div>
     <footer class="footer-contact-information">

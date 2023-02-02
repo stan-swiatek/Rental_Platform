@@ -911,14 +911,27 @@ footer {
   width: 30px;
 }
 
+.png-user {
+  height: 30px;
+  width: 30px;
+}
+
 .envelope {
  display: flex;
  justify-content: center;
  align-items: center;
  row-gap: 3px;
 }
+.user-logo {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
 .photo {
  margin-right: 3px;
+}
+.user-photo {
+ margin-right: 25px;	
 }
 
 .about-item-block-title {
@@ -1423,4 +1436,19 @@ footer {
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+}
+
+.help-block-two-faq {
+  padding: 5px;
+  border: 1px solid;
+  border-color: #2F86DE;
+  border-radius: 3px;
+  transition-duration: 1s;
+  min-width: 600px;
+  max-width: 800px;
+}
+
+.faq-help-block {
+  display: flex;
+  justify-content: center;
 }

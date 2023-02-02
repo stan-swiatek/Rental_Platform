@@ -23,7 +23,7 @@
     <tr>
       <th class="filtered-td">Product name</th>
       <th class="filtered-td">Username</th>
-      <th class="filtered-td">BookingDate - status</th>
+      <th class="filtered-td">Booking date - status</th>
 
     </tr>
     <c:forEach items="${bookings}" var="booking">

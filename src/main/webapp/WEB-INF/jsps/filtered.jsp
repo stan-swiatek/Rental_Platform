@@ -192,14 +192,14 @@
 	</table>
 	</div> <%-- Remove in case of adding back filters--%>
 	</div> <%-- Remove in case of adding back filters--%>
-	
+	    </header>
 	          <div class="main-banner">
  
           </div>
           
-         </div>
-       </div>
-    </header>
+<!--          </div>
+       </div> -->
+
     <main class="main">
     </main>
     <footer class="footer-contact-information">

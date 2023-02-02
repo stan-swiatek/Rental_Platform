@@ -17,9 +17,14 @@
 				<a href="/register">Sign up</a>
 			</c:if>
 			<c:if test="${loggedIn}">
-				<p>
+			  <div class="user-logo">
+				<p class="user-photo">
 					Hello, <span>${firstname}</span>!
 				</p>
+			    <a href="/UserProfile">
+			      <img class="png-user" alt="" src="/clipart1297398.png">
+				</a>
+			  </div>
 				<div class="envelope">
 	                <a class="photo" href="/messages/${user_id}">
 					  <img class="png" alt="" src="/pngkey.com-email-icon-white-png-9311379.png">
