@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Product {
@@ -24,6 +25,16 @@ public class Product {
 	private boolean isAvailable;
 
 	private double rating;
+	
+	private String photos;
+	
+	@Transient
+    public String getPhotosImagePath() {
+        if (photos == null || id == null) return null;
+         
+        return "/product-photos/" + id + "/" + photos;
+    }
+	
 
 	public Product() {
 	}
@@ -120,6 +131,14 @@ public class Product {
 
 	public void setPickUpLocation(String pickUpLocation) {
 		this.pickUpLocation = pickUpLocation;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 	@Override

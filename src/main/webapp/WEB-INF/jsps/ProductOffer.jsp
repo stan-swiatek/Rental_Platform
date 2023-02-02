@@ -92,6 +92,8 @@
               placeholder="type here..."
             ><br>
             <div class="register-button">
+            <label>Photos: </label>
+            <input type="file" name="image" accept="image/png" />
 
            		<input type="submit" value="Create">
 

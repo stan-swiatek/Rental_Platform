@@ -42,7 +42,8 @@
         <div class="product-main">
           <div class="product-main-one">
             <div class="product-main-one-container">
-              <img src="/new_car_landing_S_2.jpg" alt="">  
+              <!-- <img src="/new_car_landing_S_2.jpg" alt="">  -->
+              <img th:src="/@{${product.photosImagePath}}" /> 
             </div>
             <div>
             <div class="product-main-description">Description: </div>
