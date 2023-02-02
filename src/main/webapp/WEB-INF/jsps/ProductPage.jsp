@@ -70,7 +70,7 @@
 				value="2018-07-22"
 				min="2018-01-01" max="2018-12-31"> -->
 				
-            	<label for="startDate">End date:</label>
+            	<label for="startDate">Start date:</label>
 				<input type="date" id="startDate" name="startDate">
 				
             	<label for="endDate">End date:</label>
