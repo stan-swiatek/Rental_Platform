@@ -1,5 +1,6 @@
 package com.fdmgroup.RentalPlatform.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +21,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fdmgroup.RentalPlatform.model.Address;
 import com.fdmgroup.RentalPlatform.model.Booking;
 import com.fdmgroup.RentalPlatform.model.Message;
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.model.User;
+import com.fdmgroup.RentalPlatform.repository.ProductRepository;
 import com.fdmgroup.RentalPlatform.services.IBookingService;
 import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IProductService;
@@ -33,6 +37,7 @@ import com.fdmgroup.RentalPlatform.services.ProductService;
 import com.fdmgroup.RentalPlatform.model.Review;
 import com.fdmgroup.RentalPlatform.services.IRatingService;
 import com.fdmgroup.RentalPlatform.services.RatingService;
+import com.fdmgroup.RentalPlatform.util.FileUploadUtil;
 import com.fdmgroup.RentalPlatform.util.Filtering;
 
 
@@ -50,6 +55,9 @@ public class ProductController {
 	
 	@Autowired
 	private IBookingService bookingService;
+	
+	@Autowired
+	private ProductRepository repo;
 
 	
 //	@Autowired
@@ -78,30 +86,89 @@ public class ProductController {
 //		return "UserProfile";
 //	}
 	
-	
 	@PostMapping(value="/ProductOffer")
-	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
+	public String createNewProduct( ModelMap model,@RequestParam String productName,@RequestParam String description,@RequestParam String category,
+									@RequestParam String type, @RequestParam String color, @RequestParam Double price, @RequestParam String pickUpLocation,
+	                                @RequestParam(value = "image", required = false) MultipartFile[] multipartFiles) throws IOException {
+	    Product product = new Product();
+	    product.setProductName(productName);
+	    product.setDescription(description);
+	    product.setCategory(category);
+	    product.setType(type);
+	    product.setColor(color);
+	    product.setPrice(price);
+	    product.setPickUpLocation(pickUpLocation);	    
 		user = login.getLoggedUser();
-		product.setOwner(user);
-		service.createNewProduct(product);
-		populateModel(model);
-		model.addAttribute("product",product);
-		
-		model.addAttribute("productName", product.getProductName());
-		model.addAttribute("productDescription", product.getDescription());
-		model.addAttribute("productCategory", product.getCategory());
-		model.addAttribute("productType", product.getType());
-		model.addAttribute("productColor", product.getColor());
-		model.addAttribute("productPrice", product.getPrice());
-		model.addAttribute("pickUpLocation", product.getPickUpLocation());
-//		String productName = product.getProductName();
-//		String description = product.getDescription();
-//		String category = product.getCategory();
-//		String type = product.getType();
-//		String color = product.getColor();
-//		BigDecimal price = product.getPrice();
-		return "redirect:/ProductPage/" + product.getId();
+	    product.setOwner(user);
+	    service.createNewProduct(product);
+	    for(MultipartFile multipartFile: multipartFiles) {
+	    	
+		    if (multipartFile != null && !multipartFile.isEmpty()) {
+		        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		        System.out.println("Path to file: " + fileName);
+		        String uploadDir = "./src/main/webapp/img/" + product.getId();
+		        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		        product.setPhotos("/img/"+ product.getId() + "/" + fileName);
+		    }
+	    }
+	    
+	    service.createNewProduct(product);
+	    populateModel(model);
+	    
+	    model.addAttribute("product", product);
+	    model.addAttribute("productName", product.getProductName());
+	    model.addAttribute("productDescription", product.getDescription());
+	    model.addAttribute("productCategory", product.getCategory());
+	    model.addAttribute("productType", product.getType());
+	    model.addAttribute("productColor", product.getColor());
+	    model.addAttribute("productPrice", product.getPrice());
+	    model.addAttribute("pickUpLocation", product.getPickUpLocation());
+	    
+	    return "redirect:/ProductPage/" + product.getId();
 	}
+	
+//	@PostMapping(value="/ProductOffer")
+//	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model, @RequestParam("file") MultipartFile multipartFile) throws IOException {
+//		user = login.getLoggedUser();
+//		product.setOwner(user);
+//		
+//		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//        product.setPhotos(fileName);
+//		
+//        
+//        service.createNewProduct(product);
+//        
+//        String uploadDir = "user-photos/" + product.getId();
+//        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+//        
+//		populateModel(model);
+//		model.addAttribute("product",product);
+//		
+//		model.addAttribute("productName", product.getProductName());
+//		model.addAttribute("productDescription", product.getDescription());
+//		model.addAttribute("productCategory", product.getCategory());
+//		model.addAttribute("productType", product.getType());
+//		model.addAttribute("productColor", product.getColor());
+//		model.addAttribute("productPrice", product.getPrice());
+//		model.addAttribute("pickUpLocation", product.getPickUpLocation());
+//		
+////		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+////        product.setPhotos(fileName);
+//         
+//       // Product savedProduct = repo.save(product);
+// 
+//       // String uploadDir = "user-photos/" + savedProduct.getId();
+// 
+//       // FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+//		
+////		String productName = product.getProductName();
+////		String description = product.getDescription();
+////		String category = product.getCategory();
+////		String type = product.getType();
+////		String color = product.getColor();
+////		BigDecimal price = product.getPrice();
+//		return "redirect:/ProductPage/" + product.getId();
+//	}
 	
 	
 // original method before making changes to display data in productpage	
@@ -129,7 +196,8 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
-		
+		model.addAttribute("mainPhotoUrl",product.getPhotos().get(0));
+		model.addAttribute("pictureUrls", product.getPhotos());
 		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
 		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
 		
@@ -144,6 +212,29 @@ public class ProductController {
 		
 		model.addAttribute("isAvailable", isAvailable(product));
 		
+		return "ProductPage";
+	}
+	
+	@PostMapping(value="/ProductPage/{id}/{photoIndex}")
+	public String goToNextPhoto(ModelMap model, @PathVariable int id,@PathVariable int photoIndex) {
+		login.isLoggedIn(model);
+		Product product = service.findProductById(id);
+		model.addAttribute("product",product);
+		model.addAttribute("productName", product.getProductName());
+		model.addAttribute("productDescription", product.getDescription());
+		model.addAttribute("productCategory", product.getCategory());
+		model.addAttribute("productType", product.getType());
+		model.addAttribute("productColor", product.getColor());
+		model.addAttribute("productPrice", product.getPrice());
+		model.addAttribute("mainPhotoUrl",product.getPhotos().get(photoIndex));
+		model.addAttribute("pictureUrls", product.getPhotos());
+		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
+		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
+		model.addAttribute("pickUpLocation", product.getPickUpLocation());
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
+		model.addAttribute("bookings", bookings);
+		model.addAttribute("isAvailable", isAvailable(product));
 		return "ProductPage";
 	}
 	
@@ -456,4 +547,6 @@ public class ProductController {
 		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
 		return "cart";
 	}
+	
+	
 }

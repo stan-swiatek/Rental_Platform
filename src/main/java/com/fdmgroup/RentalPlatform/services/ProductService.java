@@ -9,8 +9,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.repository.ProductRepository;
+import com.fdmgroup.RentalPlatform.util.FileUploadUtil;
 
 @Service
 public class ProductService implements IProductService {
@@ -32,6 +35,16 @@ public class ProductService implements IProductService {
 
 	@Override
 	public void createNewProduct(Product product) {
+//		
+//		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//        product.setPhotos(fileName);
+//         
+//        Product savedProduct = repo.save(product);
+// 
+//        String uploadDir = "user-photos/" + savedProduct.getId();
+// 
+//        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		
 		repo.save(product);
 		
 	}
@@ -109,6 +122,8 @@ public class ProductService implements IProductService {
 	public List<Product> findProductByMaxPrice(String max) {
 		return repo.findByPriceLessThanEqual(Double.parseDouble(max));
 	}
+
+	
 	
 
 }

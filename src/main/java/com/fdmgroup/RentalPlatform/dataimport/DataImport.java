@@ -141,7 +141,7 @@ public class DataImport implements ApplicationRunner {
 				product.setPickUpLocation(pickUpLocations[i]);
 				product.setOwner(owners[i]);
 				product.setAvailable(true);
-				product.setImageUrl(Arrays.asList("/img/"+ i + "_1"));;
+				product.setPhotos(listOfLists.get(i).get(0));;
 				products.add(product);
 			}
 

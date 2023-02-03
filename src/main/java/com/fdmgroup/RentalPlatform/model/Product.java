@@ -1,7 +1,10 @@
 package com.fdmgroup.RentalPlatform.model;
 
-import java.util.Date;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -29,8 +32,9 @@ public class Product {
 	private double rating;
 	
 	@ElementCollection
-	private List<String> imageUrl;
 
+	private List<String> photos;
+	
 	
 	public Product() {
 	}
@@ -128,16 +132,46 @@ public class Product {
 	public void setPickUpLocation(String pickUpLocation) {
 		this.pickUpLocation = pickUpLocation;
 	}
-	public List<String> getImageUrl() {
-		return imageUrl;
+
+
+	public List<String> getPhotos() {
+		return photos;
 	}
 
-	public void setImageUrl(List<String> imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setPhotos(String photos) {
+		if(this.photos== null) {
+			this.photos = new ArrayList<String>();
+		}
+		this.photos.add(photos);
 	}
+
+
 	@Override
 	public String toString() {
 		return "Product [productName=" + productName + ", owner=" + owner + "]";
 	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(category, color, description, isAvailable, owner, photos, pickUpLocation, price,
+				productName, rating, type);
+	}
 
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(category, other.category) && Objects.equals(color, other.color)
+				&& Objects.equals(description, other.description) && isAvailable == other.isAvailable
+				&& Objects.equals(owner, other.owner) && Objects.equals(photos, other.photos)
+				&& Objects.equals(pickUpLocation, other.pickUpLocation) && Objects.equals(price, other.price)
+				&& Objects.equals(productName, other.productName)
+				&& Double.doubleToLongBits(rating) == Double.doubleToLongBits(other.rating)
+				&& Objects.equals(type, other.type);
+	}
 }
