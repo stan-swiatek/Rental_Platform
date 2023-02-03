@@ -43,7 +43,7 @@
               cols="35"
               class="textarea"
               class="first"
-              placeholder="type here...">
+              placeholder="">
             </textarea><br>
             <label for="category">Category:</label><br><br>
             <select name="category" id="category">

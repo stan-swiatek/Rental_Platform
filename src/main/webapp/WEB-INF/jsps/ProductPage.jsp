@@ -27,7 +27,31 @@
         <div class="product-main">
           <div class="product-main-one">
             <div class="product-main-one-container">
-              <img src="/new_car_landing_S_2.jpg" alt="">  
+            <c:if test = "${mainPhotoUrl!=''}">
+              <img src="${mainPhotoUrl}" />
+              </c:if>
+							<div class="carousel">
+								<div class="carousel-row-one">
+								<c:forEach var="url" items="${pictureUrls}" varStatus="status">
+									<c:if test="${!status.first&&url==mainPhotoUrl}">
+										<form action="/ProductPage/${id}/${status.index-1}"
+											method="POST">
+											<input  type="submit" id="previousPhoto" value="Previous Photo" >
+										</form>
+									</c:if>
+								</c:forEach>
+								</div>
+								<div class="carousel-row-two">
+								<c:forEach var="url" items="${pictureUrls}" varStatus="status" >
+									<c:if test="${!status.last&&url==mainPhotoUrl}">
+										<form action="/ProductPage/${id}/${status.index+1}"
+											method="POST">
+											<input type="submit" id="nextPhoto" value="Next Photo">
+										</form>
+									</c:if>
+								</c:forEach>
+								</div>
+							</div>
             </div>
             <div>
             <div class="product-main-description">Description: </div>

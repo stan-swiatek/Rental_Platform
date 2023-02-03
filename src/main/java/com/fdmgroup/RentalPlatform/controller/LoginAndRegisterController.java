@@ -63,7 +63,7 @@ public class LoginAndRegisterController {
 	@GetMapping("/logged")
 	public String loggedUser(ModelMap model) {
 		logService.isLoggedIn(model);
-		return "index";
+		return "redirect:/";
 	}	
 
 	@PostMapping("/register")
