@@ -19,6 +19,9 @@ public class RentalPlatformController {
 	
 	@Autowired
 	private LogService login;
+	
+	@Autowired
+	private ProductService productService;
 
 	
 	@GetMapping(value = "/")
