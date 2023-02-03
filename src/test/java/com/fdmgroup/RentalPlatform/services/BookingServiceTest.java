@@ -28,17 +28,44 @@ import com.fdmgroup.RentalPlatform.repository.BookingRepository;
 import com.fdmgroup.RentalPlatform.security.DefaultUserDetailsService;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(
-  webEnvironment = SpringBootTest.WebEnvironment.MOCK,
-  classes = ApplicationArguments.class)
+@SpringBootTest
 @AutoConfigureMockMvc
 //@TestPropertySource(
 //  locations = "classpath:application-integrationtest.properties")
 public class BookingServiceTest {
+	@Autowired
+	DefaultUserDetailsService userService = new DefaultUserDetailsService(null);
+	
+	@Autowired
+	BookingService bookingService = new BookingService();
+	
+	@Autowired
+	ProductService productService = new ProductService();
+	
+	@Test
+	public void assertReturnOfOneMatchingOfTotalOfTwoBookings__whenExecuting__BookingService_findByUser() {
+		User user1 = new User();
+		userService.saveUser(user1);
+		User user2 = new User();
+		userService.saveUser(user2);
+		Booking booking1 = new Booking();
+		Booking booking2 = new Booking();
+		booking1.setUser(user1);
+		booking2.setUser(user2);
+		bookingService.saveBooking(booking1);
+		bookingService.saveBooking(booking2);
+		
+		List<Booking> bookingsReturned = bookingService.findByUser(user1);
+		
+		System.out.println("TAGGGG"+bookingService.findAll().size());
+		assertEquals(1, bookingsReturned.size());
+		assertEquals(booking1, bookingsReturned.get(0));
+	}
+	
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_findByUser__whenExecuting__BookingService_findByUser() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
+		BookingRepository tempRepo = bookingService.getRepo();
 		bookingService.setRepo(mockRepo);
 		
 		User mockUser1 = mock(User.class);
@@ -54,34 +81,14 @@ public class BookingServiceTest {
 		
 		bookingService.findByUser(mockUser1);
 		
+		bookingService.setRepo(tempRepo);
+		
 		verify(mockRepo).findByUser(mockUser1);
-	}
-	
-	@Test
-	public void assertReturnOfOneMatchingOfTotalOfTwoBookings__whenExecuting__BookingService_findByUser() {
-		BookingService bookingService = new BookingService();
-
-		DefaultUserDetailsService userService = new DefaultUserDetailsService(null);
-		User user1 = new User();
-		userService.saveUser(user1);
-		User user2 = new User();
-		Booking booking1 = new Booking();
-		Booking booking2 = new Booking();
-		booking1.setUser(user1);
-		booking2.setUser(user2);
-		bookingService.saveBooking(booking1);
-		bookingService.saveBooking(booking2);
-		
-		List<Booking> bookingsReturned = bookingService.findByUser(user1);
-		
-		assertEquals(1, bookingsReturned.size());
-		assertEquals(booking1, bookingsReturned.get(0));
 	}
 
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_findByProduct__whenExecuting__BookingService_findByProduct() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
 		bookingService.setRepo(mockRepo);
 		
 		Product mockProduct = mock(Product.class);
@@ -93,12 +100,10 @@ public class BookingServiceTest {
 	
 	@Test
 	public void assertReturnOfOneMatchingOfTotalOfTwoBookings__whenExecuting__BookingService_findByProduct() {
-		BookingService bookingService = new BookingService();
-
-		ProductService productService = new ProductService();
 		Product product1 = new Product();
 		productService.createNewProduct(product1);
 		Product product2 = new Product();
+		productService.createNewProduct(product2);
 		Booking booking1 = new Booking();
 		Booking booking2 = new Booking();
 		booking1.setProduct(product1);
@@ -106,8 +111,22 @@ public class BookingServiceTest {
 		bookingService.saveBooking(booking1);
 		bookingService.saveBooking(booking2);
 		
-		List<Booking> bookingsReturned = bookingService.findByProduct(product1);
-		
+		List<Booking> bookingsReturned = bookingService.findAll();//findByProduct(booking1.getProduct());
+//		System.out.println("TTTT "+productService.findAllProducts().size());
+//		for(Product product : productService.findAllProducts()) {
+//			System.out.println("ID: " + product.getId());
+//		}
+//
+//		System.out.println("ID: " + product1.getId());
+//		System.out.println("ID: " + product2.getId());
+//		
+//		System.out.println("returned");
+//		System.out.println("bpID: "+booking1.getProduct().getId());
+//		System.out.println("bpID: "+booking2.getProduct().getId());
+//		for(Booking booking : bookingsReturned) {
+//			System.out.println("bpID: "+booking.getProduct().getId());
+//		}
+//		
 		assertEquals(1, bookingsReturned.size());
 		assertEquals(booking1, bookingsReturned.get(0));
 	}
@@ -115,7 +134,6 @@ public class BookingServiceTest {
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_findAll__whenExecuting__BookingService_findAll() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
 		bookingService.setRepo(mockRepo);
 		
 		bookingService.findAll();
@@ -126,7 +144,6 @@ public class BookingServiceTest {
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_saveBooking__whenExecuting__BookingService_saveBooking() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
 		bookingService.setRepo(mockRepo);
 		Booking booking = mock(Booking.class);
 		
@@ -138,7 +155,6 @@ public class BookingServiceTest {
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_findByID__whenExecuting__BookingService_findByID() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
 		bookingService.setRepo(mockRepo);
 		
 		int i = 0;
@@ -151,7 +167,6 @@ public class BookingServiceTest {
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_findByProductAndUser__whenExecuting__BookingService_findByProductAndUser() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
 		bookingService.setRepo(mockRepo);
 		
 		Product testProduct = new Product();
@@ -165,7 +180,6 @@ public class BookingServiceTest {
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_findByProductAndStatus__whenExecuting__BookingService_findByProductAndStatus() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
 		bookingService.setRepo(mockRepo);
 		
 		Product testProduct = new Product();
@@ -179,7 +193,6 @@ public class BookingServiceTest {
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_findByUserAndStatus__whenExecuting__BookingService_findByUserAndStatus() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
 		bookingService.setRepo(mockRepo);
 		
 		User testUser = new User();
@@ -193,7 +206,6 @@ public class BookingServiceTest {
 	@Test
 	public void verifyExecutionOfMehtodCall__BookingRepository_findByUserAndStatusNot__whenExecuting__BookingService_findByUserAndStatusNot() {
 		BookingRepository mockRepo = mock(BookingRepository.class);
-		BookingService bookingService = new BookingService();
 		bookingService.setRepo(mockRepo);
 		
 		User testUser = new User();

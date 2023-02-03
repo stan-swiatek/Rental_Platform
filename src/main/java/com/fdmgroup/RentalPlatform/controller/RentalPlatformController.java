@@ -7,11 +7,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.fdmgroup.RentalPlatform.services.LogService;
+
 @Controller
 public class RentalPlatformController {
 	
 	@Autowired
-	private LoginAndRegisterController login;
+	private LogService login;
 
 	
 	@GetMapping(value = "/")

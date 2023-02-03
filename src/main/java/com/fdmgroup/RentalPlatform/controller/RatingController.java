@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.model.Rating;
 import com.fdmgroup.RentalPlatform.model.User;
+import com.fdmgroup.RentalPlatform.services.LogService;
 import com.fdmgroup.RentalPlatform.services.ProductService;
 import com.fdmgroup.RentalPlatform.services.RatingService;
 
@@ -28,7 +29,7 @@ public class RatingController {
   private ProductService productService;
   
   @Autowired
-  private LoginAndRegisterController login;
+  private LogService login;
   
   public RatingController(RatingService ratingService) {
     this.ratingService = ratingService;
