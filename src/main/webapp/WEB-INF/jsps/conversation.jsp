@@ -9,19 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
 <title>Conversation</title>
-<style>
-.left {
-	text-align: left;
-	width: 40%;
-	float: left;
-}
-
-.right {
-	text-align: right;
-	width: 40%;
-	float: right;
-}
-</style>
 </head>
 <body>
 	<header class="header">
@@ -63,17 +50,17 @@
 		<c:forEach var="message" items="${messages}">
 			<div
 				class="<c:if test="${message.sentByBuyer}">left</c:if><c:if test="${not message.sentByBuyer}">right</c:if>">
-				<table>
+				<table class="messages-convo">
 
-					<tr>
+					<tr class="message-main">
 						<!--<th>Message:</th>  -->
 						<td>${message.messageText}</td>
 					</tr>
-					<tr>
+					<tr class="message-main">
 						<th>Time Sent:</th>
 						<td>${message.timeSent}</td>
 					</tr>
-					<tr>
+					<tr class="message-main">
 						<th>Is Read:</th>
 						<td>${message.isRead}</td>
 					</tr>

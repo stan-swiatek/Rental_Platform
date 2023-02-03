@@ -27,15 +27,7 @@ public class User {
 	@GeneratedValue
 	private Integer userId;
 
-	public User(String username, String password, String email, String firstName, String surName, String phoneNumber) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.firstName = firstName;
-		this.surName = surName;
-		this.phoneNumber = phoneNumber;
-	}
+	
 
 	private String username, password, email, firstName, surName, phoneNumber;
 
@@ -55,8 +47,16 @@ public class User {
 
 	public User() {
 	}
-//	TODO - add constructors
+	public User(String username, String password, String email, String firstName, String surName, String phoneNumber) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.firstName = firstName;
+		this.surName = surName;
+		this.phoneNumber = phoneNumber;
 
+	}
 	
 
 	public User(String username) {
@@ -124,8 +124,8 @@ public class User {
 		this.surName = surName;
 	}
 
-	public String getAddress() {
-		return address.toString();
+	public Address getAddress() {
+		return address;
 	}
 
 	public void setAddress(Address address) {

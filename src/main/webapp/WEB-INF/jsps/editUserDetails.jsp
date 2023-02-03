@@ -34,6 +34,8 @@
                 id="email" 
                 name="email"
                 class="second"
+                value="${user.email}"
+                
                 
                 placeholder="type here..."
               ><br>
@@ -43,6 +45,7 @@
                 id="phoneNumber" 
                 name="phoneNumber"
                 class="second"
+                value="${user.phoneNumber}"
                 
                 placeholder="type here..."
               ><br>
@@ -52,6 +55,7 @@
               	id="firstName" 
 				name="firstName" 
 				class="second"
+				value="${user.firstName}"
 				
 				placeholder="Name"
 			  ><br>
@@ -60,7 +64,8 @@
 			  	id="surName" 
 			  	class="second"
 			  	type="text"
-				name="surName" 
+				name="surName"
+				value="${user.surName}" 
 				
 				placeholder="Surname"
 			  ><br>	 

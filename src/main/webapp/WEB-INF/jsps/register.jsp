@@ -24,18 +24,21 @@
     </header>
     <main class="main">
       <div class="log-name">Sign up</div>
-        <div class="main-row">
+        <div class="main-row-reg">
         <div class="log-name-block">
-          <div class="log-name-block-main">
-          <div>${message}</div>
-            <form action="/register" method="POST">
+          <div class="register-block-main">
+            <form action="/register" method="POST" class="form">
+            <div class="form-container-main">
+            <div class="special-mes">${message}</div>
+            <div class="form-container">
+            <div class="form-one">
               <label for="username">Create username:</label><br>
               <input 
                 type="text" 
                 id="username"
                 name="username"
                 class="first"
-                placeholder="type here..."
+                placeholder="Username"
               ><br>
               <label for="password">Create password:</label><br>
               <input 
@@ -43,7 +46,7 @@
                 id="password"
                 name="password"
                 class="second"
-                placeholder="type here..."
+                placeholder="Password"
               ><br>
               <label for="confrimPassword">Confirm password:</label><br>
               <input 
@@ -51,7 +54,7 @@
                 id="confirmPassword"
                 name="confirmPassword"
                 class="second"
-                placeholder="type here..."
+                placeholder="Confirm password"
               ><br>
               <label for="email">Enter your email:</label><br>
               <input 
@@ -59,7 +62,7 @@
                 id="email" 
                 name="email"
                 class="second"
-                placeholder="type here..."
+                placeholder="Email"
               ><br>
               <label for="email">Enter your phone number:</label><br>
               <input 
@@ -67,7 +70,7 @@
                 id="phoneNumber" 
                 name="phoneNumber"
                 class="second"
-                placeholder="type here..."
+                placeholder="Phone number"
               ><br>
               <label for="firstName">Name:</label><br>
               <input 
@@ -137,19 +140,21 @@
 			  ><br>
 			</div>
 			</div>
+              </div>
 			  <div class="register-button">
            		<input type="submit" value="Register">
           	  </div>
             </form>
-          </div>
-          <div class="check"> 
+            <div class="check"> 
             <form>
               <input type="checkbox" id="remain" name="remain" value="remain">
               <label for="remain">Remain logged in</label><br>
             </form>
+            </div>
           </div>
         </div>
-      </div>
+
+        </div>
   
     </main>
     <footer class="footer-contact-information">

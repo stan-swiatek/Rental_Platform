@@ -17,15 +17,22 @@
 				<a href="/register">Sign up</a>
 			</c:if>
 			<c:if test="${loggedIn}">
-				<p>
+			  <div class="user-logo">
+				<p class="user-photo">
 					Hello, <span>${firstname}</span>!
 				</p>
-                <a href="/messages">
-				  <img class="png" alt="" src="/pngkey.com-email-icon-white-png-9311379.png">
+			    <a href="/UserProfile">
+			      <img class="png-user" alt="" src="/clipart1297398.png">
 				</a>
-				<c:if test="${unread > 0}">
-					<span>(${unread})</span>
-				</c:if>
+			  </div>
+				<div class="envelope">
+	                <a class="photo" href="/messages">
+					  <img class="png" alt="" src="/pngkey.com-email-icon-white-png-9311379.png">
+					</a>
+					<c:if test="${unread > 0}">
+						<span>(${unread})</span>
+					</c:if>
+				</div>
 				<a href="/logout">Log out</a>
 			</c:if>
 

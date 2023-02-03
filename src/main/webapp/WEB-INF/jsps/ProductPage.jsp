@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
+	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,25 +12,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
-  
-  <link href="css/jquery.rateyo.min.css" rel="stylesheet" type="text/css">
-<%--   <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/jquery.rateyo.min.js"></script>
-  <script type="text/javascript">
-  
-  $ (function () {
-	  $("#rating").rateYo({
-		  rating: 0,
-		  numStars: 5,
-		  maxValue: 5,
-		  halfStar: true,
- 		  onChange: function (rating, rateYoInstance) {
-			  $('#hdrating').val(rating);
-		  } 
-	  });
-  });
-  
-  </script> --%>
     
   <title>Shazar</title>
 </head>
@@ -46,7 +31,7 @@
             </div>
             <div>
             <div class="product-main-description">Description: </div>
-            <div class="product-main-description-text">${productDescription} Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
+            <div class="product-main-description-text">${productDescription} </div>
             </div>
           </div>
           <div class="product-main-two">
@@ -62,20 +47,13 @@
             
             <div class="product-main-text">Price: ${productPrice} $ per 24 hours</div>
 
-            <div class="product-main-description">Description: </div>
-            <div class="product-main-description-text">${productDescription}</div>
-
-            <div class="product-main-price">Pricing policy:</div>
-            <div class="product-main-price-description">One hour (up to 12 hours): x</div>
-            <div class="product-main-price-description">One hour (more than 12 hours): x</div>
-            <div class="product-main-price-description">One hour (more than 24 hours): x</div>
-
 
 			<c:if test="${not isAvailable}">
 				NOT AVAILABLE
 			</c:if>
 			<c:if test="${isAvailable}">
             <div class="product-button-block">
+            <div class="product-book-one">Book the product for the rent:</div>
             <form action="/Booking/${id}" method="POST">
             	<!-- <label for="startDate">Start date:</label>
 				<input type="date" id="startDate" name="start date"
@@ -83,12 +61,12 @@
 				min="2018-01-01" max="2018-12-31"> -->
 				
             	<label for="startDate">Start date:</label>
-				<input type="date" id="startDate" name="startDate">
+				<input type="date" id="startDate" name="startDate"><br>
 				
             	<label for="endDate">End date:</label>
 				<input type="date" id="endDate" name="endDate">
 			  
-			  <button>book</button>
+			  <button class="rating-input">Book</button>
             
               <!-- <div class="product-button-row-one">
                 <div class="main-row-item-block-button">
@@ -96,12 +74,9 @@
                 </div>
               </div> -->
               </form>
-
-                <div class="main-row-item-block-button">
-                  <a href="#"><span>Book</span></a>
-                </div>
               </div>
               <div class="product-button-row-two">
+              <div class="product-book">Rate the product and the owner:</div>
                 <div class="main-row-item-block-button" id="rate">
                 
                   <form action="/rate/${id}" method="post">
@@ -109,41 +84,35 @@
 <!--                     <div>Rating:</div> -->
 <!--                     <div id="rating"></div>
                     <input type="hidden" id="hdrating" name="hdrating"> -->
-                    <label for="value">Rating</label><br>
+                    
+                    <label for="value"></label><br>
 					  <input 
+					    class="rate-input"
 					  	id="value" 
 					  	class="second"
 					  	type="number" 
 					  	name="userValue"
-						placeholder="User rating"
+					  	min="0"
+					  	max="5"
+						placeholder="Place user rating here"
 					  >
 					  <input 
+					    class="rate-input"
 					  	id="value" 
 					  	class="second"
 					  	type="number" 
 					  	name="productValue"
-						placeholder="Product rating"
+					  	min="0"
+					  	max="5"
+						placeholder="Place product rating here"
 					  >
-                    <input type="submit" value="Rate">
+                    <input type="submit" value="Rate" class="rating-input">
                   </form>  
-                
-<!-- 				    <form id="addRatingForm">
-				      <label for="ratingInput">Rating:</label>
-				      <input type="text" id="ratingInput" name="ratingInput">
-				      <input type="submit" value="Submit">
-				    </form> -->
-<!--                   <input type="number" id="rating" name="rating"
-                    min="0" max="5">
-                  <a href="#"><span>Rate the product</span></a>  -->
-                </div>
-                <div class="main-row-item-block-button" id="rate">
-                  <a href="#"><span>Rate the owner</span></a>
-                </div> 
-                <div class="main-row-item-block-button" id="rate">
-                  <a href="/messages/${product.id}/${user_id}"><span>Send a message</span></a>
                 </div>
               </div>
-            </div>
+                <div class="main-row-item-block-button" id="rate">
+                  <a href="/messages/${product.id}/${user_id}"><span>Send message to the product owner</span></a>
+                </div>
 			</c:if>
           </div>
         </div>
@@ -161,29 +130,11 @@
       </tr>
       
     </c:forEach>
-  
+  </div>
     </main>
     <footer class="footer-contact-information">
         <%@ include file ="footerBar.jsp" %>
     </footer>
   </div>
-  
-<%--       <script>
-      function getAverageRating() {
-        fetch("/ratings/average")
-          .then(response => response.json())
-          .then(average => {
-            document.getElementById("average").innerHTML = average;
-          });
-      }
-      
-      function addRating() {
-        const rating = document.getElementById("rating").value;
-        fetch("/ratings/add?rating=" + rating, { method: "POST" })
-          .then(() => {
-            getAverageRating();
-          });
-      }
-    </script> --%>
 </body>
 </html>
