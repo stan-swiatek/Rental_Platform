@@ -124,7 +124,12 @@ public class DataImport implements ApplicationRunner {
 					user3.getAddress().getCity(), user4.getAddress().getCity()};
 			
 			User[] owners = {user5, user1, user2, user3, user4, user5, user1, user2, user3, user4};
-	
+			List<List<String>> listOfLists = new ArrayList<>();
+			for (int i = 0; i < 10; i++) {
+			    List<String> list = new ArrayList<>();
+			    list.add("/img/" + i + "_1.png");
+			    listOfLists.add(list);
+			}
 			for (int i = 0; i < 10; i++) {
 				Product product = new Product();
 				product.setProductName(names[i]);
