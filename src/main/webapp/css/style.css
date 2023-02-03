@@ -653,6 +653,7 @@ footer {
 }
 
 .product-main-description {
+  margin-top:10px;
   font-weight: 700;
   margin-bottom: 5px;
 }
@@ -671,6 +672,7 @@ footer {
 .product-main-one-container {
   height: 70%;
   margin-bottom: 10px;
+  width: 100%;
 }
 .product-main-one img {
   height: 100%;
@@ -1243,3 +1245,22 @@ footer {
   
 }
 
+.carousel {
+	margin-top: 5px;
+	display: flex;
+	flex-direction: row;
+	margin-bottom:10px;
+	justify-content: space-between;
+}
+.carousel-row-one{
+	
+
+}
+.carousel-row-two{
+	
+
+}
+
+.a{
+	padding:10px;
+}
