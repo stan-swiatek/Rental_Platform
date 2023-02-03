@@ -169,6 +169,7 @@ body {
   display: flex;
   flex-shrink: 1;
   flex-grow: 1;
+  width: 100%;
 }
 .main-row-item-block-title {
   font-weight: bold;
