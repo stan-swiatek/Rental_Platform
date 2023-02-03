@@ -33,6 +33,7 @@ import com.fdmgroup.RentalPlatform.services.IBookingService;
 import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 import com.fdmgroup.RentalPlatform.services.IUserService;
+import com.fdmgroup.RentalPlatform.services.LogService;
 import com.fdmgroup.RentalPlatform.services.ProductService;
 import com.fdmgroup.RentalPlatform.model.Review;
 import com.fdmgroup.RentalPlatform.services.IRatingService;
@@ -51,7 +52,7 @@ public class ProductController {
 	private RatingService ratingService;
 	
 	@Autowired
-	private LoginAndRegisterController login;
+	private LogService login;
 	
 	@Autowired
 	private IBookingService bookingService;

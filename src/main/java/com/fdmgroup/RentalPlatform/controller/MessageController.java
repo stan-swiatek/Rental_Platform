@@ -20,6 +20,7 @@ import com.fdmgroup.RentalPlatform.services.BookingService;
 import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IProductService;
 import com.fdmgroup.RentalPlatform.services.IUserService;
+import com.fdmgroup.RentalPlatform.services.LogService;
 
 @Controller
 public class MessageController {
@@ -28,7 +29,7 @@ public class MessageController {
 	private BookingService bookingService;
 
 	@Autowired
-	private LoginAndRegisterController login;
+	private LogService login;
 
 	@Autowired
 	private IUserService userService;

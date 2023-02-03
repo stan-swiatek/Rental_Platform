@@ -31,6 +31,7 @@ import com.fdmgroup.RentalPlatform.security.DefaultUserDetailsService;
 import com.fdmgroup.RentalPlatform.security.UserPrincipal;
 import com.fdmgroup.RentalPlatform.services.AddressService;
 import com.fdmgroup.RentalPlatform.services.IUserProfileService;
+import com.fdmgroup.RentalPlatform.services.LogService;
 import com.fdmgroup.RentalPlatform.services.RoleService;
 
 @Controller
@@ -55,7 +56,7 @@ public class UserProfileController {
 	private PasswordEncoder encoder;
 	
 	@Autowired
-	private LoginAndRegisterController login;
+	private LogService login;
 	
 	private Address address;
 	

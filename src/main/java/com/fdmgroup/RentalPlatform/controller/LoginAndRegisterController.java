@@ -27,37 +27,26 @@ import com.fdmgroup.RentalPlatform.repository.MessageRepository;
 import com.fdmgroup.RentalPlatform.security.DefaultUserDetailsService;
 import com.fdmgroup.RentalPlatform.security.UserPrincipal;
 import com.fdmgroup.RentalPlatform.services.AddressService;
+import com.fdmgroup.RentalPlatform.services.LogService;
 import com.fdmgroup.RentalPlatform.services.MessageService;
 import com.fdmgroup.RentalPlatform.services.ProductService;
+import com.fdmgroup.RentalPlatform.services.RegisterService;
 import com.fdmgroup.RentalPlatform.services.RoleService;
 
 
 @Controller
 public class LoginAndRegisterController {
-
 	@Autowired
-	private DefaultUserDetailsService userService;
-
-	@Autowired
-	private AddressService addressService;
-
-	@Autowired
-	private PasswordEncoder encoder;
-
-	@Autowired
-	private ProductService productService;
+	private LogService logService;
 	
 	@Autowired
-	private MessageRepository messageRepository;
-
-	@Autowired
-	private RoleService roleService;
+	private RegisterService registerService;
 	
 	
 
 	@GetMapping("/login")
 	public String login(ModelMap model) {
-		isLoggedIn(model);
+		logService.isLoggedIn(model);
 		return "login";
 	}
 //	@GetMapping("/logout")
@@ -67,92 +56,21 @@ public class LoginAndRegisterController {
 
 	@GetMapping("/register")
 	public String register(ModelMap model) {
-		isLoggedIn(model);
+		logService.isLoggedIn(model);
 		return "register";
 	}
 
 	@GetMapping("/logged")
 	public String loggedUser(ModelMap model) {
-		isLoggedIn(model);
+		logService.isLoggedIn(model);
 		return "index";
-	}
-
-
-	//Perform the login check and inject user info to the header if logged in.
-	public boolean isLoggedIn(ModelMap model) {
-
-		boolean isLoggedIn = isLoggedIn();
-		if (isLoggedIn) {
-			UserPrincipal user = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			model.addAttribute("loggedIn", isLoggedIn);
-			model.addAttribute("firstname", user.getFirstName());
-			model.addAttribute("user_id", user.getId());
-			
-			int unread = checkUnreadMessages(getLoggedUser());
-			model.addAttribute("unread",unread);
-		}
-		return isLoggedIn;
-	}
-	
-	private int checkUnreadMessages(User user) {
-		int unread = 0;
-		System.out.println(user);
-		List<Message> allMessages = messageRepository.findByBuyer(user);
-		allMessages.addAll(messageRepository.findByOwner(user));
-		System.out.println("Number of messages" + allMessages.size());
-		for(Message message : allMessages) {
-			if(message.getOwner().equals(user)&&message.isSentByBuyer()&&!message.getisRead()) {
-				unread++;
-			}else if(message.getBuyer().equals(user)&&!message.isSentByBuyer()&&!message.getisRead()) {
-				unread++;
-			}
-		}
-		
-		System.out.println("Unread messages " + unread );
-		return unread;
-	}
-	public boolean isLoggedIn() {
-		return  SecurityContextHolder.getContext().getAuthentication() != null
-				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
-				&& !(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken);
-	}
-	
-	public User getLoggedUser() {
-		if (isLoggedIn()) {
-			UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			User user = userService.findByUsername(userPrincipal.getUsername()).get();
-			return user;
-		}
-		return null;
-	}
-
-	
+	}	
 
 	@PostMapping("/register")
 	public String registerSubmit(@ModelAttribute("user") User user, @ModelAttribute("address") Address address,
 			@RequestParam("confirmPassword") String confirmPassword, ModelMap model) {
 		
-		Optional<User> userFromDatabase = userService.findByUsername(user.getUsername());
-		if (userFromDatabase.isPresent()) {
-			model.addAttribute("message", "This user name already exists");
-			return "register";
-		}
-		
-		 if (!user.getPassword().equals(confirmPassword)) {
-		        model.addAttribute("message", "Passwords do not match");
-		        return "register";
-		    }
-		
-
-		user.setRole(roleService.findByRoleName("Customer"));
-		user.setPassword(encoder.encode(user.getPassword()));
-		user.setAddress(address);
-
-		addressService.saveAddress(address);
-		userService.saveUser(user);
-
-
-		return "index";
+		return registerService.registerSubmit(user, address, confirmPassword, model);
 	}
 	
 	

@@ -12,14 +12,13 @@ import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.services.ProductService;
 
 
+import com.fdmgroup.RentalPlatform.services.LogService;
+
 @Controller
 public class RentalPlatformController {
 	
 	@Autowired
-	private LoginAndRegisterController login;
-	
-	@Autowired
-	private ProductService productService;
+	private LogService login;
 
 	
 	@GetMapping(value = "/")
