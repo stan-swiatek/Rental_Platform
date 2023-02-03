@@ -51,6 +51,11 @@ public class MessageService implements IMessageService {
 		
 		return repo.findById(id);
 	}
+
+	@Override
+	public List<Message> findByOwnerOrBuyer(User owner, User buyer) {
+		return repo.findByOwnerOrBuyer(owner, buyer);
+	}
 	
 	
 

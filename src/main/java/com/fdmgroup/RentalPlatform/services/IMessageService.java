@@ -20,4 +20,6 @@ public interface IMessageService {
 	void saveMessage(Message message);
 
 	Optional<Message> findById(int id);
+	
+	List<Message> findByOwnerOrBuyer(User owner, User buyer);
 }

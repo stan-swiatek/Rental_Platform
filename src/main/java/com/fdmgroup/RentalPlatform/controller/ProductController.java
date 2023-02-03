@@ -1,5 +1,6 @@
 package com.fdmgroup.RentalPlatform.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +21,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fdmgroup.RentalPlatform.model.Address;
 import com.fdmgroup.RentalPlatform.model.Booking;
 import com.fdmgroup.RentalPlatform.model.Message;
 import com.fdmgroup.RentalPlatform.model.Product;
 import com.fdmgroup.RentalPlatform.model.User;
+import com.fdmgroup.RentalPlatform.repository.ProductRepository;
 import com.fdmgroup.RentalPlatform.services.IBookingService;
 import com.fdmgroup.RentalPlatform.services.IMessageService;
 import com.fdmgroup.RentalPlatform.services.IProductService;
@@ -33,6 +37,7 @@ import com.fdmgroup.RentalPlatform.services.ProductService;
 import com.fdmgroup.RentalPlatform.model.Review;
 import com.fdmgroup.RentalPlatform.services.IRatingService;
 import com.fdmgroup.RentalPlatform.services.RatingService;
+import com.fdmgroup.RentalPlatform.util.FileUploadUtil;
 import com.fdmgroup.RentalPlatform.util.Filtering;
 
 
@@ -50,6 +55,9 @@ public class ProductController {
 	
 	@Autowired
 	private IBookingService bookingService;
+	
+	@Autowired
+	private ProductRepository repo;
 
 	
 //	@Autowired
@@ -78,30 +86,89 @@ public class ProductController {
 //		return "UserProfile";
 //	}
 	
-	
 	@PostMapping(value="/ProductOffer")
-	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model) {
+	public String createNewProduct( ModelMap model,@RequestParam String productName,@RequestParam String description,@RequestParam String category,
+									@RequestParam String type, @RequestParam String color, @RequestParam Double price, @RequestParam String pickUpLocation,
+	                                @RequestParam(value = "image", required = false) MultipartFile[] multipartFiles) throws IOException {
+	    Product product = new Product();
+	    product.setProductName(productName);
+	    product.setDescription(description);
+	    product.setCategory(category);
+	    product.setType(type);
+	    product.setColor(color);
+	    product.setPrice(price);
+	    product.setPickUpLocation(pickUpLocation);	    
 		user = login.getLoggedUser();
-		product.setOwner(user);
-		service.createNewProduct(product);
-		populateModel(model);
-		model.addAttribute("product",product);
-		
-		model.addAttribute("productName", product.getProductName());
-		model.addAttribute("productDescription", product.getDescription());
-		model.addAttribute("productCategory", product.getCategory());
-		model.addAttribute("productType", product.getType());
-		model.addAttribute("productColor", product.getColor());
-		model.addAttribute("productPrice", product.getPrice());
-		model.addAttribute("pickUpLocation", product.getPickUpLocation());
-//		String productName = product.getProductName();
-//		String description = product.getDescription();
-//		String category = product.getCategory();
-//		String type = product.getType();
-//		String color = product.getColor();
-//		BigDecimal price = product.getPrice();
-		return "redirect:/ProductPage/" + product.getId();
+	    product.setOwner(user);
+	    service.createNewProduct(product);
+	    for(MultipartFile multipartFile: multipartFiles) {
+	    	
+		    if (multipartFile != null && !multipartFile.isEmpty()) {
+		        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		        System.out.println("Path to file: " + fileName);
+		        String uploadDir = "./src/main/webapp/img/" + product.getId();
+		        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		        product.setPhotos("/img/"+ product.getId() + "/" + fileName);
+		    }
+	    }
+	    
+	    service.createNewProduct(product);
+	    populateModel(model);
+	    
+	    model.addAttribute("product", product);
+	    model.addAttribute("productName", product.getProductName());
+	    model.addAttribute("productDescription", product.getDescription());
+	    model.addAttribute("productCategory", product.getCategory());
+	    model.addAttribute("productType", product.getType());
+	    model.addAttribute("productColor", product.getColor());
+	    model.addAttribute("productPrice", product.getPrice());
+	    model.addAttribute("pickUpLocation", product.getPickUpLocation());
+	    
+	    return "redirect:/ProductPage/" + product.getId();
 	}
+	
+//	@PostMapping(value="/ProductOffer")
+//	public String createNewProduct(@ModelAttribute("product") Product product, ModelMap model, @RequestParam("file") MultipartFile multipartFile) throws IOException {
+//		user = login.getLoggedUser();
+//		product.setOwner(user);
+//		
+//		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//        product.setPhotos(fileName);
+//		
+//        
+//        service.createNewProduct(product);
+//        
+//        String uploadDir = "user-photos/" + product.getId();
+//        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+//        
+//		populateModel(model);
+//		model.addAttribute("product",product);
+//		
+//		model.addAttribute("productName", product.getProductName());
+//		model.addAttribute("productDescription", product.getDescription());
+//		model.addAttribute("productCategory", product.getCategory());
+//		model.addAttribute("productType", product.getType());
+//		model.addAttribute("productColor", product.getColor());
+//		model.addAttribute("productPrice", product.getPrice());
+//		model.addAttribute("pickUpLocation", product.getPickUpLocation());
+//		
+////		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+////        product.setPhotos(fileName);
+//         
+//       // Product savedProduct = repo.save(product);
+// 
+//       // String uploadDir = "user-photos/" + savedProduct.getId();
+// 
+//       // FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+//		
+////		String productName = product.getProductName();
+////		String description = product.getDescription();
+////		String category = product.getCategory();
+////		String type = product.getType();
+////		String color = product.getColor();
+////		BigDecimal price = product.getPrice();
+//		return "redirect:/ProductPage/" + product.getId();
+//	}
 	
 	
 // original method before making changes to display data in productpage	
@@ -129,7 +196,8 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
-		
+		model.addAttribute("mainPhotoUrl",product.getPhotos().get(0));
+		model.addAttribute("pictureUrls", product.getPhotos());
 		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
 		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
 		
@@ -147,6 +215,29 @@ public class ProductController {
 		return "ProductPage";
 	}
 	
+	@PostMapping(value="/ProductPage/{id}/{photoIndex}")
+	public String goToNextPhoto(ModelMap model, @PathVariable int id,@PathVariable int photoIndex) {
+		login.isLoggedIn(model);
+		Product product = service.findProductById(id);
+		model.addAttribute("product",product);
+		model.addAttribute("productName", product.getProductName());
+		model.addAttribute("productDescription", product.getDescription());
+		model.addAttribute("productCategory", product.getCategory());
+		model.addAttribute("productType", product.getType());
+		model.addAttribute("productColor", product.getColor());
+		model.addAttribute("productPrice", product.getPrice());
+		model.addAttribute("mainPhotoUrl",product.getPhotos().get(photoIndex));
+		model.addAttribute("pictureUrls", product.getPhotos());
+		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
+		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
+		model.addAttribute("pickUpLocation", product.getPickUpLocation());
+		user = login.getLoggedUser();
+		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
+		model.addAttribute("bookings", bookings);
+		model.addAttribute("isAvailable", isAvailable(product));
+		return "ProductPage";
+	}
+	
 	@GetMapping("/cart")
 	public String getCart(ModelMap model) {
 		login.isLoggedIn(model);
@@ -156,7 +247,7 @@ public class ProductController {
 //		messages.addAll(messageService.findByBuyer(user));
 //		List<Message> conversations = splitToConversation(messages);
 		model.addAttribute("bookings", bookings);
-		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
+		model.addAttribute("others", bookingService.findByUserAndStatusNot(user, "Cart"));
 		return "cart";
 	}
 
@@ -287,16 +378,84 @@ public class ProductController {
 		login.isLoggedIn(model);
 		model.addAttribute("products", service.findAllProducts());
 	}
-	@GetMapping("/booking/{booking_id}/accept")
-	public String approveBooking(@PathVariable int booking_id,
+	
+	@GetMapping("/returned/{booking_id}/{message_id}")
+	public String confirmReturn(@PathVariable int booking_id, @PathVariable int message_id,
+			ModelMap model) {
+		
+		Booking booking = bookingService.findByID(booking_id);
+		
+		if(ownerSafeguard(booking, login.getLoggedUser())) {
+			return "redirect:/messages";
+		}
+		
+		booking.setStatus("Returned");
+		bookingService.saveBooking(booking);
+		
+		Message message = messageService.findById(message_id).get();
+		String returnTextOwner = "You confirmed return of product!"
+			+ "For product: " + booking.getProduct().getProductName()
+			+ "<br>By user: " + booking.getProduct().getOwner().getUsername()
+			+ "<br>From: " + booking.getStartDate()
+			+ "<br>To: " + booking.getEndDate();
+		message.setMessageText(returnTextOwner);
+		messageService.saveMessage(message);
+		
+		String returnTextBuyer = "Owner confirmed return of product! <br>"
+				+ "For product: " + booking.getProduct().getProductName()
+				+ "<br>By user: " + booking.getProduct().getOwner().getUsername()
+				+ "<br>From: " + booking.getStartDate()
+				+ "<br>To: " + booking.getEndDate();
+		sendNotification(booking.getUser(), booking.getProduct().getOwner(), true, booking.getProduct(), returnTextBuyer);
+		
+		
+		return "redirect:/messages";
+	}
+
+	private boolean ownerSafeguard(Booking booking, User user) {
+		if(booking.getProduct().getOwner().equals(user)) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean buyerSafeguard(Booking booking, User user) {
+		if(booking.getUser().equals(user)) {
+			return false;
+		}
+		return true;
+	}
+
+	@GetMapping("/booking/{booking_id}/accept/{message_id}")
+	public String approveBooking(@PathVariable int booking_id, @PathVariable int message_id,
 			ModelMap model) {
 		login.isLoggedIn(model);
 		Booking booking = bookingService.findByID(booking_id);
-		booking.setAccepted(true);
+
+		user = login.getLoggedUser();
+		if(ownerSafeguard(booking, user)) {
+			return "redirect:/messages";
+		}
+		
+		booking.setStatus("Accepted");
 		bookingService.saveBooking(booking);
 		Product product = service.findProductById(booking.getProduct().getId());
-		product.setAvailable(false);
-		service.createNewProduct(product);
+//		product.setAvailable(false);
+//		service.createNewProduct(product);
+		String ownerText = "You accepted this booking! <br>"
+		+ "For product: " + booking.getProduct().getProductName()
+		+ "<br>By user: " + product.getOwner().getUsername()
+		+ "<br>From: " + booking.getStartDate()
+		+ "<br>To: " + booking.getEndDate()
+		+ "<br><a href=\"/returned/"
+		+ booking_id
+		+ "/"
+		+ message_id
+		+ "\">confirm return</a>";
+		Message ownerMessage = messageService.findById(message_id).get();
+		ownerMessage.setMessageText(ownerText);
+		messageService.saveMessage(ownerMessage);
+		
 		String approvalText = "Your offer have been approved! <br>"
 				+ "For product: " + booking.getProduct().getProductName()
 				+ "<br>By user: " + product.getOwner().getUsername()
@@ -305,21 +464,38 @@ public class ProductController {
 				+ "<br><br>Claim your product at: "+ booking.getProduct().getOwner().getAddress() +"<br>"
 				
 				;
-		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),approvalText);
+		sendNotification(booking.getProduct().getOwner(), booking.getUser(), true, booking.getProduct(),approvalText);
 		
-		return "/index";
+		return "redirect:/messages";
 	}            
 	
-	@GetMapping("/booking/{booking_id}/decline")
-	public String declineBooking( @PathVariable int booking_id,
+	@GetMapping("/booking/{booking_id}/decline/{message_id}")
+	public String declineBooking( @PathVariable int booking_id, @PathVariable int message_id,
 			ModelMap model) {
 		login.isLoggedIn(model);
 		Booking booking = bookingService.findByID(booking_id);
-		booking.setAccepted(false);
+
+		user = login.getLoggedUser();
+		if(ownerSafeguard(booking, user)) {
+			return "redirect:/messages";
+		}
+		
+		booking.setStatus("Declined");
+		Product product = service.findProductById(booking.getProduct().getId());
+		
+		String ownerText = "You declined this booking! <br>"
+		+ "For product: " + booking.getProduct().getProductName()
+		+ "<br>By user: " + product.getOwner().getUsername()
+		+ "<br>From: " + booking.getStartDate()
+		+ "<br>To: " + booking.getEndDate();
+		Message ownerMessage = messageService.findById(message_id).get();
+		ownerMessage.setMessageText(ownerText);
+		messageService.saveMessage(ownerMessage);
+		
 		String declineText = "Your offer have been declined! <br>"
 				+ "Search for other products.";
-		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(),declineText);
-		return"/index";
+		sendNotification(booking.getProduct().getOwner(),booking.getUser(),true, booking.getProduct(), declineText);
+		return "redirect:/messages";
 	}
 	
 	
@@ -328,8 +504,9 @@ public class ProductController {
 		message.setBuyer(buyer);
 		message.setOwner(owner);
 		message.setProduct(product);
+		messageService.saveMessage(message);
 		message.setMessageText(
-				text
+				text.replaceAll("MMIIDD", ""+message.getId())
 				);
 		messageService.saveMessage(message);
 		
@@ -342,7 +519,7 @@ public class ProductController {
 		message.setOwner(buyer);
 		message.setProduct(booking.getProduct());
 		message.setMessageText(
-				"Your offer have been approved! <br>"
+				"Your offer has been approved! <br>"
 				+ "For product: " + booking.getProduct().getProductName()
 				+ "<br>By user: " + buyer.getUsername()
 				+ "<br>From: " + booking.getStartDate()
@@ -379,30 +556,8 @@ public class ProductController {
 //		model.addAttribute("places", productService.findAllPlaces());
 		//populateModel(model);
 		login.isLoggedIn(model);
-		model.addAttribute("product",product);
-		model.addAttribute("productName", product.getProductName());
-		model.addAttribute("productDescription", product.getDescription());
-		model.addAttribute("productCategory", product.getCategory());
-		model.addAttribute("productType", product.getType());
-		model.addAttribute("productColor", product.getColor());
-		model.addAttribute("productPrice", product.getPrice());
-		String notificationText = "You have new Booking! <br>"
-				+ "For product: " + booking.getProduct().getProductName()
-				+ "<br>By user: " + product.getOwner().getUsername()
-				+ "<br>From: " + booking.getStartDate()
-				+ "<br>To: " + booking.getEndDate()
-				+ "<br><br>Do you accept?<br>"
-				+ "<a href=\"/booking/"+booking.getId()+"/accept\"> Yes </a>"
-				+ "<a href=\"/booking/"+booking.getId()+"/decline\"> No </a>";
-		sendNotification(product.getOwner(), booking.getUser(),true,product, notificationText);
 
-		user = login.getLoggedUser();
-		List<Booking> bookings = bookingService.findByProductAndUser(product, user);
-		model.addAttribute("bookings", bookings);
-		
-		model.addAttribute("isAvailable", isAvailable(product));
-
-		return "ProductPage";
+		return "redirect:/ProductPage/"+product_id;
 	}
 	
 	@PostMapping("/delete_item/{booking_id}")
@@ -421,15 +576,14 @@ public class ProductController {
 			newBooking.setStatus("Pending");
 			bookingService.saveBooking(newBooking);
 		}
-		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
-		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
-		return "cart";
+		return "redirect:/cart";
 	}
 	
 	boolean isAvailable(Product product) {
 		List<String> nope = new ArrayList<String>();
 		nope.add("Cart");
 		nope.add("Pending");
+		nope.add("Accepted");
 		
 		Iterator<String> iterator = nope.iterator();
 		while(iterator.hasNext()) {
@@ -451,9 +605,18 @@ public class ProductController {
 			Booking newBooking = iterator.next();
 			newBooking.setStatus("Pending");
 			bookingService.saveBooking(newBooking);
+			String notificationText = "You have new Booking! <br>"
+					+ "For product: " + newBooking.getProduct().getProductName()
+					+ "<br>By user: " + newBooking.getProduct().getOwner().getUsername()
+					+ "<br>From: " + newBooking.getStartDate()
+					+ "<br>To: " + newBooking.getEndDate()
+					+ "<br><br>Do you accept?<br>"
+							+ "<a href=\"/booking/"+newBooking.getId()+"/accept/MMIIDD\"> Yes </a>"
+							+ "<a href=\"/booking/"+newBooking.getId()+"/decline/MMIIDD\"> No </a>";
+			sendNotification(newBooking.getProduct().getOwner(), newBooking.getUser(), true, newBooking.getProduct(), notificationText);
 		}
-		model.addAttribute("pending", bookingService.findByUserAndStatus(user, "Pending"));
-		model.addAttribute("bookings", bookingService.findByUserAndStatus(user, "Cart"));
-		return "cart";
+		return "redirect:/cart";
 	}
+	
+	
 }

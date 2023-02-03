@@ -1,22 +1,34 @@
 package com.fdmgroup.RentalPlatform.controller;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import com.fdmgroup.RentalPlatform.model.Product;
+import com.fdmgroup.RentalPlatform.services.ProductService;
+
 
 @Controller
 public class RentalPlatformController {
 	
 	@Autowired
 	private LoginAndRegisterController login;
+	
+	@Autowired
+	private ProductService productService;
 
 	
 	@GetMapping(value = "/")
 	public String goToIndex(ModelMap model) {
 		login.isLoggedIn(model);
+		List<Product> allProducts = productService.findAllProducts();
+		Collections.shuffle(allProducts);
+	    List<Product> listOfProducts = allProducts.subList(0, 4);
+		model.addAttribute("listOfProducts", listOfProducts);
 		return "index";
 	}
 

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -26,7 +27,22 @@ public class Message {
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	private String messageText, subject;
+	@ManyToOne
+	@JoinColumn(name = "booking_id")
+	private Booking booking;
+
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
+	@Lob
+	private String messageText;
+	
+	private String subject;
 
 	private Date timeSent;
 

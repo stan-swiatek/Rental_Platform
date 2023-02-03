@@ -655,6 +655,7 @@ footer {
 }
 
 .product-main-description {
+  margin-top:10px;
   font-weight: 700;
   margin-bottom: 5px;
 }

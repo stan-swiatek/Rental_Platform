@@ -43,12 +43,11 @@ public class MessageController {
 
 	private Product product;
 
-	@GetMapping("/messages/{id}")
-	public String getMessages(ModelMap model, @PathVariable int id) {
+	@GetMapping("/messages")
+	public String getMessages(ModelMap model) {
 		login.isLoggedIn(model);
 		user = login.getLoggedUser();
-		List<Message> messages = messageService.findByOwner(user);
-		messages.addAll(messageService.findByBuyer(user));
+		List<Message> messages = messageService.findByOwnerOrBuyer(user, user);
 		List<Message> conversations = splitToConversation(messages);
 		List<Integer> unreadMessages = new ArrayList<>();
 		for (Message conversation : conversations) {

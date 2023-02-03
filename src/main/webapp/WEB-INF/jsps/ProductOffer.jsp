@@ -26,7 +26,7 @@
       <div class="log-name-block">
         <div class="offer-block-main">
           <div class="offer-name">Create your offer here:</div>
-          <form action="ProductOffer" method="POST">
+          <form action="ProductOffer" method="POST" enctype="multipart/form-data">
             <label for="productName">Product Name:</label><br>
             <input 
               type="text" 
@@ -92,8 +92,10 @@
               placeholder="type here..."
             ><br>
             <div class="register-button">
+            <label>Photos: </label>
+            <input type="file" name="image" accept="image/png, image/jpeg, image/jpg" multiple="multiple" />
 
-           		<input type="submit" value="Create">
+           		<input type="submit" value="Submit">
 
           	</div>
           </form>

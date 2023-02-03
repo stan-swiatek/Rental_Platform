@@ -174,49 +174,19 @@
 
       <div class="main-title-name">Top Deals</div>
       <div class="main-row">
+          <c:forEach var="product" items="${listOfProducts}" varStatus="status">
           <div class="main-row-item-block">
               <div class="main-row-item-block-image">
-                  <img src="new_car_landing_S_2.jpg" alt="">
+                  <img src="${product.photos[0]}" alt="">
               </div>
-              <div class="main-row-item-block-title">Car Make and Model</div>
-              <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-              <div class="main-row-item-block-description-price">Price per hour</div>
+              <div class="main-row-item-block-title">${product.productName}</div>
+              <div class="main-row-item-block-description">${product.description}</div>
+              <div class="main-row-item-block-description-price">Price per hour: ${product.description}</div>
               <div class="main-row-item-block-button">
-                  <a href="/ProductPage"><span>Rent me!</span></a>
+                  <a href="/ProductPage/${product.id}"><span>Rent me!</span></a>
               </div>
           </div>
-          <div class="main-row-item-block">
-            <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
-            </div>
-            <div class="main-row-item-block-title">Car Make & Model</div>
-            <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
-            <div class="main-row-item-block-button">
-                <a href="/ProductPage"><span>Rent me!</span></a>
-            </div>
-          </div>
-          <div class="main-row-item-block">
-            <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
-            </div>
-            <div class="main-row-item-block-title">Car Make and Model</div>
-            <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
-            <div class="main-row-item-block-button">
-                <a href="/ProductPage"><span>Rent me!</span></a>
-            </div>
-          </div>
-          <div class="main-row-item-block">
-            <div class="main-row-item-block-image">
-                <img src="new_car_landing_S_2.jpg" alt="">
-            </div>
-            <div class="main-row-item-block-title">Car Make and Model</div>
-            <div class="main-row-item-block-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, molestiae!</div>
-            <div class="main-row-item-block-description-price">Price per hour</div>
-            <div class="main-row-item-block-button">
-                <a href="/ProductPage"><span>Rent me!</span></a>
-            </div>
+          </c:forEach>
           </div>
       </div>
 
