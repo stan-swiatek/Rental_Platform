@@ -88,8 +88,8 @@ public class ProductController {
 //	}
 	
 	@PostMapping(value="/ProductOffer")
-	public String createNewProduct( ModelMap model,@RequestParam String productName,@RequestParam String description,@RequestParam String category,
-									@RequestParam String type, @RequestParam String color, @RequestParam Double price, @RequestParam String pickUpLocation,
+	public String createNewProduct( ModelMap model,@RequestParam String productName,@RequestParam(required = false) String description,@RequestParam String category,
+									@RequestParam String type, @RequestParam String color, @RequestParam(required = false) Double price, @RequestParam(required = false) String pickUpLocation,
 	                                @RequestParam(value = "image", required = false) MultipartFile[] multipartFiles) throws IOException {
 	    Product product = new Product();
 	    product.setProductName(productName);
@@ -197,7 +197,9 @@ public class ProductController {
 		model.addAttribute("productType", product.getType());
 		model.addAttribute("productColor", product.getColor());
 		model.addAttribute("productPrice", product.getPrice());
-		model.addAttribute("mainPhotoUrl",product.getPhotos().get(0));
+		if(!product.getPhotos().isEmpty()) {
+			model.addAttribute("mainPhotoUrl",product.getPhotos().get(0));
+		}
 		model.addAttribute("pictureUrls", product.getPhotos());
 		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
 		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
