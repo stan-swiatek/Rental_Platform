@@ -16,7 +16,7 @@
 	</header>
 	  <div class="wrapper-convo">
 		<h2 class="convo">Conversation between <span class="convo-name">${buyer.username}</span> and <span class="convo-name-two">${owner.username}</span></h2>
-		<h3 class="sub-convo">Subject: ${product.productName}</h3>
+		<h3 class="sub-convo"><span class="sub-convo-span">Subject:</span> ${product.productName}</h3>
 		
 		<%-- <div>
 			<form action="/accept/${product.id}/${buyer.id}" method="post">
@@ -69,6 +69,7 @@
 		</c:forEach>
 		
 	<%@ include file ="send.jsp" %>
+	</div>
 	<%@ include file ="footerBar.jsp" %>
 </body>
 </html>
