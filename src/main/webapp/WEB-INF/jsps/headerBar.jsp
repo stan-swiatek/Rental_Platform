@@ -26,7 +26,7 @@
 				</a>
 			  </div>
 				<div class="envelope">
-	                <a class="photo" href="/messages/${user_id}">
+	                <a class="photo" href="/messages">
 					  <img class="png" alt="" src="/pngkey.com-email-icon-white-png-9311379.png">
 					</a>
 					<c:if test="${unread > 0}">
