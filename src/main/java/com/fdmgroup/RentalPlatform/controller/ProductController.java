@@ -199,7 +199,7 @@ public class ProductController {
 		model.addAttribute("productPrice", product.getPrice());
 		if(!product.getPhotos().isEmpty()) {
 			model.addAttribute("mainPhotoUrl",product.getPhotos().get(0));
-		}
+		}else {model.addAttribute("mainPhotoUrl","");}
 		model.addAttribute("pictureUrls", product.getPhotos());
 		model.addAttribute("productRating", ratingService.getAverageProductRating(product));
 		model.addAttribute("userRating", ratingService.getAverageUserRating(product.getOwner()));
