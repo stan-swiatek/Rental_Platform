@@ -111,11 +111,11 @@ public class DataImport implements ApplicationRunner {
 									 "Lightweight and efficient road bike", "Stylish beach cruiser bike", 
 									 "Rugged and reliable BMX bike", "Smooth and comfortable electric bike", 
 									 "Elegant and efficient gravel bike", "Sturdy and versatile unisex bike"};
-			String[] categories = {"City Bike", "City Bike", "Mountain Bike", "Mountain Bike", "Road Bike", "City Bike",
-								   "BMX", "Electric Bike", "Gravel", "Unisex Bike"};
-			String[] types = {"Ladies Bike", "Men's Bike", "Children's Bike", "Men's Bike", "Men's Bike", "Ladies Bike", 
-							  "Men's Bike", "Unisex Bike", "Unisex Bike", "Unisex Bike"};
-			String[] colors = {"Black", "Blue", "Green", "Pink", "Red", "White", "Yellow", "Aquamarine", "Beige", "Cornflower"};
+			String[] categories = {"City Bike", "City Bike", "Road Bike", "Road Bike", "Road Bike", "City Bike",
+								   "BMX", "Electric Bike", "Gravel", "City Bike"};
+			String[] types = {"Ladies' Bikes", "Men's Bikes", "Children's Bikes", "Men's Bikes", "Men's Bikes", "Ladies' Bikes", 
+							  "Men's Bikes", "Unisex Bikes", "Unisex Bikes", "Unisex Bikes"};
+			String[] colors = {"Black", "Blue", "Green", "Pink", "Red", "White", "Yellow", "Blue", "Yellow", "Other"};
 			double[] prices = {28.99, 19.99, 13.99, 59.99, 79.99, 29.99, 19.99, 99.99, 79.99, 59.99};
 			String[] pickUpLocations = {user5.getAddress().getCity(),user1.getAddress().getCity(), 
 					user2.getAddress().getCity(), user3.getAddress().getCity(), 
