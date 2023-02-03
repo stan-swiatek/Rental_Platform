@@ -54,7 +54,7 @@
     </c:forEach>
     
   </table>
-    <form action="/confirm_cart" method="post">
+    <form action="/confirm_cart" method="post" class="confirm-form">
     	<button class="delete-input">Confirm</button>
     </form>
    </main>

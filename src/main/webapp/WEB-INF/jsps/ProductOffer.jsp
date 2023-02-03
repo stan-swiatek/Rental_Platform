@@ -93,7 +93,7 @@
             ><br>
             <div class="register-button">
             <label>Photos: </label>
-            <input type="file" name="image" accept="image/png, image/jpeg, image/jpg" multiple="multiple" />
+            <input class="photo-input" type="file" name="image" accept="image/png, image/jpeg, image/jpg" multiple="multiple" />
 
            		<input type="submit" value="Submit">
 
