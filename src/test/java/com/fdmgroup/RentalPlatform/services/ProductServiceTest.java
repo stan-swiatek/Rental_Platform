@@ -49,4 +49,22 @@ public class ProductServiceTest {
 		
 		assertNotEquals(product.getId(), productService.findByProductName("name2").getId());
 	}
+	
+	@Test
+	public void test_deleteSingleEntry() {
+		Product product1 = new Product();
+		product1.setProductName("name1");
+		productService.createNewProduct(product1);
+
+		Product product2 = new Product();
+		product2.setProductName("name2");
+		productService.createNewProduct(product2);
+		
+		assertEquals(2, productService.findAllProducts().size());
+		
+		productService.deleteProduct(product1.getId());
+
+		assertEquals(1, productService.findAllProducts().size());
+		assertEquals(product2.getId(), productService.findAllProducts().get(0).getId());
+	}
 }

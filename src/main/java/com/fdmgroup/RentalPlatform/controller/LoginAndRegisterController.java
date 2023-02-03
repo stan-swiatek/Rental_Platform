@@ -30,6 +30,7 @@ import com.fdmgroup.RentalPlatform.services.AddressService;
 import com.fdmgroup.RentalPlatform.services.LogService;
 import com.fdmgroup.RentalPlatform.services.MessageService;
 import com.fdmgroup.RentalPlatform.services.ProductService;
+import com.fdmgroup.RentalPlatform.services.RegisterService;
 import com.fdmgroup.RentalPlatform.services.RoleService;
 
 
@@ -37,24 +38,9 @@ import com.fdmgroup.RentalPlatform.services.RoleService;
 public class LoginAndRegisterController {
 	@Autowired
 	private LogService logService;
-
-	@Autowired
-	private DefaultUserDetailsService userService;
-
-	@Autowired
-	private AddressService addressService;
-
-	@Autowired
-	private PasswordEncoder encoder;
-
-	@Autowired
-	private ProductService productService;
 	
 	@Autowired
-	private MessageRepository messageRepository;
-
-	@Autowired
-	private RoleService roleService;
+	private RegisterService registerService;
 	
 	
 
@@ -84,27 +70,7 @@ public class LoginAndRegisterController {
 	public String registerSubmit(@ModelAttribute("user") User user, @ModelAttribute("address") Address address,
 			@RequestParam("confirmPassword") String confirmPassword, ModelMap model) {
 		
-		Optional<User> userFromDatabase = userService.findByUsername(user.getUsername());
-		if (userFromDatabase.isPresent()) {
-			model.addAttribute("message", "This user name already exists");
-			return "register";
-		}
-		
-		 if (!user.getPassword().equals(confirmPassword)) {
-		        model.addAttribute("message", "Passwords do not match");
-		        return "register";
-		    }
-		
-
-		user.setRole(roleService.findByRoleName("Customer"));
-		user.setPassword(encoder.encode(user.getPassword()));
-		user.setAddress(address);
-
-		addressService.saveAddress(address);
-		userService.saveUser(user);
-
-
-		return "index";
+		return registerService.registerSubmit(user, address, confirmPassword, model);
 	}
 	
 	
