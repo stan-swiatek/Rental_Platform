@@ -30,7 +30,7 @@
           </div>
 
 
-	<h3>Filtered Products</h3>
+<%--	<h3>Filtered Products</h3>
 	<table>
 		<tr>
 			<td>ID</td>
@@ -60,7 +60,7 @@
           
               <form action="/dropDownFilters" method="post">
               
-              <div class="block__main">
+              <div class="block-main">
                   <div class="year">
                     <input type="hidden" name="filter" value="${filter }">
                     <div class="a">Color</div>
@@ -194,8 +194,8 @@
                       > 
                     </div>
                   </div>
+              <input type="submit" value="Filter" class="filter-input">
               </div>
-              <input type="submit" value="Filter"/>
               </form>
             </div>
           </div>
@@ -206,25 +206,25 @@
     
 
 	
-		<h1>Filtered results</h1><br>
-	<table>
+		<h1 class="filtered-title">Filtered results</h1><br>
+	<table class="filtered-table">
 		<tr>
-			<td>ID</td>
-			<th>Name</th>
-			<th>Color</th>
-			<th>Type</th>
-			<th>Category</th>
-			<th>Price</th>
+			<td class="filtered-td">ID</td>
+			<th class="filtered-td">Name</th>
+			<th class="filtered-td">Color</th>
+			<th class="filtered-td">Type</th>
+			<th class="filtered-td">Category</th>
+			<th class="filtered-td">Price</th>
 		</tr>
 		<c:forEach items="${resultsOfSearch}" var="product">
-			<tr>
-				<td>${product.id}</td>
-				<td>${product.productName}</td>
-				<td>${product.color}</td>
-				<td>${product.type}</td>
-				<td>${product.category}</td>
-				<td>${product.price}</td>
-				<td><a href="/ProductPage/${product.id}">Details</a></td>
+			<tr class="filtered-tr">
+				<td class="filtered-tr">${product.id}</td>
+				<td class="filtered-tr">${product.productName}</td>
+				<td class="filtered-tr">${product.color}</td>
+				<td class="filtered-tr">${product.type}</td>
+				<td class="filtered-tr">${product.category}</td>
+				<td class="filtered-tr">${product.price}</td>
+				<td><a href="/ProductPage/${product.id}" class="link-details">Details</a></td>
 			</tr>
 		</c:forEach>
 	</table>

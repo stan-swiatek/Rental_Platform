@@ -14,16 +14,17 @@
     <header class="header">
       <%@ include file="headerBar.jsp" %>
     </header>
+    <div class="main">
     <main class="main-user">
       <div class="user-main">
       <div class="log-name">Your profile</div>
       <div class="user-wrapper">
         <div class="log-name-block">
           <div class="user-block-main">
-          <div class="log-in-button">Here will be user details
+          <div class="log-in-button">
            <div class="product-main-text">User name:  ${userName}</div>
            <div class="product-main-text">First name: ${userFristName}</div>
-           <div class="product-main-text">Sure name: ${userSurName}</div>
+           <div class="product-main-text">Surname: ${userSurName}</div>
            <div class="product-main-text">E-mail: ${userEmail}</div>
            <div class="product-main-text">Phone: ${userPhone}</div>
            <div class="product-main-text">Address: ${userAddress}</div>
@@ -67,8 +68,8 @@
         </div>
         </div>
       </div>
-  
     </main>
+    </div>
     <footer class="footer-contact-information">
         <%@ include file ="footerBar.jsp" %>
     </footer>

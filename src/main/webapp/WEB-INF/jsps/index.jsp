@@ -36,7 +36,7 @@
       	
               <form action="/dropDownFilters" method="post">
               
-              <div class="block__main">
+              <div class="block-main">
                   <div class="year">
                     <input type="hidden" name="filter" value="${filter }">
                     <div class="a">Color</div>
@@ -162,8 +162,8 @@
                       > 
                     </div>
                   </div>
+                  <input type="submit" value="Filter" class="filter-input">
               </div>
-              <input type="submit" value="Filter"/>
               </form>
             </div>
           </div>
