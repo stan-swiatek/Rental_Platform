@@ -181,7 +181,7 @@
               </div>
               <div class="main-row-item-block-title">${product.productName}</div>
               <div class="main-row-item-block-description">${product.description}</div>
-              <div class="main-row-item-block-description-price">${product.description}</div>
+              <div class="main-row-item-block-description-price">Price per hour: ${product.price}</div>
               <div class="main-row-item-block-button">
                   <a href="/ProductPage/${product.id}"><span>Rent me!</span></a>
               </div>
